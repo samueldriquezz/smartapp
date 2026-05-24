@@ -932,6 +932,163 @@
     }
 
     /* ===========================================
+       SERVICES — LIGHT THEME (stands out)
+       =========================================== */
+    #services {
+      background:
+        radial-gradient(ellipse at 20% 0%, #FAE8FF 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, #DBEAFE 0%, transparent 50%),
+        linear-gradient(180deg, #FAF5FF 0%, #FDF2F8 60%, #F5F3FF 100%);
+      position: relative;
+      overflow: hidden;
+      color: #1E293B;
+    }
+
+    /* Pastel floating orbs */
+    .services-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .services-decor .p-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      will-change: transform;
+    }
+    .services-decor .p-orb-1 {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, #C4B5FD, transparent 65%);
+      top: -120px; inset-inline-end: -120px;
+      animation: pOrbA 22s ease-in-out infinite alternate;
+    }
+    .services-decor .p-orb-2 {
+      width: 460px; height: 460px;
+      background: radial-gradient(circle, #FBCFE8, transparent 65%);
+      bottom: -160px; inset-inline-start: -120px;
+      animation: pOrbB 26s ease-in-out infinite alternate;
+    }
+    .services-decor .p-orb-3 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, #BAE6FD, transparent 65%);
+      top: 38%; left: 40%;
+      animation: pOrbC 30s ease-in-out infinite alternate;
+      opacity: 0.45;
+    }
+    @keyframes pOrbA {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(-50px, 60px, 0) scale(1.15); }
+    }
+    @keyframes pOrbB {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(70px, -50px, 0) scale(1.1); }
+    }
+    @keyframes pOrbC {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(-40px, -60px, 0) scale(1.2); }
+    }
+
+    /* Subtle dot pattern overlay */
+    .services-decor::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(91, 110, 245, 0.18) 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
+      opacity: 0.45;
+    }
+
+    /* Decorative SVG shapes (rotating) */
+    .services-shape {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    .services-shape.shape-tl {
+      top: 10%;
+      inset-inline-start: 5%;
+      width: 80px; height: 80px;
+      animation: shapeRot 30s linear infinite;
+    }
+    .services-shape.shape-br {
+      bottom: 12%;
+      inset-inline-end: 6%;
+      width: 70px; height: 70px;
+      animation: shapeRot 36s linear infinite reverse;
+    }
+    .services-shape circle {
+      fill: none;
+      stroke: #A78BFA;
+      stroke-width: 1.5;
+      stroke-dasharray: 4 6;
+    }
+    @keyframes shapeRot {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Inverted section head text colors */
+    #services .section-head { position: relative; z-index: 1; }
+    #services .section-head h2 { color: #1E293B; }
+    #services .section-head .sub { color: #64748B; }
+    #services .cards-3 { position: relative; z-index: 1; }
+    #services .services-note { position: relative; z-index: 1; color: #64748B; }
+
+    /* Dark glass cards on light section */
+    #services .card {
+      background: linear-gradient(180deg, rgba(20, 22, 38, 0.92), rgba(12, 14, 28, 0.88));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 30px 60px -20px rgba(20, 22, 38, 0.45),
+        0 10px 30px -10px rgba(139, 92, 246, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+    }
+    #services .card:hover {
+      transform: translateY(-6px);
+      background: linear-gradient(180deg, rgba(24, 26, 44, 0.95), rgba(14, 16, 32, 0.92));
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 40px 80px -22px rgba(20, 22, 38, 0.55),
+        0 15px 40px -10px rgba(139, 92, 246, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    #services .card h3 { color: var(--text-primary); }
+    #services .card ul li { color: var(--text-primary); }
+    #services .card ul li::before {
+      background: var(--gradient);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18);
+    }
+
+    /* Accent-top card (middle) — emphasize with stronger glow */
+    #services .card.accent-top {
+      background: linear-gradient(180deg, rgba(24, 26, 44, 0.95), rgba(14, 16, 32, 0.92));
+      box-shadow:
+        0 35px 70px -20px rgba(236, 72, 153, 0.35),
+        0 15px 40px -10px rgba(139, 92, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Muted card — matched to default cards in this section */
+    #services .card.muted {
+      background: linear-gradient(180deg, rgba(20, 22, 38, 0.92), rgba(12, 14, 28, 0.88));
+    }
+    #services .card.muted h3 { color: var(--text-primary); }
+    #services .card.muted ul li { color: var(--text-primary); }
+    #services .card.muted ul li::before {
+      background: var(--gradient);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18);
+    }
+
+    /* ===========================================
        CHALLENGES SECTION (Section 1)
        =========================================== */
     .challenges-grid {
@@ -1103,6 +1260,176 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+
+    /* ===========================================
+       WHY SMARTAPP — LIGHT THEME (matches services)
+       =========================================== */
+    #why {
+      background:
+        radial-gradient(ellipse at 80% 0%, #FAE8FF 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 100%, #DBEAFE 0%, transparent 50%),
+        linear-gradient(180deg, #FAF5FF 0%, #FDF2F8 60%, #F5F3FF 100%);
+      position: relative;
+      overflow: hidden;
+      color: #1E293B;
+    }
+    /* Pastel orb decorations (flipped positions from services) */
+    .why-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .why-decor .p-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      will-change: transform;
+    }
+    .why-decor .p-orb-1 {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, #FBCFE8, transparent 65%);
+      top: -120px; inset-inline-start: -100px;
+      animation: pOrbA 24s ease-in-out infinite alternate;
+    }
+    .why-decor .p-orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #C4B5FD, transparent 65%);
+      bottom: -150px; inset-inline-end: -120px;
+      animation: pOrbB 28s ease-in-out infinite alternate;
+    }
+    .why-decor .p-orb-3 {
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, #BAE6FD, transparent 65%);
+      top: 30%; right: 35%;
+      animation: pOrbC 32s ease-in-out infinite alternate;
+      opacity: 0.4;
+    }
+    .why-decor::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(91, 110, 245, 0.18) 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
+      opacity: 0.4;
+    }
+    /* Rotating decorative shapes */
+    .why-shape {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+    .why-shape.shape-tr {
+      top: 12%;
+      inset-inline-end: 6%;
+      width: 80px; height: 80px;
+      animation: shapeRot 34s linear infinite;
+    }
+    .why-shape.shape-bl {
+      bottom: 14%;
+      inset-inline-start: 5%;
+      width: 70px; height: 70px;
+      animation: shapeRot 28s linear infinite reverse;
+    }
+    .why-shape circle {
+      fill: none;
+      stroke: #A78BFA;
+      stroke-width: 1.5;
+      stroke-dasharray: 4 6;
+    }
+
+    /* ===== Shared sparkle / accent decorations (services + why) ===== */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      animation: sparkleTwinkle 3.5s ease-in-out infinite;
+    }
+    .sparkle svg { display: block; width: 100%; height: 100%; }
+    .sparkle .star-fill {
+      fill: url(#sparkleGrad);
+    }
+    @keyframes sparkleTwinkle {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50%      { opacity: 1;   transform: scale(1.15); }
+    }
+    /* Geometric floating accents (small filled circles / squares in brand colors) */
+    .geo-dot {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      will-change: transform;
+    }
+    .geo-square {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 6px;
+      will-change: transform;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+      50%      { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+    }
+    @keyframes floatXY {
+      0%, 100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+      50%      { transform: translate(8px, -10px) rotate(var(--rot, 0deg)); }
+    }
+
+    /* Curved gradient line accents */
+    .accent-line {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    .accent-line path {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 8 6;
+      animation: dashFlow 14s linear infinite;
+    }
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -200; }
+    }
+
+    /* Section content — inverted to dark text */
+    #why .section-head { position: relative; z-index: 1; }
+    #why .section-head h2 { color: #1E293B; }
+    #why .section-head .sub { color: #64748B; }
+    #why .container > .problem-body { color: #475569; position: relative; z-index: 1; }
+    #why .benefits-grid { position: relative; z-index: 1; }
+    #why .closing-line { color: #1E293B; position: relative; z-index: 1; }
+
+    /* Dark benefit cards on light bg */
+    #why .benefit {
+      background: linear-gradient(180deg, rgba(20, 22, 38, 0.92), rgba(12, 14, 28, 0.88));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 30px 60px -20px rgba(20, 22, 38, 0.4),
+        0 10px 30px -10px rgba(139, 92, 246, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    #why .benefit:hover {
+      background: linear-gradient(180deg, rgba(24, 26, 44, 0.95), rgba(14, 16, 32, 0.92));
+      box-shadow:
+        0 40px 80px -22px rgba(20, 22, 38, 0.5),
+        0 15px 40px -10px rgba(139, 92, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    #why .benefit h4 { color: var(--text-primary); }
+    #why .benefit p { color: var(--text-muted); }
+    /* Benefit's existing ::before gradient sheen — strengthen on light bg */
+    #why .benefit::before {
+      opacity: 0.9;
     }
 
     /* ===========================================
@@ -1291,91 +1618,48 @@
     /* ===========================================
        PORTFOLIO
        =========================================== */
-    /* ===== Portfolio Carousel ===== */
+    /* ===== Portfolio Auto-Scroll Marquee ===== */
     .portfolio-carousel {
       position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
+      width: 100vw;
+      margin-inline-start: calc(50% - 50vw);
+      overflow: hidden;
+      padding-block: 10px 28px;
+      mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
     }
     .portfolio-track {
       display: flex;
-      gap: 26px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 10px 4px 28px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      -webkit-overflow-scrolling: touch;
+      gap: clamp(48px, 6vw, 110px);
+      width: max-content;
+      animation: portfolioScroll 60s linear infinite;
+      will-change: transform;
     }
-    .portfolio-track::-webkit-scrollbar { display: none; }
+    .portfolio-carousel:hover .portfolio-track {
+      animation-play-state: paused;
+    }
+    @keyframes portfolioScroll {
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(50%, 0, 0); }
+    }
+    [dir="ltr"] .portfolio-track {
+      animation-name: portfolioScrollLTR;
+    }
+    @keyframes portfolioScrollLTR {
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(-50%, 0, 0); }
+    }
 
     .portfolio-track .portfolio-card {
-      flex: 0 0 calc((100% - 52px) / 3);
+      flex: 0 0 clamp(300px, 28vw, 360px);
       min-width: 0;
-      scroll-snap-align: start;
-    }
-    @media (max-width: 980px) {
-      .portfolio-track .portfolio-card { flex: 0 0 calc((100% - 26px) / 2); }
     }
     @media (max-width: 640px) {
-      .portfolio-track .portfolio-card { flex: 0 0 calc(100% - 24px); }
+      .portfolio-track .portfolio-card { flex: 0 0 clamp(280px, 80vw, 340px); }
     }
 
-    /* Carousel controls */
-    .car-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 22px;
-    }
-    .car-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      backdrop-filter: blur(12px);
-    }
-    .car-btn:hover {
-      background: rgba(139, 92, 246, 0.18);
-      border-color: rgba(139, 92, 246, 0.55);
-      box-shadow: 0 10px 25px -8px rgba(139, 92, 246, 0.45);
-      transform: translateY(-1px);
-    }
-    .car-btn:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-    .car-btn svg { width: 20px; height: 20px; }
-    .car-dots {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .car-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      transition: width 0.3s ease, background 0.3s ease;
-      cursor: pointer;
-      border: 0;
-      padding: 0;
-    }
-    .car-dot.active {
-      width: 26px;
-      border-radius: 4px;
-      background: var(--gradient);
+    @media (prefers-reduced-motion: reduce) {
+      .portfolio-track { animation: none; }
     }
 
 
@@ -1895,13 +2179,27 @@
     }
     .final-cta .container { position: relative; z-index: 1; }
     .final-cta h2 {
-      font-size: clamp(28px, 4.2vw, 44px);
       font-weight: 800;
       letter-spacing: -0.5px;
-      line-height: 1.15;
+      line-height: 1.1;
       text-align: center;
-      max-width: 760px;
+      max-width: 820px;
       margin: 0 auto 22px;
+    }
+    .cta-line-1 {
+      display: block;
+      font-size: clamp(38px, 6.4vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 6px;
+    }
+    .cta-line-2 {
+      display: block;
+      font-size: clamp(26px, 3.6vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      font-weight: 700;
     }
     .final-cta .body {
       max-width: 600px;
@@ -1918,13 +2216,13 @@
       margin: 0 auto;
       padding: clamp(32px, 4vw, 44px) clamp(24px, 3.5vw, 40px);
       border-radius: 26px;
-      background: rgba(20, 22, 38, 0.78);
+      background: rgba(8, 10, 22, 0.92);
       backdrop-filter: blur(32px);
       -webkit-backdrop-filter: blur(32px);
       box-shadow:
-        0 50px 100px -25px rgba(0,0,0,0.7),
-        0 20px 50px -20px rgba(139, 92, 246, 0.4),
-        inset 0 1px 0 rgba(255,255,255,0.06);
+        0 60px 120px -25px rgba(0,0,0,0.85),
+        0 25px 60px -15px rgba(139, 92, 246, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.08);
       isolation: isolate;
     }
     /* Gradient border */
@@ -1933,8 +2231,8 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      padding: 1.5px;
-      background: linear-gradient(135deg, rgba(91,110,245,0.7), rgba(139,92,246,0.5) 50%, rgba(236,72,153,0.7));
+      padding: 2px;
+      background: linear-gradient(135deg, #5B6EF5, #8B5CF6 50%, #EC4899);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
               mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
@@ -1946,11 +2244,11 @@
     .lead-card::after {
       content: "";
       position: absolute;
-      inset: -2px;
+      inset: -4px;
       border-radius: inherit;
-      background: linear-gradient(135deg, rgba(91,110,245,0.5), rgba(236,72,153,0.5));
-      filter: blur(28px);
-      opacity: 0.45;
+      background: linear-gradient(135deg, rgba(91,110,245,0.7), rgba(236,72,153,0.7));
+      filter: blur(32px);
+      opacity: 0.6;
       pointer-events: none;
       z-index: -2;
     }
@@ -1984,40 +2282,47 @@
       width: 100%;
       padding: 17px 18px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1.5px solid var(--border);
-      color: var(--text-primary);
+      background: rgba(255,255,255,0.97);
+      border: 2px solid rgba(255,255,255,0.97);
+      color: #0F1226;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: 600;
       transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
       outline: none;
+      caret-color: #8B5CF6;
     }
     .form-field input::placeholder {
-      color: var(--text-dim);
-      font-weight: 400;
+      color: #475569;
+      font-weight: 500;
+      opacity: 1;
     }
+    .form-field input::-webkit-input-placeholder { color: #475569; opacity: 1; }
+    .form-field input::-moz-placeholder { color: #475569; opacity: 1; }
+    .form-field input:-ms-input-placeholder { color: #475569; opacity: 1; }
     .form-field input:focus {
-      border-color: rgba(139, 92, 246, 0.8);
-      background: rgba(255,255,255,0.07);
-      box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.18);
+      border-color: #8B5CF6;
+      background: #ffffff;
+      box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.28);
     }
     .form-submit {
       width: 100%;
       padding: 18px;
       border-radius: 14px;
-      font-size: 18.5px;
-      font-weight: 700;
+      font-size: 19px;
+      font-weight: 800;
       letter-spacing: -0.2px;
-      color: #fff;
-      background: linear-gradient(135deg, #5B6EF5 0%, #8B5CF6 50%, #EC4899 100%);
+      color: #052E1A;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+      background: linear-gradient(135deg, #10D26B 0%, #1FE07F 50%, #15B85F 100%);
       background-size: 200% 200%;
       background-position: 0% 50%;
       transition: background-position 0.6s ease, transform 0.2s ease, box-shadow 0.25s ease;
       cursor: pointer;
       margin-top: 10px;
       box-shadow:
-        0 18px 36px -10px rgba(139, 92, 246, 0.6),
-        inset 0 1px 0 rgba(255,255,255,0.25);
+        0 18px 36px -10px rgba(16, 210, 107, 0.6),
+        0 0 30px -8px rgba(31, 224, 127, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.35);
       position: relative;
       overflow: hidden;
     }
@@ -2032,8 +2337,9 @@
       background-position: 100% 50%;
       transform: translateY(-2px);
       box-shadow:
-        0 28px 50px -12px rgba(139, 92, 246, 0.75),
-        inset 0 1px 0 rgba(255,255,255,0.3);
+        0 28px 55px -12px rgba(16, 210, 107, 0.8),
+        0 0 40px -6px rgba(31, 224, 127, 0.5),
+        inset 0 1px 0 rgba(255,255,255,0.4);
     }
     .form-submit:hover::after {
       transform: rotate(180deg) translateX(4px);
@@ -2041,19 +2347,34 @@
     .form-submit:active { transform: translateY(0); }
 
     .form-trust {
-      margin-top: 28px;
+      margin-top: 36px;
       text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
+      color: var(--text-primary);
+      font-size: clamp(15px, 1.4vw, 17px);
+      font-weight: 600;
       display: flex;
-      gap: 16px;
+      gap: clamp(18px, 2.4vw, 32px);
       justify-content: center;
       flex-wrap: wrap;
     }
-    .form-trust span { display: inline-flex; align-items: center; gap: 4px; }
+    .form-trust > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
     .form-trust .check {
-      color: #22C97D;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22C97D, #15A360);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 18px -4px rgba(34, 201, 125, 0.5);
+      flex-shrink: 0;
     }
 
 
@@ -2134,6 +2455,203 @@
       .mobile-cta-bar { display: block; }
       .wa-fab { bottom: 84px; }
       body { padding-bottom: 70px; }
+    }
+
+    /* ===========================================
+       MOBILE-FIRST RESPONSIVE REFINEMENTS
+       =========================================== */
+    @media (max-width: 768px) {
+      :root {
+        --container-pad: 18px;
+      }
+
+      /* Tighter section spacing on mobile */
+      section {
+        padding-block: clamp(56px, 13vw, 90px);
+      }
+
+      /* Hero — less empty space above, tighter title */
+      .hero {
+        padding-top: clamp(112px, 24vw, 150px);
+        padding-bottom: clamp(56px, 12vw, 80px);
+      }
+      h1.hero-title {
+        font-size: clamp(34px, 9vw, 48px);
+        letter-spacing: -0.6px;
+      }
+      .hero-sub {
+        font-size: 15.5px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+      .hero-cta-row { margin-bottom: 44px; }
+      .eyebrow { font-size: 12px; padding: 6px 14px; margin-bottom: 22px; }
+
+      /* Hero stats — stack with smaller numbers */
+      .hero-stats { gap: 14px 22px; margin-top: 40px; }
+      .hero-stat { min-width: 0; gap: 4px; }
+      .hero-stat .num { font-size: 26px; }
+      .hero-stat .label { font-size: 13px; }
+
+      /* CTA buttons — fuller width for thumb tap on mobile */
+      .hero-cta-row .btn-primary {
+        width: 100%;
+        max-width: 360px;
+        padding: 16px 24px;
+        font-size: 16px;
+      }
+
+      /* Hero visual — smaller floating cards */
+      .float-card { font-size: 11.5px; padding: 9px 12px; gap: 8px; }
+      .float-card .fc-icon { width: 24px; height: 24px; font-size: 12px; }
+
+      /* Section heads */
+      .section-head { margin-bottom: 44px; }
+      .section-head h2 { font-size: clamp(26px, 6.6vw, 34px); }
+      .section-head .sub { font-size: 15px; }
+      .section-eyebrow { font-size: 12.5px; }
+
+      /* Problem section */
+      .problem-title { font-size: clamp(20px, 5.4vw, 26px); }
+      .problem-sub-line { font-size: clamp(28px, 8.5vw, 40px); letter-spacing: -0.4px; }
+      .problem-body { font-size: 15.5px; }
+      .highlight-card { padding: 26px 22px; margin-top: 40px; }
+      .highlight-card p { font-size: 15px; line-height: 1.75; }
+
+      /* Challenges */
+      .challenge-card {
+        padding: 18px 20px;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .challenge-card .ch-icon { width: 44px; height: 44px; border-radius: 11px; }
+      .challenge-card .ch-icon svg { width: 20px; height: 20px; }
+      .challenge-card p { font-size: 14.5px; line-height: 1.6; }
+
+      /* Services cards */
+      .card { padding: 26px 22px; }
+      .card h3 { font-size: 18px; margin-bottom: 18px; }
+      .card ul { gap: 10px; }
+      .card ul li { font-size: 14.5px; padding-inline-start: 20px; }
+      .card ul li::before { width: 8px; height: 8px; top: 8px; }
+      .services-note { font-size: 13.5px; padding: 0 6%; }
+
+      /* Included grid cards */
+      .included-card { padding: 22px 18px; gap: 12px; }
+      .included-card .inc-icon { width: 50px; height: 50px; border-radius: 12px; }
+      .included-card .inc-icon svg { width: 24px; height: 24px; }
+      .included-card h4 { font-size: 14.5px; line-height: 1.45; }
+
+      /* Steps */
+      .steps { gap: 16px; }
+      .step { padding: 24px 22px; }
+      .step-num { font-size: 44px; letter-spacing: -1.5px; margin-bottom: 14px; }
+      .step h3 { font-size: 17px; margin-bottom: 10px; }
+      .step p { font-size: 14.5px; line-height: 1.65; }
+      .center-cta { margin-top: 40px; }
+      .center-cta .btn-primary { padding: 14px 26px; font-size: 16px; width: 100%; max-width: 360px; }
+
+      /* About */
+      .about-grid { gap: 28px; }
+      .about-photo { width: 168px; height: 168px; }
+      .about-photo-inner::before { font-size: 44px; }
+      .about-name { font-size: 22px; margin: 12px 0 12px; }
+      .about-text p { font-size: 15px; line-height: 1.8; }
+      .quote-card { padding: 18px 22px; font-size: 14.5px; margin-top: 22px; }
+
+      /* Why / Benefits */
+      .benefit { padding: 26px 22px; gap: 12px; }
+      .benefit h4 { font-size: 17px; }
+      .benefit p { font-size: 14.5px; line-height: 1.65; }
+      .benefit .icon-wrap { width: 50px; height: 50px; border-radius: 14px; }
+      .benefit .icon-wrap svg { width: 24px; height: 24px; }
+      .closing-line { margin-top: 44px; font-size: 16px; line-height: 1.6; }
+
+      /* Portfolio carousel */
+      .portfolio-carousel { padding-block: 8px 20px; }
+      .portfolio-track { gap: 32px; }
+      .pc-preview { height: clamp(240px, 70vw, 320px); }
+      .pc-info { padding: 16px 8% 0; }
+      .pc-name { font-size: 16px; }
+      .pc-desc { font-size: 13.5px; line-height: 1.55; }
+      .pc-tag { font-size: 11px; padding: 3px 9px; }
+      .portfolio-body { margin-top: 48px; gap: 22px; }
+      .portfolio-body p { font-size: 15px; line-height: 1.8; }
+
+      /* FAQ */
+      .faq-list { gap: 12px; }
+      .faq-q { padding: 18px 20px; font-size: 15.5px; gap: 12px; }
+      .faq-a-inner { padding: 0 20px 20px; font-size: 14.5px; line-height: 1.75; }
+
+      /* Final CTA */
+      .final-cta h2 { margin-bottom: 18px; }
+      .cta-line-1 { font-size: clamp(32px, 9vw, 48px); letter-spacing: -1px; }
+      .cta-line-2 { font-size: clamp(22px, 5.6vw, 28px); }
+      .final-cta .body { font-size: 15px; margin-bottom: 36px; }
+
+      .lead-card {
+        padding: 30px 22px;
+        border-radius: 22px;
+      }
+      .lead-card h3 { font-size: clamp(22px, 6vw, 28px); margin-bottom: 8px; }
+      .lead-card .lead-sub { font-size: 14px; margin-bottom: 22px; }
+      .form-field input { padding: 15px 16px; font-size: 16px; }
+      .form-submit { padding: 16px; font-size: 17px; }
+
+      .form-trust {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        font-size: 14.5px;
+      }
+      .form-trust > span { gap: 8px; }
+      .form-trust .check { width: 22px; height: 22px; font-size: 12px; }
+
+      /* Decorative shapes — scale down on mobile so they don't dominate */
+      .services-shape, .why-shape { width: 50px !important; height: 50px !important; }
+      .services-shape.shape-tl { inset-inline-start: 4%; top: 8%; }
+      .services-shape.shape-br { inset-inline-end: 4%; bottom: 8%; }
+      .why-shape.shape-tr { inset-inline-end: 4%; top: 8%; }
+      .why-shape.shape-bl { inset-inline-start: 4%; bottom: 8%; }
+
+      /* Reduce pastel orb sizes for performance + visual balance */
+      .services-decor .p-orb-1, .why-decor .p-orb-1 { width: 320px; height: 320px; filter: blur(60px); }
+      .services-decor .p-orb-2, .why-decor .p-orb-2 { width: 300px; height: 300px; filter: blur(60px); }
+      .services-decor .p-orb-3, .why-decor .p-orb-3 { width: 220px; height: 220px; filter: blur(50px); }
+
+      /* Background orbs in main bg — smaller for performance */
+      .orb-1, .orb-2, .orb-3 { filter: blur(80px); }
+
+      /* Hide curved accent line decorations on small mobile (cleaner) */
+      .accent-line { display: none; }
+
+      /* Sparkles — shrink slightly */
+      .sparkle { transform-origin: center; }
+
+      /* Footer */
+      footer { padding: 44px 0 28px; }
+      .footer-tag { font-size: 14px; }
+      .footer-links { gap: 18px; font-size: 13.5px; }
+      .footer-credit { font-size: 12.5px; }
+
+      /* Navbar — tighter on mobile */
+      .nav { padding: 14px 0; }
+      .nav.scrolled { padding: 10px 0; }
+      .nav-cta { padding: 9px 18px; font-size: 14px; }
+      .logo-img { height: 30px; }
+      .nav.scrolled .logo-img { height: 28px; }
+    }
+
+    @media (max-width: 400px) {
+      h1.hero-title { font-size: 32px; }
+      .hero-stat .num { font-size: 24px; }
+      .lead-card h3 { font-size: 22px; }
+      .cta-line-1 { font-size: 32px; }
+      .cta-line-2 { font-size: 22px; }
+      .problem-sub-line { font-size: 28px; }
+      .section-head h2 { font-size: 26px; }
+      .step-num { font-size: 40px; }
     }
 
     /* ===========================================
@@ -2353,11 +2871,62 @@
           <p><strong>בלגן סביב סליקה ותמחור</strong> — ומה צריך כדי שהאפליקציה תהיה מוכנה למכירה.</p>
         </div>
       </div>
+
+      <div class="center-cta reveal delay-4">
+        <a href="#contact" class="btn btn-primary">בואו נדבר על הרעיון שלכם</a>
+      </div>
     </div>
   </section>
 
+  <!-- Shared sparkle gradient (used in both light sections) -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <defs>
+      <linearGradient id="sparkleGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#5B6EF5"/>
+        <stop offset="50%" stop-color="#8B5CF6"/>
+        <stop offset="100%" stop-color="#EC4899"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
   <!-- ============== SECTION 3 — SERVICES ============== -->
   <section id="services">
+    <div class="services-decor" aria-hidden="true">
+      <div class="p-orb p-orb-1"></div>
+      <div class="p-orb p-orb-2"></div>
+      <div class="p-orb p-orb-3"></div>
+    </div>
+
+    <svg class="services-shape shape-tl" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="35"/>
+      <circle cx="40" cy="40" r="22"/>
+    </svg>
+    <svg class="services-shape shape-br" viewBox="0 0 70 70" aria-hidden="true">
+      <circle cx="35" cy="35" r="30"/>
+    </svg>
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top:14%; inset-inline-start:8%; width:24px; height:24px; animation-delay:0s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+    <div class="sparkle" style="top:65%; inset-inline-end:14%; width:18px; height:18px; animation-delay:1s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+    <div class="sparkle" style="top:40%; inset-inline-start:3%; width:14px; height:14px; animation-delay:2s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+
+    <!-- Geometric accents -->
+    <span class="geo-dot" style="top:22%; inset-inline-end:11%; width:14px; height:14px; background:#EC4899; opacity:0.55; animation: floatY 6s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-dot" style="top:75%; inset-inline-start:18%; width:10px; height:10px; background:#5B6EF5; opacity:0.6; animation: floatXY 8s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-square" style="--rot: 25deg; top:80%; inset-inline-end:22%; width:18px; height:18px; background:linear-gradient(135deg, #8B5CF6, #EC4899); opacity:0.45; transform: rotate(25deg); animation: floatY 7s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-square" style="--rot: -15deg; top:18%; inset-inline-start:28%; width:12px; height:12px; background:linear-gradient(135deg, #5B6EF5, #8B5CF6); opacity:0.5; transform: rotate(-15deg); animation: floatXY 9s ease-in-out infinite;" aria-hidden="true"></span>
+
+    <!-- Curved gradient lines -->
+    <svg class="accent-line" style="top:8%; inset-inline-start:40%; width:200px; height:80px;" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 Q50,0 100,40 T200,40" stroke="url(#sparkleGrad)"/>
+    </svg>
+
     <div class="container">
       <div class="section-head reveal">
         <h2>איזה <span class="accent-text">סוגי מוצרים</span> אפשר לבנות?</h2>
@@ -2574,9 +3143,46 @@
 
   <!-- ============== SECTION 6 — WHY ============== -->
   <section id="why">
+    <div class="why-decor" aria-hidden="true">
+      <div class="p-orb p-orb-1"></div>
+      <div class="p-orb p-orb-2"></div>
+      <div class="p-orb p-orb-3"></div>
+    </div>
+
+    <svg class="why-shape shape-tr" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="35"/>
+      <circle cx="40" cy="40" r="22"/>
+    </svg>
+    <svg class="why-shape shape-bl" viewBox="0 0 70 70" aria-hidden="true">
+      <circle cx="35" cy="35" r="30"/>
+    </svg>
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top:16%; inset-inline-end:9%; width:22px; height:22px; animation-delay:0.4s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+    <div class="sparkle" style="top:70%; inset-inline-start:11%; width:18px; height:18px; animation-delay:1.4s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+    <div class="sparkle" style="top:46%; inset-inline-end:5%; width:14px; height:14px; animation-delay:2.2s;" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path class="star-fill" d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+    </div>
+
+    <!-- Geometric accents -->
+    <span class="geo-dot" style="top:24%; inset-inline-start:12%; width:14px; height:14px; background:#5B6EF5; opacity:0.55; animation: floatY 6.5s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-dot" style="top:78%; inset-inline-end:20%; width:10px; height:10px; background:#EC4899; opacity:0.6; animation: floatXY 8.5s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-square" style="--rot: -20deg; top:82%; inset-inline-start:24%; width:16px; height:16px; background:linear-gradient(135deg, #EC4899, #8B5CF6); opacity:0.45; transform: rotate(-20deg); animation: floatY 7.5s ease-in-out infinite;" aria-hidden="true"></span>
+    <span class="geo-square" style="--rot: 20deg; top:20%; inset-inline-end:26%; width:12px; height:12px; background:linear-gradient(135deg, #8B5CF6, #5B6EF5); opacity:0.5; transform: rotate(20deg); animation: floatXY 9.5s ease-in-out infinite;" aria-hidden="true"></span>
+
+    <!-- Curved gradient lines -->
+    <svg class="accent-line" style="bottom:14%; inset-inline-end:38%; width:220px; height:90px;" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 Q50,80 100,40 T200,40" stroke="url(#sparkleGrad)"/>
+    </svg>
+
     <div class="container">
       <div class="section-head reveal">
-        <h2>למה לעבוד דווקא עם Smartapp?</h2>
+        <span class="section-eyebrow">✨ למה אנחנו</span>
+        <h2>למה לעבוד דווקא עם <span class="accent-text">Smartapp</span>?</h2>
         <p class="sub">כי בפרויקטים כאלה, הדרך שבה עובדים חשובה כמעט כמו המוצר עצמו.</p>
       </div>
 
@@ -2771,16 +3377,6 @@
           </div>
         </div>
         </div>
-
-        <div class="car-controls" aria-label="ניווט בקרוסלה">
-          <button class="car-btn" id="carPrev" aria-label="הקודם" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-          <div class="car-dots" id="carDots" role="tablist"></div>
-          <button class="car-btn" id="carNext" aria-label="הבא" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-          </button>
-        </div>
       </div>
 
       <div class="portfolio-body reveal delay-3">
@@ -2895,7 +3491,10 @@
   <!-- ============== SECTION 9 — FINAL CTA ============== -->
   <section id="contact" class="final-cta">
     <div class="container">
-      <h2 class="reveal">יש לכם רעיון לאפליקציה או פלטפורמה?</h2>
+      <h2 class="reveal cta-title">
+        <span class="accent-text cta-line-1">יש לכם רעיון</span>
+        <span class="cta-line-2">לאפליקציה או פלטפורמה?</span>
+      </h2>
       <p class="body reveal delay-1">
         אולי זה משהו שאתם חושבים עליו כבר חודשים...
         אולי זה רעיון שרשום אצלכם בפתקים...
@@ -2904,7 +3503,7 @@
       </p>
 
       <div class="lead-card reveal delay-2">
-        <h3>בואו נדבר על <span class="grad">הרעיון שלכם</span></h3>
+        <h3>בואו נדבר על הרעיון שלכם</h3>
         <p class="lead-sub">השאירו פרטים ואחזור אליכם תוך 24 שעות — שיחת אפיון ראשונית בחינם, ללא התחייבות.</p>
         <form id="lead-form" action="thanks.html" method="GET" novalidate>
           <div class="form-field">
@@ -3056,94 +3655,23 @@
       window.location.href = THANKS_URL;
     });
 
-    // ===== Portfolio Carousel =====
-    (function initCarousel() {
-      const carousel = document.getElementById('portfolioCarousel');
+    // ===== Portfolio Auto-Scroll Marquee =====
+    // Duplicate the cards so the CSS animation can loop seamlessly.
+    (function initMarquee() {
       const track = document.getElementById('portfolioTrack');
-      const prevBtn = document.getElementById('carPrev');
-      const nextBtn = document.getElementById('carNext');
-      const dotsWrap = document.getElementById('carDots');
-      if (!track || !prevBtn || !nextBtn) return;
-
-      const cards = track.querySelectorAll('.portfolio-card');
-      const isRTL = document.documentElement.dir === 'rtl';
-
-      // Build dots — one per card
-      cards.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'car-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'עבור לכרטיס ' + (i + 1));
-        dot.addEventListener('click', () => {
-          const card = cards[i];
-          // Compute target scroll: card.offsetLeft relative to track
-          const trackRect = track.getBoundingClientRect();
-          const cardRect = card.getBoundingClientRect();
-          const delta = cardRect.left - trackRect.left;
-          track.scrollBy({ left: delta, behavior: 'smooth' });
-        });
-        dotsWrap.appendChild(dot);
+      if (!track) return;
+      const originals = Array.from(track.querySelectorAll('.portfolio-card'));
+      if (!originals.length) return;
+      // Append a clone of each card to make the row twice as wide.
+      // Clones are aria-hidden so they aren't double-announced by screen readers.
+      originals.forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('is-clone');
+        // Remove reveal classes on clones so they're visible immediately
+        clone.classList.remove('reveal', 'in', 'delay-1', 'delay-2', 'delay-3', 'delay-4');
+        track.appendChild(clone);
       });
-      const dots = dotsWrap.querySelectorAll('.car-dot');
-
-      function cardStep() {
-        if (!cards.length) return 0;
-        // Distance between two consecutive cards' left edges
-        if (cards.length > 1) {
-          return Math.abs(cards[1].offsetLeft - cards[0].offsetLeft);
-        }
-        return cards[0].offsetWidth + 26;
-      }
-
-      function updateState() {
-        const max = track.scrollWidth - track.clientWidth;
-        // In RTL, scrollLeft is negative in WebKit/standard browsers when scrolled "forward"
-        const sl = track.scrollLeft;
-        const absSl = Math.abs(sl);
-
-        const atStart = absSl <= 2;
-        const atEnd = absSl >= max - 2;
-
-        prevBtn.disabled = atStart;
-        nextBtn.disabled = atEnd;
-
-        carousel.classList.toggle('can-prev', !atStart);
-        carousel.classList.toggle('can-next', !atEnd);
-
-        // Active dot: closest card to the visual leading edge
-        const trackRect = track.getBoundingClientRect();
-        let closest = 0;
-        let minDist = Infinity;
-        cards.forEach((c, i) => {
-          const r = c.getBoundingClientRect();
-          const ref = isRTL ? trackRect.right : trackRect.left;
-          const edge = isRTL ? r.right : r.left;
-          const d = Math.abs(edge - ref);
-          if (d < minDist) { minDist = d; closest = i; }
-        });
-        dots.forEach((d, i) => d.classList.toggle('active', i === closest));
-      }
-
-      function scrollByStep(direction) {
-        // direction: 1 = next, -1 = prev
-        const step = cardStep();
-        // In RTL, "next" visually goes LEFT (decreasing scrollLeft for WebKit logical scroll)
-        const sign = isRTL ? -1 : 1;
-        track.scrollBy({ left: direction * step * sign, behavior: 'smooth' });
-      }
-
-      nextBtn.addEventListener('click', () => scrollByStep(1));
-      prevBtn.addEventListener('click', () => scrollByStep(-1));
-
-      let scrollTimer;
-      track.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(updateState, 60);
-      }, { passive: true });
-
-      window.addEventListener('resize', updateState);
-      // Initial state
-      requestAnimationFrame(updateState);
     })();
 
     // ===== Smooth scroll for in-page anchors (extra safety) =====
