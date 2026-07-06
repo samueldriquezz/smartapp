@@ -19,7 +19,9 @@
       "Bash(vercel --yes)",
       "Bash(vercel git *)",
       "Bash(vercel deploy *)",
-      "Bash(vercel ls *)"
+      "Bash(vercel ls *)",
+      "Bash(vercel project *)",
+      "Bash(curl *)"
     ]
   }
 }
