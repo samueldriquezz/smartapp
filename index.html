@@ -3512,6 +3512,7 @@
           <div class="form-field">
             <input type="tel" name="phone" id="lead-phone" placeholder="050-0000000" required autocomplete="tel" inputmode="tel" />
           </div>
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
           <button type="submit" class="form-submit">לקביעת שיחת אפיון</button>
         </form>
       </div>
@@ -3651,8 +3652,27 @@
         );
         return;
       }
-      // Redirect to the thank-you page
-      window.location.href = THANKS_URL;
+      // Send the lead (email + Google Sheet via /api/lead), then go to the thank-you page.
+      // A slow or failed request never strands the visitor: we move on after 6 seconds either way.
+      const btn = leadForm.querySelector('.form-submit');
+      btn.disabled = true;
+      btn.textContent = 'שולח...';
+      const q = new URLSearchParams(location.search);
+      const payload = {
+        name, phone,
+        company: leadForm.querySelector('[name="company"]').value,
+        utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '',
+        utm_campaign: q.get('utm_campaign') || '', utm_content: q.get('utm_content') || '',
+        page: location.href, referrer: document.referrer
+      };
+      const go = () => { window.location.href = THANKS_URL; };
+      const timer = setTimeout(go, 6000);
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(() => {}).finally(() => { clearTimeout(timer); go(); });
     });
 
     // ===== Portfolio Auto-Scroll Marquee =====
