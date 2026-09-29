@@ -53,6 +53,10 @@ async function sendEmail(lead) {
   if (!r.ok) throw new Error(`Resend ${r.status}: ${await r.text()}`);
 }
 
+// Same columns, order and formats as Samuel's main leads table (the Meta form leads), so rows can move between tabs.
+const SHEET_HEADERS = ['תאריך', 'שם הלקוח', 'מספר טלפון', 'האם יש לך רעיון', 'אתר/אפליקציות', 'מקור', 'תאריך קבלת ליד', 'פולואפ הבא', 'סטטוס'];
+const sheetRow = lead => [lead.iso, lead.name, '972' + lead.phone.slice(1), '', '', 'אתר', '', '', ''];
+
 async function appendRow(lead) {
   const url = process.env.LEADS_SHEET_URL;
   const secret = process.env.LEADS_SHEET_SECRET;
@@ -60,7 +64,7 @@ async function appendRow(lead) {
   const r = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ secret, ...lead }),
+    body: JSON.stringify({ secret, headers: SHEET_HEADERS, row: sheetRow(lead) }),
     redirect: 'follow',
   });
   const text = await r.text();
@@ -77,8 +81,10 @@ module.exports = async (req, res) => {
   const phone = normalisePhone(b.phone);
   if (name.length < 2 || !phone) return res.status(400).json({ ok: false, error: 'invalid' });
 
+  const now = new Date();
   const lead = {
-    time: israelTime(new Date()),
+    iso: now.toISOString(),
+    time: israelTime(now),
     name,
     phone,
     source: clip(b.utm_source, 80),

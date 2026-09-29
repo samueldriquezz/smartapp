@@ -6,8 +6,6 @@
  */
 // Leads go to their own tab in an existing spreadsheet; the other tabs are never touched.
 const TAB = 'לידים מהאתר';
-const HEADERS = ['זמן', 'שם', 'טלפון', 'מקור', 'מדיום', 'קמפיין', 'מודעה', 'עמוד', 'הגיע מ', 'סטטוס'];
-
 function doPost(e) {
   const out = obj => ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
   try {
@@ -20,14 +18,14 @@ function doPost(e) {
     try {
       const ss = SpreadsheetApp.getActiveSpreadsheet();
       const sh = ss.getSheetByName(TAB) || ss.insertSheet(TAB);
-      if (sh.getLastRow() === 0) {
-        sh.appendRow(HEADERS);
-        sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+      // columns and their order come from /api/lead, so changing them never needs a redeploy here
+      if (sh.getLastRow() === 0 && b.headers) {
+        sh.appendRow(b.headers);
+        sh.getRange(1, 1, 1, b.headers.length).setFontWeight('bold');
         sh.setFrozenRows(1);
         sh.setRightToLeft(true);
       }
-      // phone as text, so the leading 0 survives
-      sh.appendRow([b.time, b.name, "'" + b.phone, b.source, b.medium, b.campaign, b.content, b.page, b.referrer, 'חדש']);
+      sh.appendRow(b.row);
     } finally {
       lock.releaseLock();
     }
