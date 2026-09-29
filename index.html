@@ -3505,7 +3505,7 @@
       <div class="lead-card reveal delay-2">
         <h3>בואו נדבר על הרעיון שלכם</h3>
         <p class="lead-sub">השאירו פרטים ואחזור אליכם תוך 24 שעות — שיחת אפיון ראשונית בחינם, ללא התחייבות.</p>
-        <form id="lead-form" action="thanks.html" method="GET" novalidate>
+        <form id="lead-form" action="thanks-process.html" method="GET" novalidate>
           <div class="form-field">
             <input type="text" name="name" id="lead-name" placeholder="השם שלכם" required autocomplete="name" />
           </div>
@@ -3629,7 +3629,7 @@
     // ===== Lead Form =====
     // Configure the thank-you destination here.
     // For a subdomain (e.g., thanks.smartapp.co.il), set absolute URL.
-    const THANKS_URL = 'thanks.html';
+    const THANKS_URL = 'thanks-process.html';
 
     const leadForm = document.getElementById('lead-form');
     leadForm.addEventListener('submit', (e) => {
