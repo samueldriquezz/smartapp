@@ -64,7 +64,7 @@ async function appendRow(lead) {
   const r = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ secret, headers: SHEET_HEADERS, row: sheetRow(lead) }),
+    body: JSON.stringify({ secret, headers: SHEET_HEADERS, row: sheetRow(lead), ...lead }), // ...lead keeps a not-yet-updated script working
     redirect: 'follow',
   });
   const text = await r.text();
