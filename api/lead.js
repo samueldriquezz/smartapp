@@ -1,4 +1,4 @@
-// POST /api/lead — every landing-page lead goes to two places at once:
+// POST /api/lead - every landing-page lead goes to two places at once:
 //   1. an email to Samuel (Resend)
 //   2. a new row in the leads Google Sheet (Apps Script web app, see integrations/leads-sheet.gs)
 // Each channel fails on its own: the request succeeds if either one delivered, so an outage in
