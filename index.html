@@ -215,6 +215,20 @@
     .logo:hover .logo-img { transform: scale(1.04); }
     .nav.scrolled .logo-img { height: 32px; }
     .footer-logo .logo-img { height: 44px; }
+    .logo-text {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: #ffffff;
+      white-space: nowrap;
+      transition: font-size 0.3s ease, transform 0.25s ease;
+    }
+    .logo-text-accent { color: #8B5CF6; }
+    .logo:hover .logo-text { transform: scale(1.04); }
+    .nav.scrolled .logo-text { font-size: 25px; }
     .nav-links {
       display: flex;
       align-items: center;
@@ -2641,6 +2655,8 @@
       .nav-cta { padding: 9px 18px; font-size: 14px; }
       .logo-img { height: 30px; }
       .nav.scrolled .logo-img { height: 28px; }
+      .logo-text { font-size: 24px; }
+      .nav.scrolled .logo-text { font-size: 22px; }
     }
 
     @media (max-width: 400px) {
@@ -2680,7 +2696,7 @@
   <nav class="nav" id="nav">
     <div class="container nav-inner">
       <a href="#" class="logo" aria-label="Smartapp">
-        <img src="assets/logo.png" alt="Smartapp" class="logo-img" />
+        <span class="logo-text" aria-hidden="true">✦ Smart<span class="logo-text-accent">app</span></span>
       </a>
       <ul class="nav-links">
         <li><a href="#services">שירותים</a></li>
