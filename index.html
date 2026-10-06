@@ -2462,12 +2462,21 @@
       backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       z-index: 998;
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform 0.35s ease, visibility 0s linear 0.35s;
+    }
+    .mobile-cta-bar.is-visible {
+      transform: translateY(0);
+      visibility: visible;
+      transition: transform 0.35s ease, visibility 0s;
     }
     .mobile-cta-bar .btn { width: 100%; padding: 14px; font-size: 16px; }
 
     @media (max-width: 768px) {
       .mobile-cta-bar { display: block; }
-      .wa-fab { bottom: 84px; }
+      .wa-fab { transition: transform 0.25s ease, box-shadow 0.25s ease, bottom 0.35s ease; }
+      body.cta-bar-visible .wa-fab { bottom: 84px; }
       body { padding-bottom: 70px; }
     }
 
@@ -3577,6 +3586,20 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ===== Mobile CTA bar: only once the hero (which has its own CTA) is scrolled past =====
+    const ctaBar = document.querySelector('.mobile-cta-bar');
+    const hero = document.querySelector('.hero');
+    if (ctaBar && hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        const past = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        ctaBar.classList.toggle('is-visible', past);
+        document.body.classList.toggle('cta-bar-visible', past);
+      }).observe(hero);
+    } else if (ctaBar) {
+      ctaBar.classList.add('is-visible');
+      document.body.classList.add('cta-bar-visible');
+    }
 
     // ===== Initial hero reveal (immediate on load) =====
     window.addEventListener('load', () => {
