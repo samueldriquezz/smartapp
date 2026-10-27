@@ -10,6 +10,23 @@ const crypto = require('crypto');
 const { render, renderChannel, login } = require('./_castra/page');
 const data = require('./_castra/data.json');
 
+// ---- task queue (Upstash Redis over REST). The Mac agent pops jobs from castra:queue and writes
+// castra:job:<task>. The web side only ever sends a known task id, never free text.
+const RURL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const RTOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+async function redis(...cmd) {
+  if (!RURL || !RTOKEN) return null;
+  const r = await fetch(RURL, { method: 'POST', headers: { Authorization: `Bearer ${RTOKEN}` }, body: JSON.stringify(cmd) });
+  return r.ok ? (await r.json()).result : null;
+}
+const TASK_IDS = new Set((data.tasks || []).filter(t => t.prompt).map(t => t.id));
+async function jobStatuses() {
+  const ids = [...TASK_IDS];
+  if (!ids.length || !RURL) return {};
+  const vals = await redis('MGET', ...ids.map(i => `castra:job:${i}`)) || [];
+  return Object.fromEntries(ids.map((id, i) => [id, vals[i] ? JSON.parse(vals[i]) : null]).filter(([, v]) => v));
+}
+
 const ALLOWED = 'samueldriquezz@gmail.com';
 const FROM = 'CASTRA <leads@joinkapi.com>'; // joinkapi.com is the verified Resend sender
 const SESSION = 'castra_session', PENDING = 'castra_pending';
@@ -74,6 +91,18 @@ module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const form = await readForm(req);
 
+    if (form.step === 'run') {
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      const task = String(form.task || '');
+      res.setHeader('Content-Type', 'application/json');
+      if (!TASK_IDS.has(task)) { res.statusCode = 400; return res.end('{"ok":false,"error":"unknown task"}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const job = { task, status: 'queued', ts: Date.now() };
+      await redis('SET', `castra:job:${task}`, JSON.stringify(job));
+      await redis('LPUSH', 'castra:queue', JSON.stringify({ task, ts: job.ts }));
+      return res.end(JSON.stringify({ ok: true, job }));
+    }
+
     if (form.step === 'email') {
       const email = String(form.email || '').trim().toLowerCase();
       if (email !== ALLOWED) {                       // same screen, no code, no cookie
@@ -101,7 +130,11 @@ module.exports = async (req, res) => {
   }
 
   if (!validSession(req)) return html(res, 200, login('email', false));
+  if (url.searchParams.get('jobs')) {
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+    return res.end(JSON.stringify({ queue: !!RURL, jobs: await jobStatuses() }));
+  }
   const ch = url.searchParams.get('ch');
   if (ch) { const page = renderChannel(data, ch); if (page) return html(res, 200, page); }
-  return html(res, 200, render(data));
+  return html(res, 200, render(data, await jobStatuses().catch(() => ({})), !!RURL));
 };

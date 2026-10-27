@@ -127,6 +127,9 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.jb{display:inline-block;margin-right:8px;font-size:11px;border-radius:6px;padding:0 7px;border:1px solid currentColor;vertical-align:1px}
+.jb.q{color:var(--amber)}.jb.r{color:var(--cyan);animation:pulse 1.8s infinite}.jb.d{color:var(--lime)}.jb.f{color:var(--mag)}.jb.w{color:var(--vio)}
+.jsum{display:block;margin-top:4px;color:var(--ink2);font-size:12.5px;white-space:pre-line}
 .brand{text-align:left}
 .do{flex:none;border:1px solid rgba(34,230,255,.45);background:rgba(34,230,255,.1);color:var(--cyan);border-radius:8px;padding:3px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .do:hover{background:rgba(34,230,255,.2);box-shadow:0 0 14px -4px var(--cyan)}
@@ -190,13 +193,20 @@ li.done .tk{border-color:var(--lime);background:rgba(182,255,59,.12)}
 `;
 
 const STAGE_ICON = { done: '✓', active: '●', todo: '○' };
+const JOB = { queued: ['בתור לביצוע', 'q'], running: ['Claude מבצע עכשיו', 'r'], done: ['בוצע על ידי Claude', 'd'],
+              failed: ['הביצוע נכשל', 'f'], waiting: ['מחכה לך', 'w'] };
+function jobBadge(j) {
+  if (!j || !JOB[j.status]) return '';
+  const [label, cls] = JOB[j.status];
+  return `<span class="jb ${cls}">${label}</span>${j.summary ? `<small class="jsum">${esc(j.summary)}</small>` : ''}`;
+}
 
 function nowIndex(horizons, month) {          // index of the next horizon we are heading to
   const i = horizons.findIndex(h => month < h);
   return i === -1 ? horizons.length - 1 : i;
 }
 
-function render(d) {
+function render(d, jobs = {}, queueOn = false) {
   const od = d.channels[0], mu = d.channels[1];
   const pct = (v, g) => Math.min(100, (v / g) * 100).toFixed(1);
   const M = d.month_index;
@@ -223,14 +233,14 @@ ${c.status ? `<div class="sub">${esc(c.status)}</div>` : ''}
 
   const tasks = `<ul class="q" id="tasks">${d.tasks.map(t => `<li data-id="${esc(t.id)}" data-auto="${t.done ? 1 : 0}" class="${t.done ? 'done' : ''}">
 <button class="tk" title="סימון כבוצע">${t.done ? '✓' : ''}</button><span class="pri ${esc(t.pri)}"></span>
-<span class="t" style="flex:1">${esc(t.what)}${t.done ? ' <span class="auto">זוהה אוטומטית</span>' : ''}</span>
+<span class="t" style="flex:1">${esc(t.what)}${t.done ? ' <span class="auto">זוהה אוטומטית</span>' : ''}<span class="js" data-job="${esc(t.id)}">${jobBadge(jobs[t.id])}</span></span>
 <span class="who">${esc(t.who)}</span>${(t.link || t.prompt) ? `<button class="do" data-link="${esc(t.link || '')}" data-label="${esc(t.link_label || '')}" data-wait="${esc(t.link_wait || '')}" data-prompt="${esc(t.prompt || '')}" data-what="${esc(t.what)}">בצע</button>` : ''}<button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
 <div class="modal" id="modal" hidden><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mtitle">
 <button class="x mclose" title="סגירה">✕</button><h3 id="mtitle"></h3><p class="sub">איך לבצע את המשימה?</p>
 <a class="mopt" id="mgo" target="_blank" rel="noopener"><b>מעבר לדף הרלוונטי</b><span id="mgol"></span></a>
 <div class="mopt off" id="mwait"><b>מעבר לדף הרלוונטי</b><span id="mwaitl"></span></div>
-<button class="mopt" id="mclaude"><b>Claude יבצע עבורי</b><span>הפקודה תועתק, ורק צריך להדביק אותה בשיחה עם Claude Code</span></button>
-<div class="mdone" id="mdone" hidden>הפקודה הועתקה. הדבק אותה בשיחה עם Claude Code והוא יבצע.</div></div></div>
+<button class="mopt" id="mclaude" data-q="${queueOn ? 1 : 0}"><b>Claude יבצע עבורי</b><span>${queueOn ? 'Claude יבצע ברקע על המק שלך, בלי לפתוח טרמינל. הסטטוס יתעדכן כאן' : 'הפקודה תועתק, ורק צריך להדביק אותה בשיחה עם Claude Code'}</span></button>
+<div class="mdone" id="mdone" hidden></div></div></div>
 <div class="empty" id="tasks-empty" style="display:none">אין משימות פתוחות</div>`;
 
   const c = d.costs, meterPct = Math.min(100, c.this_month.spent / Math.max(c.this_month.expected, 0.01) * 100);
@@ -345,10 +355,29 @@ const CLIENT = `<script>
       go.hidden=!b.dataset.link; if(b.dataset.link){go.href=b.dataset.link; document.getElementById('mgol').textContent=b.dataset.label||b.dataset.link}
       var w=document.getElementById('mwait'); w.hidden=!!b.dataset.link||!b.dataset.wait; document.getElementById('mwaitl').textContent=b.dataset.wait;
       cl.hidden=!prompt; done.hidden=true; modal.hidden=false;});
+    var current='';
+    list.addEventListener('click',function(e){var b=e.target.closest('.do'); if(b) current=b.closest('li').dataset.id;},true);
     cl.addEventListener('click',function(){
-      var ok=function(){done.hidden=false};
+      if(cl.dataset.q==='1'){
+        cl.disabled=true;
+        fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=run&task='+encodeURIComponent(current)})
+          .then(function(r){return r.json()}).then(function(j){
+            done.textContent=j.ok?'נשלח. Claude יבצע את זה ברקע על המק שלך, והסטטוס יתעדכן ברשימה.':'השליחה נכשלה: '+(j.error||'');
+            done.hidden=false; cl.disabled=false; poll();})
+          .catch(function(){done.textContent='השליחה נכשלה';done.hidden=false;cl.disabled=false});
+        return; }
+      var ok=function(){done.textContent='הפקודה הועתקה. הדבק אותה בשיחה עם Claude Code והוא יבצע.';done.hidden=false};
       if(navigator.clipboard) navigator.clipboard.writeText(prompt).then(ok,function(){window.prompt('העתק את הפקודה:',prompt)});
       else window.prompt('העתק את הפקודה:',prompt);});
+    // live job statuses
+    var LBL={queued:['בתור לביצוע','q'],running:['Claude מבצע עכשיו','r'],done:['בוצע על ידי Claude','d'],failed:['הביצוע נכשל','f'],waiting:['מחכה לך','w']};
+    function poll(){fetch('/castra?jobs=1').then(function(r){return r.json()}).then(function(j){var busy=false;
+      document.querySelectorAll('[data-job]').forEach(function(el){var x=j.jobs[el.dataset.job]; if(!x||!LBL[x.status]) return;
+        if(x.status==='queued'||x.status==='running') busy=true;
+        el.innerHTML=''; var s=document.createElement('span'); s.className='jb '+LBL[x.status][1]; s.textContent=LBL[x.status][0]; el.appendChild(s);
+        if(x.summary){var m=document.createElement('small'); m.className='jsum'; m.textContent=x.summary; el.appendChild(m);} });
+      if(busy) setTimeout(poll,10000);}).catch(function(){});}
+    if(document.querySelector('.jb.q,.jb.r')) setTimeout(poll,10000);
     modal.addEventListener('click',function(e){if(e.target===modal||e.target.classList.contains('mclose'))close()});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
   }
