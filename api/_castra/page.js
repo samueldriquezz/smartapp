@@ -133,6 +133,7 @@ const CSS2 = `
 li.done .do{display:none}
 .modal{position:fixed;inset:0;z-index:20;background:rgba(3,4,8,.7);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
 .modal[hidden],.mopt[hidden],.mdone[hidden]{display:none}
+.mopt.off{cursor:default;opacity:.5}.mopt.off:hover{border-color:var(--line)}
 .mbox{position:relative;width:100%;max-width:440px;background:#0e1020;border:1px solid rgba(34,230,255,.35);border-radius:18px;padding:22px;box-shadow:0 0 40px -10px var(--cyan);display:flex;flex-direction:column;gap:10px}
 .mbox h3{font-size:17px;line-height:1.4;padding-left:24px}
 .mclose{position:absolute;top:14px;left:14px}
@@ -223,10 +224,11 @@ ${c.status ? `<div class="sub">${esc(c.status)}</div>` : ''}
   const tasks = `<ul class="q" id="tasks">${d.tasks.map(t => `<li data-id="${esc(t.id)}" data-auto="${t.done ? 1 : 0}" class="${t.done ? 'done' : ''}">
 <button class="tk" title="סימון כבוצע">${t.done ? '✓' : ''}</button><span class="pri ${esc(t.pri)}"></span>
 <span class="t" style="flex:1">${esc(t.what)}${t.done ? ' <span class="auto">זוהה אוטומטית</span>' : ''}</span>
-<span class="who">${esc(t.who)}</span>${(t.link || t.prompt) ? `<button class="do" data-link="${esc(t.link || '')}" data-label="${esc(t.link_label || '')}" data-prompt="${esc(t.prompt || '')}" data-what="${esc(t.what)}">בצע</button>` : ''}<button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
+<span class="who">${esc(t.who)}</span>${(t.link || t.prompt) ? `<button class="do" data-link="${esc(t.link || '')}" data-label="${esc(t.link_label || '')}" data-wait="${esc(t.link_wait || '')}" data-prompt="${esc(t.prompt || '')}" data-what="${esc(t.what)}">בצע</button>` : ''}<button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
 <div class="modal" id="modal" hidden><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mtitle">
 <button class="x mclose" title="סגירה">✕</button><h3 id="mtitle"></h3><p class="sub">איך לבצע את המשימה?</p>
 <a class="mopt" id="mgo" target="_blank" rel="noopener"><b>מעבר לדף הרלוונטי</b><span id="mgol"></span></a>
+<div class="mopt off" id="mwait"><b>מעבר לדף הרלוונטי</b><span id="mwaitl"></span></div>
 <button class="mopt" id="mclaude"><b>Claude יבצע עבורי</b><span>הפקודה תועתק, ורק צריך להדביק אותה בשיחה עם Claude Code</span></button>
 <div class="mdone" id="mdone" hidden>הפקודה הועתקה. הדבק אותה בשיחה עם Claude Code והוא יבצע.</div></div></div>
 <div class="empty" id="tasks-empty" style="display:none">אין משימות פתוחות</div>`;
@@ -341,6 +343,7 @@ const CLIENT = `<script>
     list.addEventListener('click',function(e){var b=e.target.closest('.do'); if(!b) return; e.stopPropagation();
       document.getElementById('mtitle').textContent=b.dataset.what; prompt=b.dataset.prompt;
       go.hidden=!b.dataset.link; if(b.dataset.link){go.href=b.dataset.link; document.getElementById('mgol').textContent=b.dataset.label||b.dataset.link}
+      var w=document.getElementById('mwait'); w.hidden=!!b.dataset.link||!b.dataset.wait; document.getElementById('mwaitl').textContent=b.dataset.wait;
       cl.hidden=!prompt; done.hidden=true; modal.hidden=false;});
     cl.addEventListener('click',function(){
       var ok=function(){done.hidden=false};
