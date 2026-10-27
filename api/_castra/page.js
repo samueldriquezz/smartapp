@@ -9,7 +9,7 @@ const HEAD = title => `<!doctype html><html lang="he" dir="rtl"><head><meta char
 <title>${title}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<style>${CSS}</style></head>`;
+<style>${CSS}${CSS2}</style></head>`;
 
 const CSS = `
 :root{--bg:#06070c;--panel:rgba(16,18,30,.72);--line:rgba(255,255,255,.08);--ink:#eef0ff;--ink2:#a3a8c3;--ink3:#6b7090;
@@ -82,7 +82,7 @@ td.n{direction:ltr;text-align:left;font-family:'Space Grotesk',sans-serif}
 .tp b{color:var(--ink3);font-family:'Space Grotesk',sans-serif;min-width:20px}
 .tp.star{border-color:rgba(255,184,74,.4)}.tp.star b{color:var(--amber)}
 .fc{display:flex;flex-direction:column;gap:10px}
-.fcr{display:grid;grid-template-columns:80px 1fr 70px;gap:10px;align-items:center;font-size:13px}
+.fcr{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;font-size:13px}
 .fcr .v{direction:ltr;text-align:left;font-family:'Space Grotesk',sans-serif;color:var(--ink)}
 .stack{display:flex;height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.06)}
 .stack .s1{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}.stack .s2{background:var(--mag)}
@@ -120,27 +120,128 @@ ${error ? '<div class="err">הקוד שגוי או שפג תוקפו</div>' : ''
 ${body}</form></main></body></html>`;
 }
 
+// CASTRA dashboard + channel pages. Interactivity (collapse, scenario switch, task ticks, countdowns,
+// charts) is client side; task ticks and collapsed sections are remembered in this browser.
+
+const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: Number(n) % 1 ? 2 : 0 });
+const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
+
+const CSS2 = `
+details.card>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary h2{margin:0}
+details.card>summary .chev{color:var(--ink2);transition:transform .2s;font-size:20px;line-height:1}
+details.card:not([open])>summary .chev{transform:rotate(90deg)}
+details.card[open]>summary{margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:none;border:0;color:var(--ink2);font:inherit;font-size:13px;padding:6px 12px;cursor:pointer}
+.seg button.on{background:rgba(34,230,255,.14);color:var(--cyan)}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.hrow h2{margin:0}
+.fcr.now .lbl,.ms.now td{color:var(--cyan)}
+.fcr .lbl{display:flex;align-items:center;gap:6px}
+.here{font-size:11px;color:#06070c;background:var(--cyan);border-radius:99px;padding:1px 8px;box-shadow:0 0 12px var(--cyan);white-space:nowrap}
+.timeline{position:relative;margin:30px 14px 22px;height:44px}
+.timeline .track{position:absolute;top:18px;left:0;right:0;height:4px;border-radius:99px;background:rgba(255,255,255,.08)}
+.timeline .fill{position:absolute;top:18px;right:0;height:4px;border-radius:99px;background:linear-gradient(270deg,var(--cyan),var(--vio));box-shadow:0 0 10px var(--cyan)}
+.timeline .pt{position:absolute;top:12px;width:16px;height:16px;margin-right:-8px;border-radius:50%;background:#0d0f19;border:2px solid var(--ink3)}
+.timeline .pt.past{border-color:var(--cyan);background:var(--cyan)}
+.timeline .pt span{position:absolute;top:22px;right:50%;transform:translateX(50%);font-size:11px;color:var(--ink3);white-space:nowrap}
+.timeline .me{position:absolute;top:2px;width:2px;height:36px;margin-right:-1px;background:var(--mag);box-shadow:0 0 12px var(--mag)}
+.timeline .me b{position:absolute;bottom:38px;right:50%;transform:translateX(50%);font-size:11px;color:var(--mag);white-space:nowrap;font-weight:600}
+ul.q li.done span.t{text-decoration:line-through;color:var(--ink3)}
+.tk{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--ink3);background:none;cursor:pointer;color:var(--lime);font-size:14px;line-height:1}
+li.done .tk{border-color:var(--lime);background:rgba(182,255,59,.12)}
+.x{flex:none;background:none;border:0;color:var(--ink3);cursor:pointer;font-size:16px;padding:0 4px}
+.x:hover{color:var(--mag)}
+.auto{font-size:11px;color:var(--lime);border:1px solid rgba(182,255,59,.35);border-radius:6px;padding:0 6px}
+.cost3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.cost3 div{border:1px solid var(--line);border-radius:12px;padding:10px}
+.cost3 b{display:block;font-family:'Space Grotesk',sans-serif;font-size:22px;direction:ltr;text-align:right}
+.cost3 span{font-size:12px;color:var(--ink2)}
+.meter{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin:4px 0 12px}
+.meter div{height:100%;background:linear-gradient(90deg,var(--amber),var(--mag))}
+.vprog{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:12px}
+.vprog div{height:100%;border-radius:99px;background:linear-gradient(270deg,var(--lime),var(--cyan));box-shadow:0 0 10px var(--cyan)}
+.vprog-l{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:6px}
+.launch{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.launch b{font-family:'Space Grotesk',sans-serif;font-size:22px}
+.go{display:inline-flex;align-items:center;gap:6px;margin-top:4px;color:var(--cyan);text-decoration:none;font-size:14px;font-weight:600}
+.card.glow-m .go{color:var(--mag)}
+.go:hover{text-decoration:underline}
+.charts{display:grid;grid-template-columns:1fr;gap:14px}
+.chartbox{position:relative;height:320px}
+.note{color:var(--ink3);font-size:13px;margin-top:8px}
+`;
+
 const STAGE_ICON = { done: '✓', active: '●', todo: '○' };
+
+function nowIndex(horizons, month) {          // index of the next horizon we are heading to
+  const i = horizons.findIndex(h => month < h);
+  return i === -1 ? horizons.length - 1 : i;
+}
 
 function render(d) {
   const od = d.channels[0], mu = d.channels[1];
-  const spent = (d.costs.items || []).reduce((s, x) => s + Number(x.usd || 0), 0);
   const pct = (v, g) => Math.min(100, (v / g) * 100).toFixed(1);
-  const maxF = Math.max(...d.forecast.map(f => f.base));
+  const M = d.month_index;
+  const fi = nowIndex(d.horizons, M);
+  const hLabel = { 6: 'חצי שנה', 12: 'שנה', 18: 'שנה וחצי', 24: 'שנתיים', 36: '3 שנים', 60: '5 שנים' };
+
   const chan = (c, glow, cls) => `<div class="card ${glow} chan"><div class="top"><h3>${esc(c.name)}</h3><span class="tag ${cls}">${esc(c.tag)}</span></div>
-<div class="sub">${esc(c.status)}</div>
+<div class="launch" data-launch="${c.launch}"><span class="sub">השקה</span><b dir="ltr">${heDate(c.launch)}</b><span class="sub cd"></span></div>
+${c.status ? `<div class="sub">${esc(c.status)}</div>` : ''}
 <div class="row"><span>מנויים</span><b dir="ltr">${fmt(c.subs)} / 1,000</b></div><div class="bar ${cls === 'm' ? 'm' : ''}"><div style="width:${pct(c.subs, 1000)}%"></div></div>
 <div class="row"><span>שעות צפייה (12 חודשים)</span><b dir="ltr">${fmt(c.hours)} / 8,000</b></div><div class="bar ${cls === 'm' ? 'm' : ''}"><div style="width:${pct(c.hours, 8000)}%"></div></div>
 <div class="row"><span>צפיות ב־30 יום</span><b dir="ltr">${fmt(c.views30)}</b></div>
 <div class="row"><span>סרטונים שפורסמו</span><b dir="ltr">${fmt(c.videos)}</b></div>
-<div class="row"><span>עלות חודשית</span><b dir="ltr">$${c.cost}</b></div><div class="row"><span>RPM צפוי</span><b>${esc(c.rpm)}</b></div></div>`;
+<div class="row"><span>עלות חודשית</span><b dir="ltr">$${c.cost}</b></div><div class="row"><span>RPM צפוי</span><b>${esc(c.rpm)}</b></div>
+<a class="go" href="/castra?ch=${c.key}">לנתונים ולגרפים של הערוץ ←</a></div>`;
 
   const videos = d.videos.length ? d.videos.map(v => {
-    const done = v.stages.filter(s => s.s === 'done').length;
+    const done = v.stages.filter(s => s.s === 'done').length, p = Math.round(done / v.stages.length * 100);
     return `<div class="card sec"><div class="vt"><div><h3>${esc(v.title)}</h3><small>${esc(v.channel)}</small></div>
 <span class="tag c">${done}/${v.stages.length} שלבים</span></div><div class="pipe">${v.stages.map(s =>
-      `<span class="st ${s.s}">${STAGE_ICON[s.s]} ${esc(s.k)}${s.note ? ` <small>${esc(s.note)}</small>` : ''}</span>`).join('')}</div></div>`;
+      `<span class="st ${s.s}">${STAGE_ICON[s.s]} ${esc(s.k)}${s.note ? ` <small>${esc(s.note)}</small>` : ''}</span>`).join('')}</div>
+<div class="vprog"><div style="width:${p}%"></div></div><div class="vprog-l"><span>התקדמות</span><span dir="ltr">${p}%</span></div></div>`;
   }).join('') : '<div class="card sec empty">אין סרטונים בייצור</div>';
+
+  const tasks = `<ul class="q" id="tasks">${d.tasks.map(t => `<li data-id="${esc(t.id)}" data-auto="${t.done ? 1 : 0}" class="${t.done ? 'done' : ''}">
+<button class="tk" title="סימון כבוצע">${t.done ? '✓' : ''}</button><span class="pri ${esc(t.pri)}"></span>
+<span class="t" style="flex:1">${esc(t.what)}${t.done ? ' <span class="auto">זוהה אוטומטית</span>' : ''}</span>
+<span class="who">${esc(t.who)}</span><button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
+<div class="empty" id="tasks-empty" style="display:none">אין משימות פתוחות</div>`;
+
+  const c = d.costs, meterPct = Math.min(100, c.this_month.spent / Math.max(c.this_month.expected, 0.01) * 100);
+  const costs = `<div class="cost3"><div><b class="a">${money(c.spent)}</b><span>הוצאנו עד היום</span></div>
+<div><b>${money(c.this_month.expected)}</b><span>צפי ל${esc(c.this_month.label)}</span></div>
+<div><b>${money(c.next_month.expected)}</b><span>צפי ל${esc(c.next_month.label)}</span></div></div>
+<div class="sub">${esc(c.this_month.label)}: נוצלו ${money(c.this_month.spent)} מתוך ${money(c.this_month.expected)}</div>
+<div class="meter"><div style="width:${meterPct.toFixed(0)}%"></div></div>
+<details class="card" style="padding:12px 14px;background:rgba(255,255,255,.02)"><summary><h2 style="font-size:14px">היסטוריית חיובים (${c.items.length})</h2><span class="chev">▾</span></summary>
+<table><tbody>${c.items.slice().reverse().map(x => `<tr><td>${esc(x.what)}<br><small style="color:var(--ink3)">${esc(x.date)}</small></td><td class="n">${money(x.usd)}</td></tr>`).join('')}</tbody></table></details>
+<div class="note">תכנון: כ־$15 בחודש מהשקת One Decision, וכ־$70 מהשקת ערוץ המוזיקה</div>`;
+
+  const scen = sc => d.horizons.map((h, i) => {
+    const o = d.forecast[sc].od[i], m = d.forecast[sc].music[i], tot = o + m;
+    return { h, o, m, tot };
+  });
+  const fcRows = sc => { const rows = scen(sc), max = Math.max(...rows.map(r => r.tot)) || 1;
+    return rows.map((r, i) => `<div class="fcr ${i === fi ? 'now' : ''}"><span class="lbl">${hLabel[r.h]}${i === fi ? ' <span class="here">היעד הבא</span>' : ''}</span>
+<div class="stack" style="width:${(r.tot / max * 100).toFixed(1)}%">${r.tot ? `<div class="s1" style="width:${(r.o / r.tot * 100).toFixed(1)}%"></div><div class="s2" style="flex:1"></div>` : ''}</div><span class="v">${money(r.tot)}</span></div>`).join(''); };
+
+  const tl = (marks, labelFn) => {      // horizontal timeline with a "we are here" marker (RTL: starts on the right)
+    const max = marks[marks.length - 1], pos = m => (m / max * 100).toFixed(2);
+    return `<div class="timeline"><div class="track"></div><div class="fill" style="width:${pos(Math.min(M, max))}%"></div>
+${[0, ...marks].map(m => `<div class="pt ${M >= m ? 'past' : ''}" style="right:${pos(m)}%"><span>${labelFn(m)}</span></div>`).join('')}
+<div class="me" style="right:${pos(Math.min(M, max))}%"><b>${M ? `חודש ${M}` : 'לפני השקה'}</b></div></div>`;
+  };
+
+  const milestones = `${tl(d.milestones.map(m => m.m), m => m ? `חודש ${m}` : 'השקה')}
+<table><thead><tr><th>חודש</th><th>יעד</th><th>בפועל</th></tr></thead><tbody>
+${d.milestones.map((m, i) => { const now = i === nowIndex(d.milestones.map(x => x.m), M);
+    return `<tr class="ms ${now ? 'now' : ''}"><td class="n" style="text-align:right">${m.m}${now ? ' <span class="here">היעד הבא</span>' : ''}</td><td>${esc(m.goal)}</td><td class="n">${M ? fmt(od.views30) : 'טרם הושק'}</td></tr>`; }).join('')}</tbody></table>
+<div class="note">נקודת בדיקה בחודש 12: מתחת ל־150 אלף צפיות בחודש משנים פורמט</div>`;
 
   return `${HEAD('CASTRA · מרכז בקרה')}<body>${BG}<div class="wrap">
 <header><div><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div>
@@ -149,7 +250,7 @@ function render(d) {
 <div class="grid4">
 <div class="card kpi glow-c"><b class="c">${fmt(od.views30 + mu.views30)}</b><span>צפיות ב־30 הימים האחרונים</span></div>
 <div class="card kpi"><b class="l">${fmt(od.videos + mu.videos)}</b><span>סרטונים שפורסמו</span></div>
-<div class="card kpi"><b class="a">$${spent.toFixed(2)}</b><span>הוצאות עד היום</span></div>
+<div class="card kpi"><b class="a">${money(c.spent)}</b><span>הוצאות עד היום</span></div>
 <div class="card kpi glow-m"><b class="m">$10,000</b><span>היעד: הכנסה חודשית בחודש 24</span></div>
 </div>
 
@@ -158,30 +259,143 @@ function render(d) {
 <h2 class="sec" style="margin-top:22px"><i></i>סרטונים בייצור</h2>${videos}
 
 <div class="grid3 sec">
-<div class="card"><h2><i style="background:var(--mag);box-shadow:0 0 10px var(--mag)"></i>מחכה לאישור או לפעולה</h2>
-${d.approvals.length ? `<ul class="q">${d.approvals.map(a => `<li><span class="pri ${esc(a.pri)}"></span><span style="flex:1">${esc(a.what)}</span><span class="who">${esc(a.who)}</span></li>`).join('')}</ul>` : '<div class="empty">אין משימות פתוחות</div>'}</div>
-<div class="card"><h2><i></i>הוצאות</h2>
-<table><tbody>${(d.costs.items || []).map(x => `<tr><td>${esc(x.what)}<br><small style="color:var(--ink3)">${esc(x.date)}</small></td><td class="n">$${Number(x.usd).toFixed(2)}</td></tr>`).join('')}
-<tr><td><b>סה"כ</b></td><td class="n"><b>$${spent.toFixed(2)}</b></td></tr></tbody></table>
-<div class="sub" style="margin-top:10px">תקציב: כ־$15 בחודש, וכ־$70 מחודש 4</div></div>
+<div class="card"><h2><i style="background:var(--mag);box-shadow:0 0 10px var(--mag)"></i>משימות להמשך</h2>${tasks}</div>
+<div class="card"><h2><i style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></i>הוצאות</h2>${costs}</div>
 </div>
 
 <div class="grid2 sec">
-<div class="card"><h2><i></i>מסלול היעד</h2><table><thead><tr><th>חודש</th><th>יעד</th><th>בפועל</th></tr></thead><tbody>
-${d.milestones.map(m => `<tr><td class="n" style="text-align:right">${m.m}</td><td>${esc(m.goal)}</td><td class="n">${d.launch ? fmt(od.views30) : 'טרם הושק'}</td></tr>`).join('')}</tbody></table>
-<div class="sub" style="margin-top:10px">נקודת בדיקה בחודש 12: מתחת ל־150 אלף צפיות בחודש משנים פורמט</div></div>
-<div class="card"><h2><i style="background:var(--vio);box-shadow:0 0 10px var(--vio)"></i>צפי הכנסה חודשית, תרחיש בסיס</h2>
-<div class="legend"><span><i style="background:var(--cyan)"></i>One Decision</span><span><i style="background:var(--mag)"></i>ערוץ המוזיקה</span></div>
-<div class="fc">${d.forecast.map(f => `<div class="fcr"><span>${esc(f.h)}</span><div class="stack" style="width:${(f.base / maxF * 100).toFixed(1)}%"><div class="s1" style="width:${(f.od / f.base * 100).toFixed(1)}%"></div><div class="s2" style="flex:1"></div></div><span class="v">$${fmt(f.base)}</span></div>`).join('')}</div></div>
+<details class="card" data-k="ms" open><summary><h2><i></i>מסלול היעד</h2><span class="chev">▾</span></summary>${milestones}</details>
+<details class="card" data-k="fc" open><summary><h2><i style="background:var(--vio);box-shadow:0 0 10px var(--vio)"></i>צפי הכנסה חודשית</h2><span class="chev">▾</span></summary>
+<div class="hrow"><div class="legend" style="margin:0"><span><i style="background:var(--cyan)"></i>One Decision</span><span><i style="background:var(--mag)"></i>ערוץ המוזיקה</span></div>
+<div class="seg" id="scen"><button data-s="base" class="on">בסיס</button><button data-s="opt">אופטימי</button></div></div>
+${tl(d.horizons, m => m ? hLabel[m] : 'השקה')}
+<div class="fc" data-s="base">${fcRows('base')}</div><div class="fc" data-s="opt" style="display:none">${fcRows('opt')}</div></details>
 </div>
 
-<div class="card sec"><h2><i style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></i>נושאים בתור · One Decision</h2>
-<div class="topics">${d.topics.map(t => `<div class="tp ${t.star ? 'star' : ''}"><b>${t.n}</b><span>${esc(t.title)}</span></div>`).join('')}</div></div>
+<details class="card sec" data-k="topics"><summary><h2><i style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></i>נושאים בתור · One Decision (${d.topics.length})</h2><span class="chev">▾</span></summary>
+<div class="topics">${d.topics.map(t => `<div class="tp ${t.star ? 'star' : ''}"><b>${t.n}</b><span>${esc(t.title)}</span></div>`).join('')}</div></details>
 
-<div class="card sec"><h2><i></i>סקילים ומתי משתמשים</h2><div class="chips">${d.skills.map(s => `<span class="chip"><b>${esc(s.k)}</b>${esc(s.when)}</span>`).join('')}</div></div>
+<details class="card sec" data-k="skills"><summary><h2><i></i>סקילים ומתי משתמשים</h2><span class="chev">▾</span></summary><div class="chips">${d.skills.map(s => `<span class="chip"><b>${esc(s.k)}</b>${esc(s.when)}</span>`).join('')}</div></details>
 
 <footer>CASTRA · SmartApp · הנתונים מתעדכנים מצינור הייצור</footer>
-</div></body></html>`;
+</div>${CLIENT}</body></html>`;
 }
 
-module.exports = { render, login };
+const CLIENT = `<script>
+(function(){
+  var ls={get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+          set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+  // collapsible sections remember their state
+  var open=ls.get('castra.open',{});
+  document.querySelectorAll('details[data-k]').forEach(function(el){
+    var k=el.dataset.k; if(k in open) el.open=open[k];
+    el.addEventListener('toggle',function(){open[k]=el.open;ls.set('castra.open',open)});
+  });
+  // countdown to each launch
+  document.querySelectorAll('[data-launch]').forEach(function(el){
+    var days=Math.ceil((new Date(el.dataset.launch+'T00:00:00')-new Date())/864e5), cd=el.querySelector('.cd');
+    cd.textContent= days>0 ? 'עוד '+days+' ימים' : (days===0 ? 'היום!' : 'פעיל '+(-days)+' ימים');
+  });
+  // scenario switch
+  var seg=document.getElementById('scen');
+  if(seg) seg.addEventListener('click',function(e){var s=e.target.dataset.s;if(!s)return;
+    seg.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.s===s)});
+    document.querySelectorAll('.fc[data-s]').forEach(function(f){f.style.display=f.dataset.s===s?'':'none'})});
+  // tasks: tick = done, x = remove from the list (both remembered in this browser)
+  var st=ls.get('castra.tasks',{done:{},gone:{}}), list=document.getElementById('tasks');
+  function paint(){ if(!list) return; var left=0;
+    list.querySelectorAll('li').forEach(function(li){var id=li.dataset.id, done=li.dataset.auto==='1'||st.done[id];
+      li.classList.toggle('done',!!done); li.querySelector('.tk').textContent=done?'✓':'';
+      li.style.display=st.gone[id]?'none':''; if(!st.gone[id]) left++;});
+    document.getElementById('tasks-empty').style.display=left?'none':''; }
+  if(list) list.addEventListener('click',function(e){var li=e.target.closest('li'); if(!li) return; var id=li.dataset.id;
+    if(e.target.classList.contains('tk')){ if(li.dataset.auto!=='1'){st.done[id]=!st.done[id]} }
+    else if(e.target.classList.contains('x')){ st.gone[id]=true }
+    else return; ls.set('castra.tasks',st); paint(); });
+  paint();
+})();
+</script>`;
+
+// ---------------------------------------------------------------- channel page
+function targetSeries(key, launchIso, days) {
+  // planned daily views from the milestone path (months since this channel's launch -> monthly views)
+  const pts = key === 'od' ? [[0, 0], [6, 50000], [12, 300000], [18, 800000], [24, 1200000]]
+                           : [[0, 0], [3, 10000], [9, 60000], [15, 120000], [21, 200000]];
+  const at = m => { for (let i = 1; i < pts.length; i++) if (m <= pts[i][0]) {
+      const [m0, v0] = pts[i - 1], [m1, v1] = pts[i]; return v0 + (v1 - v0) * (m - m0) / (m1 - m0); }
+    return pts[pts.length - 1][1]; };
+  const start = new Date(launchIso + 'T00:00:00Z');
+  return Array.from({ length: days }, (_, i) => {
+    const day = new Date(start.getTime() + i * 864e5);
+    return { date: day.toISOString().slice(0, 10), views: Math.round(at(i / 30.4) / 30.4) };
+  });
+}
+
+function renderChannel(d, key) {
+  const c = d.channels.find(x => x.key === key);
+  if (!c) return null;
+  const cls = key === 'od' ? 'c' : 'm';
+  const target = targetSeries(key, c.launch, 120);
+  const series = c.series || [];
+  const rev30 = series.slice(-30).reduce((s, x) => s + (x.revenue || 0), 0);
+  return `${HEAD('CASTRA · ' + c.name)}<body>${BG}<div class="wrap">
+<header><div><div class="logo">CASTRA</div><div class="sub">${esc(c.name)} · נתונים לאורך זמן</div></div>
+<div class="meta"><a class="btn" href="/castra">→ חזרה לדשבורד</a><a class="btn" href="/castra?logout=1">יציאה</a></div></header>
+
+<div class="grid4">
+<div class="card kpi ${key === 'od' ? 'glow-c' : 'glow-m'}"><b class="${cls}">${fmt(c.views30)}</b><span>צפיות ב־30 יום</span></div>
+<div class="card kpi"><b>${fmt(c.subs)}</b><span>מנויים (יעד 1,000)</span></div>
+<div class="card kpi"><b>${fmt(c.hours)}</b><span>שעות צפייה (יעד 8,000)</span></div>
+<div class="card kpi"><b class="l">${money(rev30)}</b><span>הכנסה ב־30 יום</span></div>
+</div>
+
+<div class="card sec"><div class="launch" data-launch="${c.launch}"><span class="sub">השקה</span><b dir="ltr">${heDate(c.launch)}</b><span class="sub cd"></span></div>
+${series.length ? '' : `<div class="note">עדיין אין נתונים מיוטיוב. הגרפים יתמלאו מיום ההשקה, אחרי חיבור YouTube Analytics. בינתיים מוצג קו היעד.</div>`}</div>
+
+<div class="hrow sec" style="margin-top:18px"><h2 style="margin:0"><i></i>גרפים</h2>
+<div class="seg" id="range"><button data-d="7">שבוע</button><button data-d="30" class="on">חודש</button><button data-d="90">3 חודשים</button></div></div>
+<div class="charts">
+<div class="card"><h2>צפיות ביום · בפועל מול יעד</h2><div class="chartbox"><canvas id="c1"></canvas></div></div>
+<div class="card"><h2>מנויים, שעות צפייה והכנסה מצטברים</h2><div class="chartbox"><canvas id="c2"></canvas></div></div>
+</div>
+<footer>CASTRA · SmartApp</footer></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function(){
+  var series=${JSON.stringify(series)}, target=${JSON.stringify(target)}, launch='${c.launch}', main='${key === 'od' ? '#22e6ff' : '#ff3ec8'}';
+  var el=document.querySelector('[data-launch]'), days=Math.ceil((new Date(launch+'T00:00:00')-new Date())/864e5);
+  el.querySelector('.cd').textContent= days>0 ? 'עוד '+days+' ימים' : (days===0 ? 'היום!' : 'פעיל '+(-days)+' ימים');
+  Chart.defaults.color='#a3a8c3'; Chart.defaults.font.family='Heebo'; Chart.defaults.borderColor='rgba(255,255,255,.06)';
+  function windowOf(n){ // last n days up to today, or the first n days from launch before launch
+    var today=new Date().toISOString().slice(0,10), end=today<launch ? null : today, out=[];
+    var start = end ? new Date(new Date(end+'T00:00:00Z').getTime()-(n-1)*864e5) : new Date(launch+'T00:00:00Z');
+    for(var i=0;i<n;i++) out.push(new Date(start.getTime()+i*864e5).toISOString().slice(0,10));
+    return out; }
+  var byDate={}; series.forEach(function(x){byDate[x.date]=x}); var tByDate={}; target.forEach(function(x){tByDate[x.date]=x.views});
+  var c1,c2;
+  function draw(n){
+    var ds=windowOf(n), labels=ds.map(function(d){var p=d.split('-');return +p[2]+'.'+(+p[1])});
+    var actual=ds.map(function(d){return byDate[d]?byDate[d].views:null});
+    var tgt=ds.map(function(d){return d in tByDate?tByDate[d]:null});
+    var cum=function(k){var s=0;return ds.map(function(d){if(!byDate[d])return null;s+=byDate[d][k]||0;return s})};
+    if(c1)c1.destroy(); if(c2)c2.destroy();
+    c1=new Chart(document.getElementById('c1'),{type:'line',data:{labels:labels,datasets:[
+      {label:'בפועל',data:actual,borderColor:main,backgroundColor:main+'22',fill:true,tension:.35,pointRadius:0,spanGaps:true},
+      {label:'יעד',data:tgt,borderColor:'#8b5cf6',borderDash:[6,5],pointRadius:0,tension:.35}]},
+      options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},scales:{y:{beginAtZero:true}}}});
+    c2=new Chart(document.getElementById('c2'),{type:'line',data:{labels:labels,datasets:[
+      {label:'מנויים',data:cum('subs'),borderColor:main,pointRadius:0,tension:.35,yAxisID:'y'},
+      {label:'שעות צפייה',data:cum('hours'),borderColor:'#b6ff3b',pointRadius:0,tension:.35,yAxisID:'y'},
+      {label:'הכנסה ($)',data:cum('revenue'),borderColor:'#ffb84a',pointRadius:0,tension:.35,yAxisID:'y1'}]},
+      options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+        scales:{y:{beginAtZero:true},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false}}}}});
+  }
+  var seg=document.getElementById('range');
+  seg.addEventListener('click',function(e){var n=+e.target.dataset.d;if(!n)return;
+    seg.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',+b.dataset.d===n)}); draw(n)});
+  draw(30);
+})();
+</script></body></html>`;
+}
+
+module.exports = { render, renderChannel, login };

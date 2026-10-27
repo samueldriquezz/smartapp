@@ -7,7 +7,7 @@
 // (rotating that key simply logs everyone out).
 
 const crypto = require('crypto');
-const { render, login } = require('./_castra/page');
+const { render, renderChannel, login } = require('./_castra/page');
 const data = require('./_castra/data.json');
 
 const ALLOWED = 'samueldriquezz@gmail.com';
@@ -101,5 +101,7 @@ module.exports = async (req, res) => {
   }
 
   if (!validSession(req)) return html(res, 200, login('email', false));
+  const ch = url.searchParams.get('ch');
+  if (ch) { const page = renderChannel(data, ch); if (page) return html(res, 200, page); }
   return html(res, 200, render(data));
 };
