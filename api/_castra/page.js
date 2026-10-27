@@ -207,6 +207,46 @@ li.done .tk{border-color:var(--lime);background:rgba(182,255,59,.12)}
 .charts{display:grid;grid-template-columns:1fr;gap:14px}
 .chartbox{position:relative;height:320px}
 .note{color:var(--ink3);font-size:13px;margin-top:8px}
+/* schedule as tiles (like the KAPI posts grid): preview, date under it, actions on hover; click = popup */
+.wkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;gap:6px;cursor:pointer}
+.tile[hidden]{display:none}
+.tmedia{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(255,255,255,.01))}
+.tile.od .tmedia{border-color:rgba(34,230,255,.28)}.tile.music .tmedia{border-color:rgba(255,62,200,.28)}
+.tmedia img{width:100%;height:100%;object-fit:cover;display:block}
+.tmedia .blank{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink3);font-size:12px}
+.tmedia .ss{position:absolute;top:8px;right:8px;background:rgba(6,7,12,.75);backdrop-filter:blur(4px)}
+.tmedia .play{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#fff;text-shadow:0 0 18px rgba(0,0,0,.8);opacity:.85}
+.thover{position:absolute;inset:0;display:flex;gap:8px;align-items:center;justify-content:center;background:rgba(6,7,12,.55);opacity:0;transition:opacity .15s}
+.tmedia:hover .thover,.tmedia:focus-within .thover{opacity:1}
+@media (hover:none){.thover{opacity:1;background:linear-gradient(transparent 50%,rgba(6,7,12,.75));align-items:flex-end;padding-bottom:10px}}
+.thover button{border:0;border-radius:9px;padding:6px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#06070c}
+.thover button.apr{background:linear-gradient(90deg,var(--cyan),var(--lime))}
+.tprog{position:absolute;left:0;right:0;bottom:0;padding:6px 10px;font-size:11.5px;color:var(--amber);background:rgba(6,7,12,.7)}
+.tprog.fail{color:var(--mag)}
+.ttitle{font-size:13.5px;line-height:1.35;direction:ltr;text-align:right;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tdate{font-size:12px;color:var(--ink3)}.tdate b{color:var(--ink2);font-weight:600}
+.ss.idea{color:var(--vio)}.ss.scheduled{color:var(--lime)}
+.pv{position:fixed;inset:0;z-index:30;background:rgba(3,4,8,.78);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.pv[hidden]{display:none}
+.pvbox{position:relative;width:100%;max-width:1100px;max-height:calc(100vh - 32px);display:grid;grid-template-columns:1.6fr 1fr;gap:0;
+background:#0e1020;border:1px solid rgba(34,230,255,.35);border-radius:18px;overflow:hidden;box-shadow:0 0 50px -12px var(--cyan)}
+@media (max-width:860px){.pvbox{grid-template-columns:1fr;overflow:auto}}
+.pvmedia{background:#000;display:flex;align-items:center}
+.pvmedia .frame{position:relative;width:100%;aspect-ratio:16/9}
+.pvmedia iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pvmedia .blank{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--ink3);font-size:14px;padding:20px;
+background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
+.pvside{display:flex;flex-direction:column;gap:10px;padding:20px;min-height:0;overflow:auto}
+.pvside h3{font-size:17px;line-height:1.4;direction:ltr;text-align:left;padding-left:30px}
+.pvmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink2)}
+.pvprog{font-size:13px;color:var(--amber)}.pvprog.fail{color:var(--mag)}
+.pvscript{white-space:pre-line;direction:ltr;text-align:left;font-size:13.5px;line-height:1.6;color:var(--ink2);
+border-top:1px dashed var(--line);padding-top:10px;max-height:52vh;overflow:auto}
+.pvscript:empty::before{content:'אין תסריט עדיין';color:var(--ink3);direction:rtl;display:block;text-align:right}
+.pvclose{position:absolute;top:12px;left:12px;z-index:2;background:rgba(6,7,12,.7);border:1px solid var(--line);color:var(--ink);border-radius:9px;width:32px;height:32px;cursor:pointer}
+.auto-note{border:1px solid rgba(139,92,246,.35);background:rgba(139,92,246,.07);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--ink2);margin:4px 0 6px}
 `;
 
 const NAV_ITEMS = [['home', '/castra', 'סקירה'], ['schedule', '/castra?p=schedule', 'תזמונים'],
@@ -487,47 +527,84 @@ ${series.length ? '' : `<div class="note">עדיין אין נתונים מיו�
 </script></body></html>`;
 }
 
-const SLOT_STATUS = { planned: 'מתוכנן', production: 'בהפקה', ready: 'מוכן לאישור', approved: 'אושר לפרסום', published: 'פורסם' };
+const SLOT_STATUS = { planned: 'נושא', idea: 'רעיון · תסריט', production: 'בהפקה', ready: 'מוכן לאישור',
+                      approved: 'אושר · מתוזמן בקרוב', scheduled: 'מתוזמן ביוטיוב', published: 'פורסם' };
 const DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
 function renderSchedule(d, approved = {}) {
-  const slots = (d.schedule || []).map(s => ({ ...s, status: approved[s.id] && s.status !== 'published' ? 'approved' : s.status }));
-  const weekOf = iso => { const x = new Date(iso + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() - x.getUTCDay()); return x.toISOString().slice(0, 10); };
-  let lastWeek = '', rows = '';
-  for (const s of slots) {
-    const w = weekOf(s.date);
-    if (w !== lastWeek) { rows += `<div class="wk" data-w>שבוע של ${heDate(w)}</div>`; lastWeek = w; }
+  const slots = (d.schedule || []).map(s => ({ ...s, status: approved[s.id] && s.status === 'ready' ? 'approved' : s.status }));
+  const tile = s => {
     const dow = DAYS[new Date(s.date + 'T00:00:00Z').getUTCDay()];
-    const isEn = /^[A-Za-z0-9$'"]/.test(s.title);
-    rows += `<div class="slot ${s.channel}" data-ch="${s.channel}">
-<div class="when"><b>${heDate(s.date)}</b><span>יום ${dow} · ${esc(s.time)}</span></div>
-<div class="ttl ${isEn ? 'en' : ''}">${esc(s.title)}<small style="direction:rtl;text-align:right">${s.channel === 'od' ? 'One Decision' : 'ערוץ המוזיקה'}</small></div>
-<div class="filters">${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור לפרסום</button>` : ''}<span class="ss ${s.status}">${SLOT_STATUS[s.status] || s.status}</span></div></div>`;
-  }
-  const odCount = slots.filter(s => s.channel === 'od').length, last = slots.filter(s => s.channel === 'od').pop();
+    const p = s.progress || {};
+    const prog = s.status === 'production'
+      ? (p.state === 'failed' ? `<div class="tprog fail">נכשל: ${esc(p.label || '')}</div>` : `<div class="tprog">${p.state === 'running' ? 'בהפקה עכשיו · ' + esc(p.label || '') : 'ממתין להעלאה'}</div>`) : '';
+    const media = s.youtube_id
+      ? `<img src="https://i.ytimg.com/vi/${esc(s.youtube_id)}/mqdefault.jpg" alt="" loading="lazy"><div class="play">▶</div>`
+      : '<div class="blank"></div>';
+    const info = { id: s.id, title: s.title, date: heDate(s.date), dow, time: s.time, status: s.status, label: SLOT_STATUS[s.status] || s.status,
+                   yt: s.youtube_id || '', script: !!s.has_script, prog: s.status === 'production' ? (p.state === 'failed' ? 'נכשל: ' + (p.error || p.label || '') : (p.state === 'running' ? 'בהפקה עכשיו: ' + (p.label || '') : 'הסרטון מרונדר וממתין להעלאה')) : '',
+                   fail: p.state === 'failed' };
+    return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
+<div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${prog}
+<div class="thover"><button class="view">צפייה</button>${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}</div></div>
+<div class="ttitle">${esc(s.title)}</div>
+<div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}</div></div>`;
+  };
+  const rows = slots.length ? `<div class="wkgrid">${slots.map(tile).join('')}</div>` : '';
+  const odAhead = slots.filter(s => s.channel === 'od' && ['ready', 'approved', 'scheduled'].includes(s.status)).length;
+  const producing = slots.find(s => s.status === 'production' && s.progress && s.progress.state === 'running');
   return `${HEAD('CASTRA · תזמונים')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
 <div class="brand"><div class="logo">CASTRA</div><div class="sub">לוח הפרסומים של שני הערוצים</div></div></header>${NAV('schedule')}
 <div class="card"><div class="hrow"><h2><i></i>תזמונים</h2>
 <div class="seg" id="chf"><button data-c="all" class="on">הכול</button><button data-c="od">One Decision</button><button data-c="music">ערוץ המוזיקה</button></div></div>
 <div class="note" style="margin:0 0 6px">One Decision: ימי שלישי ושישי ב־19:00 (12:00 בניו יורק). ערוץ המוזיקה: ימי ראשון מ־${heDate(d.channels[1].launch)}. סרטון עולה לאוויר רק אחרי אישור שלך.</div>
+<div class="auto-note">הפקה אוטומטית: ${odAhead} סרטונים מוכנים קדימה. כשנשארים 2, ההפקה של הרעיון הבא מתחילה לבד.${producing ? ` עכשיו בהפקה: <b dir="ltr">${esc(producing.title)}</b> (${esc(producing.progress.label || '')}).` : ''}</div>
 <div class="sched">${rows || '<div class="empty">אין פרסומים מתוכננים</div>'}</div>
-${last ? `<div class="note">הנושאים בתור מספיקים עד ${heDate(last.date)} (${odCount} סרטונים). לפני כן נריץ yt-viral לנושאים חדשים.</div>` : ''}
 </div><footer>CASTRA · SmartApp</footer></div>
+<div class="pv" id="pv" hidden><div class="pvbox" role="dialog" aria-modal="true">
+<button class="pvclose" aria-label="סגירה">✕</button>
+<div class="pvmedia"><div class="frame" id="pvframe"></div></div>
+<div class="pvside"><h3 id="pvt"></h3><div class="pvmeta" id="pvm"></div><div class="pvprog" id="pvp"></div>
+<div id="pva"></div><div class="pvscript" id="pvs"></div></div></div></div>
 <script>
 (function(){
   var seg=document.getElementById('chf');
   seg.addEventListener('click',function(e){var c=e.target.dataset.c;if(!c)return;
     seg.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.c===c)});
-    document.querySelectorAll('.slot').forEach(function(s){s.style.display=(c==='all'||s.dataset.ch===c)?'':'none'});
-    document.querySelectorAll('.wk').forEach(function(w){var n=w.nextElementSibling,vis=false;
-      while(n&&!n.classList.contains('wk')){if(n.style.display!=='none')vis=true;n=n.nextElementSibling}
-      w.style.display=vis?'':'none'});});
-  document.querySelectorAll('.apr').forEach(function(b){b.addEventListener('click',function(){
-    b.disabled=true;
-    fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=approve&id='+encodeURIComponent(b.dataset.id)})
-      .then(function(r){return r.json()}).then(function(j){if(j.ok){var s=b.nextElementSibling;s.className='ss approved';s.textContent='אושר לפרסום';b.remove()}else{b.disabled=false;alert('האישור נכשל')}})
-      .catch(function(){b.disabled=false});});});
+    document.querySelectorAll('.tile').forEach(function(t){t.hidden=!(c==='all'||t.dataset.ch===c)});
+  });
+  function approve(id,btn,done){btn.disabled=true;
+    fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=approve&id='+encodeURIComponent(id)})
+      .then(function(r){return r.json()}).then(function(j){if(j.ok){done()}else{btn.disabled=false;btn.textContent='האישור נכשל'}})
+      .catch(function(){btn.disabled=false});}
+  function markApproved(id){document.querySelectorAll('.tile').forEach(function(t){var i=JSON.parse(t.dataset.info);if(i.id!==id)return;
+    i.status='approved';i.label='אושר · מתוזמן בקרוב';t.dataset.info=JSON.stringify(i);
+    var s=t.querySelector('.ss');s.className='ss approved';s.textContent=i.label;var b=t.querySelector('.thover .apr');if(b)b.remove();});}
+  var pv=document.getElementById('pv');document.body.appendChild(pv);
+  var fr=document.getElementById('pvframe');
+  function close(){pv.hidden=true;fr.innerHTML='';}
+  function open(i){
+    document.getElementById('pvt').textContent=i.title;
+    document.getElementById('pvm').innerHTML='<span class="ss '+i.status+'"></span><span></span>';
+    document.querySelector('#pvm .ss').textContent=i.label;document.querySelector('#pvm span:last-child').textContent=i.date+' · יום '+i.dow+' · '+i.time;
+    var p=document.getElementById('pvp');p.textContent=i.prog;p.className='pvprog'+(i.fail?' fail':'');
+    fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+      :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':'זה רעיון בתור. עוד אין סרטון, רק כותרת ותסריט.')+'</div>';
+    var a=document.getElementById('pva');a.innerHTML='';
+    if(i.status==='ready'){var b=document.createElement('button');b.className='apr';b.textContent='אישור לפרסום ב־'+i.date+' '+i.time;
+      b.onclick=function(){approve(i.id,b,function(){b.textContent='אושר. הסרטון יתוזמן ביוטיוב לבד';markApproved(i.id)})};a.appendChild(b);}
+    var sc=document.getElementById('pvs');sc.textContent='';
+    if(i.script){sc.textContent='טוען תסריט...';fetch('/castra?script='+encodeURIComponent(i.id)).then(function(r){return r.json()})
+      .then(function(j){sc.textContent=j.script||''}).catch(function(){sc.textContent=''});}
+    pv.hidden=false;}
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('click',function(e){var b=e.target.closest('.apr');var i=JSON.parse(t.dataset.info);
+      if(b){e.stopPropagation();approve(b.dataset.id,b,function(){markApproved(b.dataset.id)});return;}
+      open(i);});
+    t.addEventListener('keydown',function(e){if(e.key==='Enter')open(JSON.parse(t.dataset.info))});});
+  pv.addEventListener('click',function(e){if(e.target===pv||e.target.closest('.pvclose'))close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pv.hidden)close()});
 })();
 </script></body></html>`;
 }

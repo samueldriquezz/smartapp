@@ -8,7 +8,8 @@
 
 const crypto = require('crypto');
 const { render, renderChannel, renderSchedule, login } = require('./_castra/page');
-const data = require('./_castra/data.json');
+const bundled = require('./_castra/data.json');
+let data = bundled;                    // replaced per request by the live copy the Mac pushes to Redis
 
 // ---- task queue (Upstash Redis over REST). The Mac agent pops jobs from castra:queue and writes
 // castra:job:<task>. The web side only ever sends a known task id, never free text.
@@ -83,6 +84,7 @@ async function mailCode(code) {
 module.exports = async (req, res) => {
   if (!process.env.RESEND_API_KEY) return html(res, 503, 'CASTRA is not configured');
   const url = new URL(req.url, 'https://smartapp-agency.com');
+  try { const live = await redis('GET', 'castra:data'); data = live ? JSON.parse(live) : bundled; } catch (e) { data = bundled; }
 
   if (url.searchParams.get('logout')) {
     return html(res, 302, '', { Location: '/castra', 'Set-Cookie': setCookie(SESSION, '', 0) });
@@ -141,6 +143,13 @@ module.exports = async (req, res) => {
   }
 
   if (!validSession(req)) return html(res, 200, login('email', false));
+  const sid = url.searchParams.get('script');
+  if (sid) {                                       // a slot's script, loaded when its preview opens
+    const ok = (data.schedule || []).some(s => s.id === sid);
+    const text = ok ? await redis('GET', `castra:script:${sid}`) : null;
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+    return res.end(JSON.stringify({ script: text || '' }));
+  }
   if (url.searchParams.get('jobs')) {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
     return res.end(JSON.stringify({ queue: !!RURL, jobs: await jobStatuses() }));
