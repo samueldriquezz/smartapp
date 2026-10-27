@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 01:47",
+ "updated": "28.10.2026 01:55",
  "today": "2026-10-28",
  "od_launch": "2026-10-28",
  "month_index": 1,
@@ -112,15 +112,15 @@
     },
     {
      "k": "רינדור",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "מתוזמן",
@@ -147,12 +147,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": ""
+     "s": "active",
+     "note": "1/49"
     },
     {
      "k": "רינדור",
@@ -779,7 +779,7 @@
     "step": "done",
     "label": "תוקן, ממתין לאישור",
     "error": null,
-    "updated": "28.10.2026 01:40",
+    "updated": "28.10.2026 01:51",
     "attempts": null
    },
    "fixes": [
@@ -794,6 +794,12 @@
      "at": "28.10.2026, 1:38:21",
      "done": "28.10.2026 01:40",
      "summary": "סנכרנתי בין הכותרת לטאמבנייל סביב ההצעה של 500 דולר: הכותרת החדשה היא \"The $500 Bid That Built Rockefeller's Standard Oil Empire\" עם מילות המפתח Rockefeller ו-Standard Oil, והטקסט בטאמבנייל הוא \"WON BY $500\"."
+    },
+    {
+     "note": "תתקן את הכותרת שמופיעה בטאמבניילס - שיהיה יותר מסקרן/דומה לכותרת של הסרטון אבל קצר ומסקרן יותר (hook חזק) -",
+     "at": "28.10.2026, 1:50:29",
+     "done": "28.10.2026 01:51",
+     "summary": "החלפתי את הטקסט בתמונה הממוזערת מ-WON BY $500 ל-$500 BUILT AN EMPIRE, קצר יותר, צמוד לכותרת הסרטון ועם הוק חזק יותר."
     }
    ],
    "fix_note": null,
@@ -804,17 +810,17 @@
    "id": "od-topic-2",
    "topic": 2,
    "channel": "od",
-   "title": "Blockbuster Could Have Bought Netflix For $50 Million",
-   "status": "production",
+   "title": "Why Blockbuster's John Antioco Passed On Netflix For $50M",
+   "status": "ready",
    "video": "videos/02-blockbuster-netflix",
-   "youtube_id": null,
+   "youtube_id": "Xi1XntuyF64",
    "has_script": true,
    "progress": {
-    "state": "running",
-    "step": "render",
-    "label": "רינדור",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 01:09",
+    "updated": "28.10.2026 01:52",
     "attempts": 1
    },
    "fixes": [],
@@ -828,11 +834,18 @@
    "topic": 3,
    "channel": "od",
    "title": "Kodak Invented The Digital Camera, Then Buried It",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/03-kodak-digital-camera",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "running",
+    "step": "images",
+    "label": "תמונות",
+    "error": null,
+    "updated": "28.10.2026 01:55",
+    "attempts": 1
+   },
    "fixes": [],
    "fix_note": null,
    "date": "2026-11-03",
@@ -1331,9 +1344,9 @@
  "pipeline": {
   "ideas": 10,
   "scripting": 0,
-  "text_ready": 8,
+  "text_ready": 7,
   "production": 1,
-  "ready": 0,
+  "ready": 1,
   "scheduled": 1,
   "ideas_target": 10,
   "ready_target": 3
