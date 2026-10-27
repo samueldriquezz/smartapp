@@ -1,5 +1,5 @@
 {
- "updated": "27.10.2026 23:32",
+ "updated": "27.10.2026 23:48",
  "today": "2026-10-27",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -92,6 +92,8 @@
    "what": "לצפות בפיילוט רוקפלר ולאשר או לבקש תיקונים",
    "pri": "high",
    "auto": "approvals:render_ok",
+   "link": null,
+   "prompt": "CASTRA: פתח לי את פיילוט רוקפלר (rockefeller_v2.mp4) לצפייה, ואחרי שאצפה תרשום את ההערות שלי לתיקונים",
    "done": false
   },
   {
@@ -100,6 +102,8 @@
    "what": "לבחור תמונה ממוזערת (או להעלות את שלושתן ל־Test & Compare)",
    "pri": "high",
    "auto": "approvals:thumbnail",
+   "link": null,
+   "prompt": "CASTRA: תציג לי את שלוש התמונות הממוזערות של פיילוט רוקפלר זו לצד זו, עם המלצה איזו לבחור",
    "done": false
   },
   {
@@ -108,6 +112,9 @@
    "what": "לפתוח את הערוץ One Decision בחשבון Google ייעודי",
    "pri": "high",
    "auto": "stats:od_channel_id",
+   "link": "https://www.youtube.com/create_channel",
+   "link_label": "יצירת ערוץ ביוטיוב",
+   "prompt": "CASTRA: תלווה אותי בפתיחת הערוץ One Decision ביוטיוב, צעד אחר צעד בדפדפן",
    "done": false
   },
   {
@@ -116,6 +123,9 @@
    "what": "פרויקט Google Cloud עם YouTube Data API ואישור OAuth",
    "pri": "mid",
    "auto": "file:.secrets/client_secret.json",
+   "link": "https://console.cloud.google.com/apis/library/youtube.googleapis.com",
+   "link_label": "YouTube Data API ב־Google Cloud",
+   "prompt": "CASTRA: תגדיר איתי בדפדפן את פרויקט Google Cloud עם YouTube Data API ו־OAuth, ותעצור בכל שלב שדורש אישור שלי",
    "done": false
   },
   {
@@ -124,6 +134,8 @@
    "what": "חיבור YouTube Analytics לדשבורד אחרי ה־OAuth",
    "pri": "mid",
    "auto": "file:.secrets/token.json",
+   "link": null,
+   "prompt": "CASTRA: חבר את YouTube Analytics לדשבורד CASTRA",
    "done": false
   },
   {
@@ -132,6 +144,8 @@
    "what": "שם לערוץ המוזיקה, לפני ההשקה",
    "pri": "low",
    "auto": "stats:music_name",
+   "link": null,
+   "prompt": "CASTRA: תציע 10 שמות לערוץ המוזיקה (דמויות מצוירות מקוריות שמאזינות למוזיקה), עם בדיקת זמינות ביוטיוב",
    "done": false
   }
  ],

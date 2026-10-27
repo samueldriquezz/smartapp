@@ -127,6 +127,20 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.brand{text-align:left}
+.do{flex:none;border:1px solid rgba(34,230,255,.45);background:rgba(34,230,255,.1);color:var(--cyan);border-radius:8px;padding:3px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.do:hover{background:rgba(34,230,255,.2);box-shadow:0 0 14px -4px var(--cyan)}
+li.done .do{display:none}
+.modal{position:fixed;inset:0;z-index:20;background:rgba(3,4,8,.7);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.modal[hidden],.mopt[hidden],.mdone[hidden]{display:none}
+.mbox{position:relative;width:100%;max-width:440px;background:#0e1020;border:1px solid rgba(34,230,255,.35);border-radius:18px;padding:22px;box-shadow:0 0 40px -10px var(--cyan);display:flex;flex-direction:column;gap:10px}
+.mbox h3{font-size:17px;line-height:1.4;padding-left:24px}
+.mclose{position:absolute;top:14px;left:14px}
+.mopt{display:flex;flex-direction:column;gap:2px;text-align:right;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);border-radius:12px;padding:12px 14px;font:inherit;cursor:pointer;text-decoration:none}
+.mopt:hover{border-color:var(--cyan)}
+.mopt b{font-size:15px}.mopt span{font-size:12.5px;color:var(--ink2)}
+#mclaude:hover{border-color:var(--mag)}
+.mdone{color:var(--lime);font-size:14px;text-align:center}
 details.card>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}
 details.card>summary::-webkit-details-marker{display:none}
 details.card>summary h2{margin:0}
@@ -209,7 +223,12 @@ ${c.status ? `<div class="sub">${esc(c.status)}</div>` : ''}
   const tasks = `<ul class="q" id="tasks">${d.tasks.map(t => `<li data-id="${esc(t.id)}" data-auto="${t.done ? 1 : 0}" class="${t.done ? 'done' : ''}">
 <button class="tk" title="סימון כבוצע">${t.done ? '✓' : ''}</button><span class="pri ${esc(t.pri)}"></span>
 <span class="t" style="flex:1">${esc(t.what)}${t.done ? ' <span class="auto">זוהה אוטומטית</span>' : ''}</span>
-<span class="who">${esc(t.who)}</span><button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
+<span class="who">${esc(t.who)}</span>${(t.link || t.prompt) ? `<button class="do" data-link="${esc(t.link || '')}" data-label="${esc(t.link_label || '')}" data-prompt="${esc(t.prompt || '')}" data-what="${esc(t.what)}">בצע</button>` : ''}<button class="x" title="הסרה מהרשימה">✕</button></li>`).join('')}</ul>
+<div class="modal" id="modal" hidden><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+<button class="x mclose" title="סגירה">✕</button><h3 id="mtitle"></h3><p class="sub">איך לבצע את המשימה?</p>
+<a class="mopt" id="mgo" target="_blank" rel="noopener"><b>מעבר לדף הרלוונטי</b><span id="mgol"></span></a>
+<button class="mopt" id="mclaude"><b>Claude יבצע עבורי</b><span>הפקודה תועתק, ורק צריך להדביק אותה בשיחה עם Claude Code</span></button>
+<div class="mdone" id="mdone" hidden>הפקודה הועתקה. הדבק אותה בשיחה עם Claude Code והוא יבצע.</div></div></div>
 <div class="empty" id="tasks-empty" style="display:none">אין משימות פתוחות</div>`;
 
   const c = d.costs, meterPct = Math.min(100, c.this_month.spent / Math.max(c.this_month.expected, 0.01) * 100);
@@ -244,8 +263,8 @@ ${d.milestones.map((m, i) => { const now = i === nowIndex(d.milestones.map(x => 
 <div class="note">נקודת בדיקה בחודש 12: מתחת ל־150 אלף צפיות בחודש משנים פורמט</div>`;
 
   return `${HEAD('CASTRA · מרכז בקרה')}<body>${BG}<div class="wrap">
-<header><div><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div>
-<div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div></header>
+<header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div></header>
 
 <div class="grid4">
 <div class="card kpi glow-c"><b class="c">${fmt(od.views30 + mu.views30)}</b><span>צפיות ב־30 הימים האחרונים</span></div>
@@ -313,6 +332,23 @@ const CLIENT = `<script>
     else if(e.target.classList.contains('x')){ st.gone[id]=true }
     else return; ls.set('castra.tasks',st); paint(); });
   paint();
+  // "בצע": a popup that either opens the relevant page or copies a ready command for Claude Code
+  var modal=document.getElementById('modal');
+  if(modal){
+    document.body.appendChild(modal);   // backdrop-filter on the card would trap a fixed popup inside it
+    var go=document.getElementById('mgo'), cl=document.getElementById('mclaude'), done=document.getElementById('mdone'), prompt='';
+    function close(){modal.hidden=true}
+    list.addEventListener('click',function(e){var b=e.target.closest('.do'); if(!b) return; e.stopPropagation();
+      document.getElementById('mtitle').textContent=b.dataset.what; prompt=b.dataset.prompt;
+      go.hidden=!b.dataset.link; if(b.dataset.link){go.href=b.dataset.link; document.getElementById('mgol').textContent=b.dataset.label||b.dataset.link}
+      cl.hidden=!prompt; done.hidden=true; modal.hidden=false;});
+    cl.addEventListener('click',function(){
+      var ok=function(){done.hidden=false};
+      if(navigator.clipboard) navigator.clipboard.writeText(prompt).then(ok,function(){window.prompt('העתק את הפקודה:',prompt)});
+      else window.prompt('העתק את הפקודה:',prompt);});
+    modal.addEventListener('click',function(e){if(e.target===modal||e.target.classList.contains('mclose'))close()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  }
 })();
 </script>`;
 
@@ -339,8 +375,8 @@ function renderChannel(d, key) {
   const series = c.series || [];
   const rev30 = series.slice(-30).reduce((s, x) => s + (x.revenue || 0), 0);
   return `${HEAD('CASTRA · ' + c.name)}<body>${BG}<div class="wrap">
-<header><div><div class="logo">CASTRA</div><div class="sub">${esc(c.name)} · נתונים לאורך זמן</div></div>
-<div class="meta"><a class="btn" href="/castra">→ חזרה לדשבורד</a><a class="btn" href="/castra?logout=1">יציאה</a></div></header>
+<header><div class="meta"><a class="btn" href="/castra">→ חזרה לדשבורד</a><a class="btn" href="/castra?logout=1">יציאה</a></div>
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">${esc(c.name)} · נתונים לאורך זמן</div></div></header>
 
 <div class="grid4">
 <div class="card kpi ${key === 'od' ? 'glow-c' : 'glow-m'}"><b class="${cls}">${fmt(c.views30)}</b><span>צפיות ב־30 יום</span></div>
