@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 00:19",
+ "updated": "28.10.2026 00:24",
  "today": "2026-10-28",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -93,7 +93,7 @@
    "pri": "high",
    "auto": "approvals:render_ok",
    "link": null,
-   "prompt": "CASTRA: פתח לי את פיילוט רוקפלר (rockefeller_v2.mp4) לצפייה, ואחרי שאצפה תרשום את ההערות שלי לתיקונים",
+   "prompt": "CASTRA: פתח לי את פיילוט רוקפלר (rockefeller_v3.mp4) לצפייה, ואחרי שאצפה תרשום את ההערות שלי לתיקונים",
    "link_label": "הפיילוט ביוטיוב (פרטי)",
    "link_wait": "יהיה זמין אחרי שהערוץ ייפתח והפיילוט יעלה אליו כסרטון פרטי",
    "done": false
@@ -124,11 +124,11 @@
    "who": "סמואל",
    "what": "פרויקט Google Cloud עם YouTube Data API ואישור OAuth",
    "pri": "mid",
-   "auto": "file:.secrets/client_secret.json",
+   "auto": "file:secrets/client_secret.json",
    "link": "https://console.cloud.google.com/apis/library/youtube.googleapis.com",
    "link_label": "YouTube Data API ב־Google Cloud",
    "prompt": "CASTRA: תגדיר איתי בדפדפן את פרויקט Google Cloud עם YouTube Data API ו־OAuth, ותעצור בכל שלב שדורש אישור שלי",
-   "done": false
+   "done": true
   },
   {
    "id": "upload_private",
@@ -144,10 +144,10 @@
    "who": "Claude",
    "what": "חיבור YouTube Analytics לדשבורד אחרי ה־OAuth",
    "pri": "mid",
-   "auto": "file:.secrets/token.json",
+   "auto": "file:secrets/token.json",
    "link": null,
    "prompt": "CASTRA: חבר את YouTube Analytics לדשבורד CASTRA",
-   "done": false
+   "done": true
   },
   {
    "id": "music_name",
