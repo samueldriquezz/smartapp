@@ -127,6 +127,10 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.sched-card{display:flex!important;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
+.sched-card b{font-size:18px;color:var(--lime)}
+.sched-card span{color:var(--ink2);font-size:14px;max-width:420px;line-height:1.6}
+.sched-card a.studio{color:#06070c;background:linear-gradient(90deg,var(--cyan),var(--lime));border-radius:10px;padding:9px 16px;font-weight:700;text-decoration:none}
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 10px}
 .flow div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.02)}
 .flow div.hi{border-color:rgba(34,230,255,.45);box-shadow:0 0 18px -8px var(--cyan)}
@@ -648,7 +652,8 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
     document.getElementById('pvm').innerHTML='<span class="ss '+i.status+'"></span><span></span>';
     document.querySelector('#pvm .ss').textContent=i.label;document.querySelector('#pvm span:last-child').textContent=i.date+' · יום '+i.dow+' · '+i.time;
     var p=document.getElementById('pvp');p.textContent=i.prog;p.className='pvprog'+(i.fail?' fail':'');
-    fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+    fr.innerHTML=i.yt&&(i.status==='scheduled'||i.status==='approved')?'<div class="blank sched-card"><b>מתוזמן לפרסום ב־'+i.date+' '+i.time+'</b><span>עד מועד הפרסום יוטיוב שומר את הסרטון כפרטי, ולכן הוא לא מתנגן כאן. ב־'+i.time+' הוא יהפוך לציבורי לבד.</span><a class="studio" target="_blank" rel="noopener" href="https://studio.youtube.com/video/'+encodeURIComponent(i.yt)+'/edit">צפייה ב־YouTube Studio</a></div>'
+      :i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
       :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל כשיתפנה מקום ב־3 הסרטונים המוכנים.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     if(i.status==='idea'){var tb=document.createElement('button');tb.className='apr';tb.textContent='אישור נושא';

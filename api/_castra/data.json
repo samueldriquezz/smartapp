@@ -1,14 +1,14 @@
 {
- "updated": "28.10.2026 01:28",
+ "updated": "28.10.2026 01:43",
  "today": "2026-10-28",
- "od_launch": "2026-11-03",
- "month_index": 0,
+ "od_launch": "2026-10-28",
+ "month_index": 1,
  "channels": [
   {
    "key": "od",
    "name": "One Decision",
    "tag": "ערוץ 1",
-   "launch": "2026-11-03",
+   "launch": "2026-10-28",
    "cost": 15,
    "rpm": "$5 עד $9",
    "color": "cyan",
@@ -23,7 +23,7 @@
    "key": "music",
    "name": "ערוץ המוזיקה",
    "tag": "ערוץ 2",
-   "launch": "2027-02-03",
+   "launch": "2027-01-28",
    "cost": 55,
    "rpm": "$2 עד $5",
    "color": "magenta",
@@ -76,11 +76,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -741,13 +741,23 @@
     "date": "28.10.2026",
     "what": "תמונות Gemini: Blockbuster Could Have Bought Netflix For $50 Million (50)",
     "usd": 1.75
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Rockefeller: the $72,500 bet (45)",
+    "usd": 1.58
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: pilot",
+    "usd": 0.04
    }
   ],
-  "spent": 3.52,
+  "spent": 5.14,
   "this_month": {
    "label": "אוקטובר",
-   "spent": 3.52,
-   "expected": 3.52
+   "spent": 5.14,
+   "expected": 15
   },
   "next_month": {
    "label": "נובמבר",
@@ -759,23 +769,35 @@
    "id": "od-pilot",
    "topic": 1,
    "channel": "od",
-   "title": "Rockefeller's $72,500 Bet That Built Standard Oil",
-   "status": "fixing",
+   "title": "The $500 Bid That Built Rockefeller's Standard Oil Empire",
+   "status": "scheduled",
    "video": "pilot",
    "youtube_id": "oZV8KpipV3E",
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "fix",
-    "label": "תיקון בתור",
+    "state": "done",
+    "step": "done",
+    "label": "תוקן, ממתין לאישור",
     "error": null,
-    "updated": null,
+    "updated": "28.10.2026 01:40",
     "attempts": null
    },
-   "fixes": [],
-   "fix_note": "הטקסט שבטאמבנייל לא מספיק מושך/מסקרן - תתקן להוק חזק יותר",
-   "date": "2026-11-03",
-   "tentative": true,
+   "fixes": [
+    {
+     "note": "הטקסט שבטאמבנייל לא מספיק מושך/מסקרן - תתקן להוק חזק יותר",
+     "at": "28.10.2026, 1:26:14",
+     "done": "28.10.2026 01:34",
+     "summary": "החלפתי את טקסט התמונה הממוזערת מ-\"ONE BID.\" להוק מסקרן יותר: \"$500 BOUGHT AN EMPIRE\", עם רקע דרמטי חדש של רוקפלר דוחף שטרות על שולחן המכרז."
+    },
+    {
+     "note": "צריך שיהיה סנכרון מסויים בין הכותרת בטאמבנייל לבין הכותרת של הסרטון (כמובן שבשם הסרטון חשוב מאוד להשתמש במילות מפתח חזקות אבל שישתלב בצורה טבעית ורלוונטית לנושא הסרטון - ושעדיין יהיה מנוסח בצורה מסקרנת )",
+     "at": "28.10.2026, 1:38:21",
+     "done": "28.10.2026 01:40",
+     "summary": "סנכרנתי בין הכותרת לטאמבנייל סביב ההצעה של 500 דולר: הכותרת החדשה היא \"The $500 Bid That Built Rockefeller's Standard Oil Empire\" עם מילות המפתח Rockefeller ו-Standard Oil, והטקסט בטאמבנייל הוא \"WON BY $500\"."
+    }
+   ],
+   "fix_note": null,
+   "date": "2026-10-28",
    "time": "19:00"
   },
   {
@@ -797,7 +819,7 @@
    },
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-06",
+   "date": "2026-10-30",
    "tentative": true,
    "time": "19:00"
   },
@@ -813,7 +835,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-10",
+   "date": "2026-11-03",
    "tentative": true,
    "time": "19:00"
   },
@@ -829,7 +851,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-13",
+   "date": "2026-11-06",
    "tentative": true,
    "time": "19:00"
   },
@@ -845,7 +867,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-17",
+   "date": "2026-11-10",
    "tentative": true,
    "time": "19:00"
   },
@@ -861,7 +883,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-20",
+   "date": "2026-11-13",
    "tentative": true,
    "time": "19:00"
   },
@@ -877,7 +899,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-24",
+   "date": "2026-11-17",
    "tentative": true,
    "time": "19:00"
   },
@@ -893,7 +915,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-11-27",
+   "date": "2026-11-20",
    "tentative": true,
    "time": "19:00"
   },
@@ -909,7 +931,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-01",
+   "date": "2026-11-24",
    "tentative": true,
    "time": "19:00"
   },
@@ -925,7 +947,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-04",
+   "date": "2026-11-27",
    "tentative": true,
    "time": "19:00"
   },
@@ -941,7 +963,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-08",
+   "date": "2026-12-01",
    "tentative": true,
    "time": "19:00"
   },
@@ -957,7 +979,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-11",
+   "date": "2026-12-04",
    "tentative": true,
    "time": "19:00"
   },
@@ -973,7 +995,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-15",
+   "date": "2026-12-08",
    "tentative": true,
    "time": "19:00"
   },
@@ -989,7 +1011,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-18",
+   "date": "2026-12-11",
    "tentative": true,
    "time": "19:00"
   },
@@ -1005,7 +1027,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-22",
+   "date": "2026-12-15",
    "tentative": true,
    "time": "19:00"
   },
@@ -1021,7 +1043,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-25",
+   "date": "2026-12-18",
    "tentative": true,
    "time": "19:00"
   },
@@ -1037,7 +1059,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2026-12-29",
+   "date": "2026-12-22",
    "tentative": true,
    "time": "19:00"
   },
@@ -1053,7 +1075,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2027-01-01",
+   "date": "2026-12-25",
    "tentative": true,
    "time": "19:00"
   },
@@ -1069,7 +1091,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2027-01-05",
+   "date": "2026-12-29",
    "tentative": true,
    "time": "19:00"
   },
@@ -1085,7 +1107,7 @@
    "progress": null,
    "fixes": [],
    "fix_note": null,
-   "date": "2027-01-08",
+   "date": "2027-01-01",
    "tentative": true,
    "time": "19:00"
   },
@@ -1094,7 +1116,7 @@
    "channel": "music",
    "title": "פלייליסט 1",
    "status": "planned",
-   "date": "2027-02-07",
+   "date": "2027-01-31",
    "time": "19:00"
   },
   {
@@ -1102,7 +1124,7 @@
    "channel": "music",
    "title": "פלייליסט 2",
    "status": "planned",
-   "date": "2027-02-14",
+   "date": "2027-02-07",
    "time": "19:00"
   },
   {
@@ -1110,7 +1132,7 @@
    "channel": "music",
    "title": "פלייליסט 3",
    "status": "planned",
-   "date": "2027-02-21",
+   "date": "2027-02-14",
    "time": "19:00"
   },
   {
@@ -1118,7 +1140,7 @@
    "channel": "music",
    "title": "פלייליסט 4",
    "status": "planned",
-   "date": "2027-02-28",
+   "date": "2027-02-21",
    "time": "19:00"
   },
   {
@@ -1126,7 +1148,7 @@
    "channel": "music",
    "title": "פלייליסט 5",
    "status": "planned",
-   "date": "2027-03-07",
+   "date": "2027-02-28",
    "time": "19:00"
   },
   {
@@ -1134,7 +1156,7 @@
    "channel": "music",
    "title": "פלייליסט 6",
    "status": "planned",
-   "date": "2027-03-14",
+   "date": "2027-03-07",
    "time": "19:00"
   },
   {
@@ -1142,7 +1164,7 @@
    "channel": "music",
    "title": "פלייליסט 7",
    "status": "planned",
-   "date": "2027-03-21",
+   "date": "2027-03-14",
    "time": "19:00"
   },
   {
@@ -1150,7 +1172,7 @@
    "channel": "music",
    "title": "פלייליסט 8",
    "status": "planned",
-   "date": "2027-03-28",
+   "date": "2027-03-21",
    "time": "19:00"
   },
   {
@@ -1158,7 +1180,7 @@
    "channel": "music",
    "title": "פלייליסט 9",
    "status": "planned",
-   "date": "2027-04-04",
+   "date": "2027-03-28",
    "time": "19:00"
   },
   {
@@ -1166,7 +1188,7 @@
    "channel": "music",
    "title": "פלייליסט 10",
    "status": "planned",
-   "date": "2027-04-11",
+   "date": "2027-04-04",
    "time": "19:00"
   },
   {
@@ -1174,7 +1196,7 @@
    "channel": "music",
    "title": "פלייליסט 11",
    "status": "planned",
-   "date": "2027-04-18",
+   "date": "2027-04-11",
    "time": "19:00"
   },
   {
@@ -1182,7 +1204,7 @@
    "channel": "music",
    "title": "פלייליסט 12",
    "status": "planned",
-   "date": "2027-04-25",
+   "date": "2027-04-18",
    "time": "19:00"
   },
   {
@@ -1190,7 +1212,7 @@
    "channel": "music",
    "title": "פלייליסט 13",
    "status": "planned",
-   "date": "2027-05-02",
+   "date": "2027-04-25",
    "time": "19:00"
   },
   {
@@ -1198,7 +1220,7 @@
    "channel": "music",
    "title": "פלייליסט 14",
    "status": "planned",
-   "date": "2027-05-09",
+   "date": "2027-05-02",
    "time": "19:00"
   },
   {
@@ -1206,7 +1228,7 @@
    "channel": "music",
    "title": "פלייליסט 15",
    "status": "planned",
-   "date": "2027-05-16",
+   "date": "2027-05-09",
    "time": "19:00"
   },
   {
@@ -1214,7 +1236,7 @@
    "channel": "music",
    "title": "פלייליסט 16",
    "status": "planned",
-   "date": "2027-05-23",
+   "date": "2027-05-16",
    "time": "19:00"
   },
   {
@@ -1222,7 +1244,7 @@
    "channel": "music",
    "title": "פלייליסט 17",
    "status": "planned",
-   "date": "2027-05-30",
+   "date": "2027-05-23",
    "time": "19:00"
   },
   {
@@ -1230,7 +1252,7 @@
    "channel": "music",
    "title": "פלייליסט 18",
    "status": "planned",
-   "date": "2027-06-06",
+   "date": "2027-05-30",
    "time": "19:00"
   },
   {
@@ -1238,7 +1260,7 @@
    "channel": "music",
    "title": "פלייליסט 19",
    "status": "planned",
-   "date": "2027-06-13",
+   "date": "2027-06-06",
    "time": "19:00"
   },
   {
@@ -1246,7 +1268,7 @@
    "channel": "music",
    "title": "פלייליסט 20",
    "status": "planned",
-   "date": "2027-06-20",
+   "date": "2027-06-13",
    "time": "19:00"
   },
   {
@@ -1254,7 +1276,7 @@
    "channel": "music",
    "title": "פלייליסט 21",
    "status": "planned",
-   "date": "2027-06-27",
+   "date": "2027-06-20",
    "time": "19:00"
   },
   {
@@ -1262,7 +1284,7 @@
    "channel": "music",
    "title": "פלייליסט 22",
    "status": "planned",
-   "date": "2027-07-04",
+   "date": "2027-06-27",
    "time": "19:00"
   },
   {
@@ -1270,7 +1292,7 @@
    "channel": "music",
    "title": "פלייליסט 23",
    "status": "planned",
-   "date": "2027-07-11",
+   "date": "2027-07-04",
    "time": "19:00"
   },
   {
@@ -1278,7 +1300,7 @@
    "channel": "music",
    "title": "פלייליסט 24",
    "status": "planned",
-   "date": "2027-07-18",
+   "date": "2027-07-11",
    "time": "19:00"
   },
   {
@@ -1286,7 +1308,7 @@
    "channel": "music",
    "title": "פלייליסט 25",
    "status": "planned",
-   "date": "2027-07-25",
+   "date": "2027-07-18",
    "time": "19:00"
   },
   {
@@ -1294,7 +1316,7 @@
    "channel": "music",
    "title": "פלייליסט 26",
    "status": "planned",
-   "date": "2027-08-01",
+   "date": "2027-07-25",
    "time": "19:00"
   },
   {
@@ -1302,7 +1324,7 @@
    "channel": "music",
    "title": "פלייליסט 27",
    "status": "planned",
-   "date": "2027-08-08",
+   "date": "2027-08-01",
    "time": "19:00"
   }
  ],
@@ -1310,9 +1332,9 @@
   "ideas": 10,
   "scripting": 0,
   "text_ready": 8,
-  "production": 2,
+  "production": 1,
   "ready": 0,
-  "scheduled": 0,
+  "scheduled": 1,
   "ideas_target": 10,
   "ready_target": 3
  },
