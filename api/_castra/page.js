@@ -127,6 +127,23 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin:-8px 0 20px;padding:6px;border:1px solid var(--line);border-radius:14px;background:rgba(16,18,30,.6);backdrop-filter:blur(10px);width:fit-content}
+.nav a{color:var(--ink2);text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:10px}
+.nav a:hover{color:var(--ink);background:rgba(255,255,255,.04)}
+.nav a.on{color:#06070c;background:linear-gradient(90deg,var(--cyan),var(--mag));box-shadow:0 0 18px -6px var(--cyan)}
+.sched{display:flex;flex-direction:column;gap:8px}
+.wk{font-size:12px;color:var(--ink3);margin:14px 0 2px;letter-spacing:.04em}
+.slot{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}
+.slot.od{border-right:3px solid var(--cyan)}.slot.music{border-right:3px solid var(--mag)}
+.slot .when b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;direction:ltr;text-align:right}
+.slot .when span{font-size:12px;color:var(--ink3)}
+.slot .ttl{font-size:14.5px}.slot .ttl small{display:block;color:var(--ink3);font-size:12px;margin-top:2px}
+.slot .ttl.en{direction:ltr;text-align:right}
+.ss{font-size:12px;border-radius:8px;padding:3px 10px;border:1px solid currentColor;white-space:nowrap}
+.ss.planned{color:var(--ink3)}.ss.production{color:var(--amber)}.ss.ready{color:var(--cyan)}.ss.approved{color:var(--lime)}.ss.published{color:var(--lime)}
+.apr{border:0;border-radius:9px;padding:6px 14px;font:inherit;font-size:13px;font-weight:700;color:#06070c;background:linear-gradient(90deg,var(--cyan),var(--lime));cursor:pointer}
+.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media (max-width:640px){.slot{grid-template-columns:1fr;gap:6px}}
 .jb{display:inline-block;margin-right:8px;font-size:11px;border-radius:6px;padding:0 7px;border:1px solid currentColor;vertical-align:1px}
 .jb.q{color:var(--amber)}.jb.r{color:var(--cyan);animation:pulse 1.8s infinite}.jb.d{color:var(--lime)}.jb.f{color:var(--mag)}.jb.w{color:var(--vio)}
 .jsum{display:block;margin-top:4px;color:var(--ink2);font-size:12.5px;white-space:pre-line}
@@ -192,6 +209,10 @@ li.done .tk{border-color:var(--lime);background:rgba(182,255,59,.12)}
 .note{color:var(--ink3);font-size:13px;margin-top:8px}
 `;
 
+const NAV_ITEMS = [['home', '/castra', 'סקירה'], ['schedule', '/castra?p=schedule', 'תזמונים'],
+                   ['od', '/castra?ch=od', 'One Decision'], ['music', '/castra?ch=music', 'ערוץ המוזיקה']];
+const NAV = active => `<nav class="nav">${NAV_ITEMS.map(([k, href, label]) =>
+  `<a href="${href}" class="${k === active ? 'on' : ''}">${label}</a>`).join('')}</nav>`;
 const STAGE_ICON = { done: '✓', active: '●', todo: '○' };
 const JOB = { queued: ['בתור לביצוע', 'q'], running: ['Claude מבצע עכשיו', 'r'], done: ['בוצע על ידי Claude', 'd'],
               failed: ['הביצוע נכשל', 'f'], waiting: ['מחכה לך', 'w'] };
@@ -276,7 +297,7 @@ ${d.milestones.map((m, i) => { const now = i === nowIndex(d.milestones.map(x => 
 
   return `${HEAD('CASTRA · מרכז בקרה')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
-<div class="brand"><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div></header>
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div></header>${NAV('home')}
 
 <div class="grid4">
 <div class="card kpi glow-c"><b class="c">${fmt(od.views30 + mu.views30)}</b><span>צפיות ב־30 הימים האחרונים</span></div>
@@ -408,7 +429,7 @@ function renderChannel(d, key) {
   const rev30 = series.slice(-30).reduce((s, x) => s + (x.revenue || 0), 0);
   return `${HEAD('CASTRA · ' + c.name)}<body>${BG}<div class="wrap">
 <header><div class="meta"><a class="btn" href="/castra">→ חזרה לדשבורד</a><a class="btn" href="/castra?logout=1">יציאה</a></div>
-<div class="brand"><div class="logo">CASTRA</div><div class="sub">${esc(c.name)} · נתונים לאורך זמן</div></div></header>
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">${esc(c.name)} · נתונים לאורך זמן</div></div></header>${NAV(key)}
 
 <div class="grid4">
 <div class="card kpi ${key === 'od' ? 'glow-c' : 'glow-m'}"><b class="${cls}">${fmt(c.views30)}</b><span>צפיות ב־30 יום</span></div>
@@ -466,4 +487,49 @@ ${series.length ? '' : `<div class="note">עדיין אין נתונים מיו�
 </script></body></html>`;
 }
 
-module.exports = { render, renderChannel, login };
+const SLOT_STATUS = { planned: 'מתוכנן', production: 'בהפקה', ready: 'מוכן לאישור', approved: 'אושר לפרסום', published: 'פורסם' };
+const DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+
+function renderSchedule(d, approved = {}) {
+  const slots = (d.schedule || []).map(s => ({ ...s, status: approved[s.id] && s.status !== 'published' ? 'approved' : s.status }));
+  const weekOf = iso => { const x = new Date(iso + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() - x.getUTCDay()); return x.toISOString().slice(0, 10); };
+  let lastWeek = '', rows = '';
+  for (const s of slots) {
+    const w = weekOf(s.date);
+    if (w !== lastWeek) { rows += `<div class="wk" data-w>שבוע של ${heDate(w)}</div>`; lastWeek = w; }
+    const dow = DAYS[new Date(s.date + 'T00:00:00Z').getUTCDay()];
+    const isEn = /^[A-Za-z0-9$'"]/.test(s.title);
+    rows += `<div class="slot ${s.channel}" data-ch="${s.channel}">
+<div class="when"><b>${heDate(s.date)}</b><span>יום ${dow} · ${esc(s.time)}</span></div>
+<div class="ttl ${isEn ? 'en' : ''}">${esc(s.title)}<small style="direction:rtl;text-align:right">${s.channel === 'od' ? 'One Decision' : 'ערוץ המוזיקה'}</small></div>
+<div class="filters">${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור לפרסום</button>` : ''}<span class="ss ${s.status}">${SLOT_STATUS[s.status] || s.status}</span></div></div>`;
+  }
+  const odCount = slots.filter(s => s.channel === 'od').length, last = slots.filter(s => s.channel === 'od').pop();
+  return `${HEAD('CASTRA · תזמונים')}<body>${BG}<div class="wrap">
+<header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">לוח הפרסומים של שני הערוצים</div></div></header>${NAV('schedule')}
+<div class="card"><div class="hrow"><h2><i></i>תזמונים</h2>
+<div class="seg" id="chf"><button data-c="all" class="on">הכול</button><button data-c="od">One Decision</button><button data-c="music">ערוץ המוזיקה</button></div></div>
+<div class="note" style="margin:0 0 6px">One Decision: ימי שלישי ושישי ב־19:00 (12:00 בניו יורק). ערוץ המוזיקה: ימי ראשון מ־${heDate(d.channels[1].launch)}. סרטון עולה לאוויר רק אחרי אישור שלך.</div>
+<div class="sched">${rows || '<div class="empty">אין פרסומים מתוכננים</div>'}</div>
+${last ? `<div class="note">הנושאים בתור מספיקים עד ${heDate(last.date)} (${odCount} סרטונים). לפני כן נריץ yt-viral לנושאים חדשים.</div>` : ''}
+</div><footer>CASTRA · SmartApp</footer></div>
+<script>
+(function(){
+  var seg=document.getElementById('chf');
+  seg.addEventListener('click',function(e){var c=e.target.dataset.c;if(!c)return;
+    seg.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.c===c)});
+    document.querySelectorAll('.slot').forEach(function(s){s.style.display=(c==='all'||s.dataset.ch===c)?'':'none'});
+    document.querySelectorAll('.wk').forEach(function(w){var n=w.nextElementSibling,vis=false;
+      while(n&&!n.classList.contains('wk')){if(n.style.display!=='none')vis=true;n=n.nextElementSibling}
+      w.style.display=vis?'':'none'});});
+  document.querySelectorAll('.apr').forEach(function(b){b.addEventListener('click',function(){
+    b.disabled=true;
+    fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=approve&id='+encodeURIComponent(b.dataset.id)})
+      .then(function(r){return r.json()}).then(function(j){if(j.ok){var s=b.nextElementSibling;s.className='ss approved';s.textContent='אושר לפרסום';b.remove()}else{b.disabled=false;alert('האישור נכשל')}})
+      .catch(function(){b.disabled=false});});});
+})();
+</script></body></html>`;
+}
+
+module.exports = { render, renderChannel, renderSchedule, login };

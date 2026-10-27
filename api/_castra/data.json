@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 00:00",
+ "updated": "28.10.2026 00:19",
  "today": "2026-10-28",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -12,7 +12,7 @@
    "cost": 15,
    "rpm": "$5 עד $9",
    "color": "cyan",
-   "status": "פיילוט מוכן, ממתין לאישור",
+   "status": "הערוץ נפתח · פיילוט מוכן, ממתין להעלאה כפרטי",
    "subs": 0,
    "hours": 0,
    "views30": 0,
@@ -117,7 +117,7 @@
    "link": "https://www.youtube.com/create_channel",
    "link_label": "יצירת ערוץ ביוטיוב",
    "prompt": "CASTRA: תלווה אותי בפתיחת הערוץ One Decision ביוטיוב, צעד אחר צעד בדפדפן",
-   "done": false
+   "done": true
   },
   {
    "id": "gcloud",
@@ -354,6 +354,194 @@
    "expected": 15
   }
  },
+ "schedule": [
+  {
+   "id": "od-pilot",
+   "channel": "od",
+   "title": "Rockefeller's $72,500 Bet That Built Standard Oil",
+   "status": "ready",
+   "video": "pilot",
+   "date": "2026-11-03",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-2",
+   "channel": "od",
+   "title": "Blockbuster Could Have Bought Netflix For $50 Million",
+   "status": "planned",
+   "date": "2026-11-06",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-3",
+   "channel": "od",
+   "title": "Kodak Invented The Digital Camera, Then Buried It",
+   "status": "planned",
+   "date": "2026-11-10",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-4",
+   "channel": "od",
+   "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
+   "status": "planned",
+   "date": "2026-11-13",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-5",
+   "channel": "od",
+   "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
+   "status": "planned",
+   "date": "2026-11-17",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-6",
+   "channel": "od",
+   "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
+   "status": "planned",
+   "date": "2026-11-20",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-7",
+   "channel": "od",
+   "title": "Yahoo Said No To $44 Billion From Microsoft",
+   "status": "planned",
+   "date": "2026-11-24",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-8",
+   "channel": "od",
+   "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
+   "status": "planned",
+   "date": "2026-11-27",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-9",
+   "channel": "od",
+   "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
+   "status": "planned",
+   "date": "2026-12-01",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-10",
+   "channel": "od",
+   "title": "Phil Knight's $8,000 Bet That Became Nike",
+   "status": "planned",
+   "date": "2026-12-04",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-11",
+   "channel": "od",
+   "title": "How Soros Broke The Bank Of England With One Trade",
+   "status": "planned",
+   "date": "2026-12-08",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-12",
+   "channel": "od",
+   "title": "Sears Had Amazon's Business Model 100 Years Early",
+   "status": "planned",
+   "date": "2026-12-11",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-13",
+   "channel": "od",
+   "title": "BlackBerry Refused The Touchscreen",
+   "status": "planned",
+   "date": "2026-12-15",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-14",
+   "channel": "od",
+   "title": "How Bernard Arnault Took Louis Vuitton And Built LVMH",
+   "status": "planned",
+   "date": "2026-12-18",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-15",
+   "channel": "od",
+   "title": "Andrew Carnegie Sold Everything To J.P. Morgan For $480 Million",
+   "status": "planned",
+   "date": "2026-12-22",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-16",
+   "channel": "od",
+   "title": "Toys R Us: The Buyout That Killed A Giant",
+   "status": "planned",
+   "date": "2026-12-25",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-17",
+   "channel": "od",
+   "title": "Quibi Burned $1.75 Billion In Six Months",
+   "status": "planned",
+   "date": "2026-12-29",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-18",
+   "channel": "od",
+   "title": "Enron: The Accounting Choice That Erased $70 Billion",
+   "status": "planned",
+   "date": "2027-01-01",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-19",
+   "channel": "od",
+   "title": "Jeff Bezos Quit Wall Street: The Regret Minimization Decision",
+   "status": "planned",
+   "date": "2027-01-05",
+   "time": "19:00"
+  },
+  {
+   "id": "od-topic-20",
+   "channel": "od",
+   "title": "WeWork: How One Founder Turned $47 Billion Into Almost Nothing",
+   "status": "planned",
+   "date": "2027-01-08",
+   "time": "19:00"
+  },
+  {
+   "id": "music-1",
+   "channel": "music",
+   "title": "פלייליסט 1",
+   "status": "planned",
+   "date": "2027-02-07",
+   "time": "19:00"
+  },
+  {
+   "id": "music-2",
+   "channel": "music",
+   "title": "פלייליסט 2",
+   "status": "planned",
+   "date": "2027-02-14",
+   "time": "19:00"
+  },
+  {
+   "id": "music-3",
+   "channel": "music",
+   "title": "פלייליסט 3",
+   "status": "planned",
+   "date": "2027-02-21",
+   "time": "19:00"
+  }
+ ],
+ "od_channel_url": "https://www.youtube.com/channel/UCMCPXTsrwFBr1pDF-F17k-Q",
  "skills": [
   {
    "k": "yt-viral",

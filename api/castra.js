@@ -7,7 +7,7 @@
 // (rotating that key simply logs everyone out).
 
 const crypto = require('crypto');
-const { render, renderChannel, login } = require('./_castra/page');
+const { render, renderChannel, renderSchedule, login } = require('./_castra/page');
 const data = require('./_castra/data.json');
 
 // ---- task queue (Upstash Redis over REST). The Mac agent pops jobs from castra:queue and writes
@@ -91,6 +91,17 @@ module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const form = await readForm(req);
 
+    if (form.step === 'approve') {
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      const id = String(form.id || '');
+      res.setHeader('Content-Type', 'application/json');
+      const slot = (data.schedule || []).find(s => s.id === id && s.status === 'ready');
+      if (!slot) { res.statusCode = 400; return res.end('{"ok":false}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      await redis('SET', `castra:approve:${id}`, JSON.stringify({ id, date: slot.date, ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
     if (form.step === 'run') {
       if (!validSession(req)) return html(res, 401, 'unauthorized');
       const task = String(form.task || '');
@@ -133,6 +144,11 @@ module.exports = async (req, res) => {
   if (url.searchParams.get('jobs')) {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
     return res.end(JSON.stringify({ queue: !!RURL, jobs: await jobStatuses() }));
+  }
+  if (url.searchParams.get('p') === 'schedule') {
+    const ids = (data.schedule || []).map(s => s.id);
+    const vals = ids.length && RURL ? (await redis('MGET', ...ids.map(i => `castra:approve:${i}`)) || []) : [];
+    return html(res, 200, renderSchedule(data, Object.fromEntries(ids.map((id, i) => [id, !!vals[i]]))));
   }
   const ch = url.searchParams.get('ch');
   if (ch) { const page = renderChannel(data, ch); if (page) return html(res, 200, page); }
