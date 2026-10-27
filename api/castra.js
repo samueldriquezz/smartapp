@@ -61,7 +61,7 @@ function readForm(req) {
   if (req.body && typeof req.body === 'object') return Promise.resolve(req.body);
   if (typeof req.body === 'string') return Promise.resolve(Object.fromEntries(new URLSearchParams(req.body)));
   return new Promise(resolve => {
-    let s = ''; req.on('data', c => { s += c; if (s.length > 4096) req.destroy(); });
+    let s = ''; req.on('data', c => { s += c; if (s.length > 32768) req.destroy(); }); // room for Hebrew fix notes (about 6 bytes a letter encoded)
     req.on('end', () => resolve(Object.fromEntries(new URLSearchParams(s))));
   });
 }
@@ -101,6 +101,19 @@ module.exports = async (req, res) => {
       if (!slot) { res.statusCode = 400; return res.end('{"ok":false}'); }
       if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
       await redis('SET', `castra:approve:${id}`, JSON.stringify({ id, date: slot.date, ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
+    if (form.step === 'fix') {                     // reject with a note: the Mac fixes it and sends it back for approval
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      const id = String(form.id || ''), note = String(form.note || '').trim().slice(0, 3000);
+      res.setHeader('Content-Type', 'application/json');
+      const slot = (data.schedule || []).find(s => s.id === id && s.video && ['idea', 'ready', 'approved', 'scheduled', 'fixing'].includes(s.status));
+      if (!slot || note.length < 3) { res.statusCode = 400; return res.end('{"ok":false}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const at = new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' });
+      await redis('SET', `castra:fix:${id}`, JSON.stringify({ id, note, at, ts: Date.now() }));
+      await redis('DEL', `castra:approve:${id}`);
       return res.end('{"ok":true}');
     }
 
@@ -156,8 +169,9 @@ module.exports = async (req, res) => {
   }
   if (url.searchParams.get('p') === 'schedule') {
     const ids = (data.schedule || []).map(s => s.id);
-    const vals = ids.length && RURL ? (await redis('MGET', ...ids.map(i => `castra:approve:${i}`)) || []) : [];
-    return html(res, 200, renderSchedule(data, Object.fromEntries(ids.map((id, i) => [id, !!vals[i]]))));
+    const vals = ids.length && RURL ? (await redis('MGET', ...ids.map(i => `castra:approve:${i}`), ...ids.map(i => `castra:fix:${i}`)) || []) : [];
+    const fixes = Object.fromEntries(ids.map((id, i) => [id, vals[ids.length + i] ? JSON.parse(vals[ids.length + i]) : null]).filter(([, v]) => v));
+    return html(res, 200, renderSchedule(data, Object.fromEntries(ids.map((id, i) => [id, !!vals[i]])), fixes));
   }
   const ch = url.searchParams.get('ch');
   if (ch) { const page = renderChannel(data, ch); if (page) return html(res, 200, page); }

@@ -246,6 +246,19 @@ background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
 border-top:1px dashed var(--line);padding-top:10px;max-height:52vh;overflow:auto}
 .pvscript:empty::before{content:'אין תסריט עדיין';color:var(--ink3);direction:rtl;display:block;text-align:right}
 .pvclose{position:absolute;top:12px;left:12px;z-index:2;background:rgba(6,7,12,.7);border:1px solid var(--line);color:var(--ink);border-radius:9px;width:32px;height:32px;cursor:pointer}
+.thover button.rej{background:rgba(255,255,255,.9);color:#c2185b}
+.ss.fixing{color:var(--mag)}
+.tflag{position:absolute;top:8px;left:8px;font-size:11px;border-radius:6px;padding:1px 7px;background:var(--mag);color:#fff}
+.pvact{display:flex;gap:8px;flex-wrap:wrap}
+.rejbtn{border:1px solid rgba(255,62,200,.5);background:rgba(255,62,200,.08);color:var(--mag);border-radius:9px;padding:6px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.fixbox{display:flex;flex-direction:column;gap:8px;border:1px solid rgba(255,62,200,.35);border-radius:12px;padding:12px;background:rgba(255,62,200,.04)}
+.fixbox[hidden]{display:none}
+.fixbox textarea{width:100%;min-height:110px;resize:vertical;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;color:var(--ink);font:inherit;font-size:14px;padding:10px}
+.fixbox textarea:focus{outline:none;border-color:var(--mag)}
+.fixbox p{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.fixhist{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--ink2)}
+.fixhist div{border-right:2px solid var(--mag);padding-right:8px}
+.fixhist b{color:var(--ink)}
 .auto-note{border:1px solid rgba(139,92,246,.35);background:rgba(139,92,246,.07);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--ink2);margin:4px 0 6px}
 `;
 
@@ -528,25 +541,32 @@ ${series.length ? '' : `<div class="note">עדיין אין נתונים מיו�
 }
 
 const SLOT_STATUS = { planned: 'נושא', idea: 'רעיון · תסריט', production: 'בהפקה', ready: 'מוכן לאישור',
-                      approved: 'אושר · מתוזמן בקרוב', scheduled: 'מתוזמן ביוטיוב', published: 'פורסם' };
+                      approved: 'אושר · מתוזמן בקרוב', scheduled: 'מתוזמן ביוטיוב', published: 'פורסם', fixing: 'בתיקון' };
+const CAN_FIX = ['idea', 'ready', 'approved', 'scheduled'];
 const DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
-function renderSchedule(d, approved = {}) {
-  const slots = (d.schedule || []).map(s => ({ ...s, status: approved[s.id] && s.status === 'ready' ? 'approved' : s.status }));
+function renderSchedule(d, approved = {}, fixReq = {}) {
+  const slots = (d.schedule || []).map(s => {
+    if (fixReq[s.id]) return { ...s, status: 'fixing', fix_note: fixReq[s.id].note, progress: { state: 'queued', label: 'תיקון בתור' } };
+    return { ...s, status: approved[s.id] && s.status === 'ready' ? 'approved' : s.status };
+  });
   const tile = s => {
     const dow = DAYS[new Date(s.date + 'T00:00:00Z').getUTCDay()];
     const p = s.progress || {};
-    const prog = s.status === 'production'
+    const fixing = s.status === 'fixing';
+    const prog = fixing ? `<div class="tprog${p.state === 'failed' ? ' fail' : ''}">${p.state === 'failed' ? 'התיקון נכשל' : esc(p.label || 'בתיקון')}</div>` : s.status === 'production'
       ? (p.state === 'failed' ? `<div class="tprog fail">נכשל: ${esc(p.label || '')}</div>` : `<div class="tprog">${p.state === 'running' ? 'בהפקה עכשיו · ' + esc(p.label || '') : 'ממתין להעלאה'}</div>`) : '';
     const media = s.youtube_id
       ? `<img src="https://i.ytimg.com/vi/${esc(s.youtube_id)}/mqdefault.jpg" alt="" loading="lazy"><div class="play">▶</div>`
       : '<div class="blank"></div>';
     const info = { id: s.id, title: s.title, date: heDate(s.date), dow, time: s.time, status: s.status, label: SLOT_STATUS[s.status] || s.status,
                    yt: s.youtube_id || '', script: !!s.has_script, prog: s.status === 'production' ? (p.state === 'failed' ? 'נכשל: ' + (p.error || p.label || '') : (p.state === 'running' ? 'בהפקה עכשיו: ' + (p.label || '') : 'הסרטון מרונדר וממתין להעלאה')) : '',
-                   fail: p.state === 'failed' };
+                   fail: p.state === 'failed', video: !!s.video, fixes: s.fixes || [], note: s.fix_note || '' };
+    if (fixing) info.prog = p.state === 'failed' ? 'התיקון נכשל: ' + (p.error || '') : (p.state === 'running' || p.state === 'fixing' ? 'מתקן עכשיו: ' + (p.label || '') : 'התיקון בתור, יתחיל בדקות הקרובות');
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
 <div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${prog}
-<div class="thover"><button class="view">צפייה</button>${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}</div></div>
+<div class="thover"><button class="view">צפייה</button>${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
+${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}</div>
 <div class="ttitle">${esc(s.title)}</div>
 <div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}</div></div>`;
   };
@@ -566,7 +586,12 @@ function renderSchedule(d, approved = {}) {
 <button class="pvclose" aria-label="סגירה">✕</button>
 <div class="pvmedia"><div class="frame" id="pvframe"></div></div>
 <div class="pvside"><h3 id="pvt"></h3><div class="pvmeta" id="pvm"></div><div class="pvprog" id="pvp"></div>
-<div id="pva"></div><div class="pvscript" id="pvs"></div></div></div></div>
+<div class="pvact" id="pva"></div>
+<div class="fixbox" id="fxb" hidden><b>מה לתקן?</b>
+<textarea id="fxt" dir="auto" placeholder="למשל: הכותרת חלשה, תדגיש את הסכום. בדקה 3:10 התמונה לא מתאימה, צריך מפה של קליבלנד. הקריינות בפתיחה מהירה מדי."></textarea>
+<p>התיקון יוצא לדרך מיד: המערכת מתקנת לפי מה שכתבת (תסריט, תמונות, כותרת, תמונה ממוזערת), מרנדרת ומעלה מחדש אם צריך, והסרטון חוזר לכאן לאישור שלך באותו מועד.</p>
+<div class="pvact"><button class="rejbtn" id="fxs">שליחה לתיקון</button><button class="btn" id="fxc" style="background:none;cursor:pointer;font:inherit">ביטול</button></div></div>
+<div class="fixhist" id="pvh"></div><div class="pvscript" id="pvs"></div></div></div></div>
 <script>
 (function(){
   var seg=document.getElementById('chf');
@@ -581,7 +606,19 @@ function renderSchedule(d, approved = {}) {
   function markApproved(id){document.querySelectorAll('.tile').forEach(function(t){var i=JSON.parse(t.dataset.info);if(i.id!==id)return;
     i.status='approved';i.label='אושר · מתוזמן בקרוב';t.dataset.info=JSON.stringify(i);
     var s=t.querySelector('.ss');s.className='ss approved';s.textContent=i.label;var b=t.querySelector('.thover .apr');if(b)b.remove();});}
+  var CANFIX=['idea','ready','approved','scheduled'],cur=null;
   var pv=document.getElementById('pv');document.body.appendChild(pv);
+  var fxb=document.getElementById('fxb'),fxt=document.getElementById('fxt'),fxs=document.getElementById('fxs');
+  document.getElementById('fxc').onclick=function(){fxb.hidden=true};
+  fxs.onclick=function(){var note=fxt.value.trim();if(note.length<3){fxt.focus();return}fxs.disabled=true;fxs.textContent='שולח...';
+    fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=fix&id='+encodeURIComponent(cur.id)+'&note='+encodeURIComponent(note)})
+      .then(function(r){return r.json()}).then(function(j){fxs.disabled=false;fxs.textContent='שליחה לתיקון';
+        if(!j.ok){fxs.textContent='השליחה נכשלה, נסה שוב';return}
+        fxb.hidden=true;document.getElementById('pva').innerHTML='<span class="ss fixing">נשלח לתיקון. הסרטון יחזור לכאן לאישור</span>';
+        document.querySelectorAll('.tile').forEach(function(t){var i=JSON.parse(t.dataset.info);if(i.id!==cur.id)return;i.status='fixing';i.label='בתיקון';i.note=note;
+          i.prog='התיקון בתור, יתחיל בדקות הקרובות';t.dataset.info=JSON.stringify(i);var s=t.querySelector('.ss');s.className='ss fixing';s.textContent='בתיקון';
+          t.querySelectorAll('.thover .apr,.thover .rej').forEach(function(b){b.remove()});});})
+      .catch(function(){fxs.disabled=false;fxs.textContent='השליחה נכשלה, נסה שוב'});};
   var fr=document.getElementById('pvframe');
   function close(){pv.hidden=true;fr.innerHTML='';}
   function open(i){
@@ -591,9 +628,15 @@ function renderSchedule(d, approved = {}) {
     var p=document.getElementById('pvp');p.textContent=i.prog;p.className='pvprog'+(i.fail?' fail':'');
     fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
       :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':'זה רעיון בתור. עוד אין סרטון, רק כותרת ותסריט.')+'</div>';
-    var a=document.getElementById('pva');a.innerHTML='';
+    var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     if(i.status==='ready'){var b=document.createElement('button');b.className='apr';b.textContent='אישור לפרסום ב־'+i.date+' '+i.time;
       b.onclick=function(){approve(i.id,b,function(){b.textContent='אושר. הסרטון יתוזמן ביוטיוב לבד';markApproved(i.id)})};a.appendChild(b);}
+    if(i.video&&CANFIX.indexOf(i.status)>=0){var r=document.createElement('button');r.className='rejbtn';r.textContent=i.status==='idea'?'תיקון התסריט':'דחייה ותיקון';
+      r.onclick=function(){fxb.hidden=false;fxt.focus()};a.appendChild(r);}
+    var h=document.getElementById('pvh');h.innerHTML='';
+    (i.note?[{note:i.note,pending:1}]:[]).concat((i.fixes||[]).slice().reverse()).forEach(function(f){var dv=document.createElement('div');
+      dv.innerHTML='<b></b> <span></span>';dv.querySelector('b').textContent=f.pending?'בתיקון לפי:':'תוקן ('+(f.done||'')+'):';
+      dv.querySelector('span').textContent=f.note+(f.summary?' → '+f.summary:'');h.appendChild(dv);});
     var sc=document.getElementById('pvs');sc.textContent='';
     if(i.script){sc.textContent='טוען תסריט...';fetch('/castra?script='+encodeURIComponent(i.id)).then(function(r){return r.json()})
       .then(function(j){sc.textContent=j.script||''}).catch(function(){sc.textContent=''});}
@@ -601,7 +644,7 @@ function renderSchedule(d, approved = {}) {
   document.querySelectorAll('.tile').forEach(function(t){
     t.addEventListener('click',function(e){var b=e.target.closest('.apr');var i=JSON.parse(t.dataset.info);
       if(b){e.stopPropagation();approve(b.dataset.id,b,function(){markApproved(b.dataset.id)});return;}
-      open(i);});
+      open(i);if(e.target.closest('.rej')){fxb.hidden=false;fxt.focus();}});
     t.addEventListener('keydown',function(e){if(e.key==='Enter')open(JSON.parse(t.dataset.info))});});
   pv.addEventListener('click',function(e){if(e.target===pv||e.target.closest('.pvclose'))close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pv.hidden)close()});

@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 00:51",
+ "updated": "28.10.2026 01:18",
  "today": "2026-10-28",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -103,16 +103,16 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": ""
+     "s": "done",
+     "note": "50/50"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונה ממוזערת",
@@ -1176,13 +1176,18 @@
     "date": "27.10.2026",
     "what": "רקעים לתמונה ממוזערת (Gemini 3 Pro, 2)",
     "usd": 0.27
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Blockbuster Could Have Bought Netflix For $50 Million (50)",
+    "usd": 1.75
    }
   ],
-  "spent": 1.77,
+  "spent": 3.52,
   "this_month": {
    "label": "אוקטובר",
-   "spent": 1.77,
-   "expected": 2
+   "spent": 3.52,
+   "expected": 3.52
   },
   "next_month": {
    "label": "נובמבר",
@@ -1200,6 +1205,8 @@
    "date": "2026-11-03",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1213,12 +1220,14 @@
    "has_script": true,
    "progress": {
     "state": "running",
-    "step": "visuals",
-    "label": "תכנון ויזואלי",
+    "step": "render",
+    "label": "רינדור",
     "error": null,
-    "updated": "28.10.2026 00:51",
+    "updated": "28.10.2026 01:09",
     "attempts": 1
    },
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1231,6 +1240,8 @@
    "date": "2026-11-10",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1243,6 +1254,8 @@
    "date": "2026-11-13",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1255,6 +1268,8 @@
    "date": "2026-11-17",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1267,6 +1282,8 @@
    "date": "2026-11-20",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1279,6 +1296,8 @@
    "date": "2026-11-24",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1291,6 +1310,8 @@
    "date": "2026-11-27",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1303,6 +1324,8 @@
    "date": "2026-12-01",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1315,6 +1338,8 @@
    "date": "2026-12-04",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1327,6 +1352,8 @@
    "date": "2026-12-08",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1339,6 +1366,8 @@
    "date": "2026-12-11",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1351,6 +1380,8 @@
    "date": "2026-12-15",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1363,6 +1394,8 @@
    "date": "2026-12-18",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1375,6 +1408,8 @@
    "date": "2026-12-22",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1387,6 +1422,8 @@
    "date": "2026-12-25",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1399,6 +1436,8 @@
    "date": "2026-12-29",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1411,6 +1450,8 @@
    "date": "2027-01-01",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1423,6 +1464,8 @@
    "date": "2027-01-05",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
@@ -1435,6 +1478,8 @@
    "date": "2027-01-08",
    "has_script": true,
    "progress": null,
+   "fixes": [],
+   "fix_note": null,
    "time": "19:00"
   },
   {
