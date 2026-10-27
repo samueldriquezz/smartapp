@@ -129,6 +129,7 @@ const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${
 const CSS2 = `
 .sched-card{display:flex!important;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
 .sched-card b{font-size:18px;color:var(--lime)}
+.sched-card img.sthumb{width:min(420px,90%);border-radius:12px;border:1px solid var(--line)}
 .sched-card span{color:var(--ink2);font-size:14px;max-width:420px;line-height:1.6}
 .sched-card a.studio{color:#06070c;background:linear-gradient(90deg,var(--cyan),var(--lime));border-radius:10px;padding:9px 16px;font-weight:700;text-decoration:none}
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 10px}
@@ -570,11 +571,13 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
     const fixing = s.status === 'fixing';
     const prog = fixing ? `<div class="tprog${p.state === 'failed' ? ' fail' : ''}">${p.state === 'failed' ? 'התיקון נכשל' : esc(p.label || 'בתיקון')}</div>` : s.status === 'production'
       ? (p.state === 'failed' ? `<div class="tprog fail">נכשל: ${esc(p.label || '')}</div>` : `<div class="tprog">${p.state === 'running' ? 'בהפקה עכשיו · ' + esc(p.label || '') : 'ממתין להעלאה'}</div>`) : '';
-    const media = s.youtube_id
+    const media = s.thumb
+      ? `<img src="/castra?thumb=${encodeURIComponent(s.id)}&v=${esc(s.thumb)}" alt="" loading="lazy">${s.youtube_id ? '<div class="play">▶</div>' : ''}`
+      : s.youtube_id
       ? `<img src="https://i.ytimg.com/vi/${esc(s.youtube_id)}/mqdefault.jpg" alt="" loading="lazy"><div class="play">▶</div>`
       : '<div class="blank"></div>';
     const info = { id: s.id, title: s.title, date: heDate(s.date), dow, time: s.time, status: s.status, label: SLOT_STATUS[s.status] || s.status,
-                   yt: s.youtube_id || '', script: !!s.has_script, prog: s.status === 'production' ? (p.state === 'failed' ? 'נכשל: ' + (p.error || p.label || '') : (p.state === 'running' ? 'בהפקה עכשיו: ' + (p.label || '') : 'הסרטון מרונדר וממתין להעלאה')) : '',
+                   yt: s.youtube_id || '', th: s.thumb ? `/castra?thumb=${encodeURIComponent(s.id)}&v=${s.thumb}` : '', script: !!s.has_script, prog: s.status === 'production' ? (p.state === 'failed' ? 'נכשל: ' + (p.error || p.label || '') : (p.state === 'running' ? 'בהפקה עכשיו: ' + (p.label || '') : 'הסרטון מרונדר וממתין להעלאה')) : '',
                    fail: p.state === 'failed', video: !!s.video, fixes: s.fixes || [], note: s.fix_note || '' };
     if (fixing) info.prog = p.state === 'failed' ? 'התיקון נכשל: ' + (p.error || '') : (p.state === 'running' || p.state === 'fixing' ? 'מתקן עכשיו: ' + (p.label || '') : 'התיקון בתור, יתחיל בדקות הקרובות');
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
@@ -652,7 +655,7 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
     document.getElementById('pvm').innerHTML='<span class="ss '+i.status+'"></span><span></span>';
     document.querySelector('#pvm .ss').textContent=i.label;document.querySelector('#pvm span:last-child').textContent=i.date+' · יום '+i.dow+' · '+i.time;
     var p=document.getElementById('pvp');p.textContent=i.prog;p.className='pvprog'+(i.fail?' fail':'');
-    fr.innerHTML=i.yt&&(i.status==='scheduled'||i.status==='approved')?'<div class="blank sched-card"><b>מתוזמן לפרסום ב־'+i.date+' '+i.time+'</b><span>עד מועד הפרסום יוטיוב שומר את הסרטון כפרטי, ולכן הוא לא מתנגן כאן. ב־'+i.time+' הוא יהפוך לציבורי לבד.</span><a class="studio" target="_blank" rel="noopener" href="https://studio.youtube.com/video/'+encodeURIComponent(i.yt)+'/edit">צפייה ב־YouTube Studio</a></div>'
+    fr.innerHTML=i.yt&&(i.status==='scheduled'||i.status==='approved')?'<div class="blank sched-card">'+(i.th?'<img class="sthumb" src="'+i.th+'" alt="">':'')+'<b>מתוזמן לפרסום ב־'+i.date+' '+i.time+'</b><span>עד מועד הפרסום יוטיוב שומר את הסרטון כפרטי, ולכן הוא לא מתנגן כאן. ב־'+i.time+' הוא יהפוך לציבורי לבד.</span><a class="studio" target="_blank" rel="noopener" href="https://studio.youtube.com/video/'+encodeURIComponent(i.yt)+'/edit">צפייה ב־YouTube Studio</a></div>'
       :i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
       :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל כשיתפנה מקום ב־3 הסרטונים המוכנים.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;

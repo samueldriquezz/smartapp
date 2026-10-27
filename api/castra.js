@@ -167,6 +167,14 @@ module.exports = async (req, res) => {
   }
 
   if (!validSession(req)) return html(res, 200, login('email', false));
+  const tid = url.searchParams.get('thumb');
+  if (tid) {                                       // our own thumbnail (YouTube's is grey while a video is private)
+    const ok = (data.schedule || []).some(s => s.id === tid);
+    const b64 = ok ? await redis('GET', `castra:thumb:${tid}`) : null;
+    if (!b64) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { 'Content-Type': 'image/jpeg', 'Cache-Control': 'private, max-age=86400' });
+    return res.end(Buffer.from(b64, 'base64'));
+  }
   const sid = url.searchParams.get('script');
   if (sid) {                                       // a slot's script, loaded when its preview opens
     const ok = (data.schedule || []).some(s => s.id === sid);
