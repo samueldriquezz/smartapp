@@ -655,7 +655,7 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
     document.getElementById('pvm').innerHTML='<span class="ss '+i.status+'"></span><span></span>';
     document.querySelector('#pvm .ss').textContent=i.label;document.querySelector('#pvm span:last-child').textContent=i.date+' · יום '+i.dow+' · '+i.time;
     var p=document.getElementById('pvp');p.textContent=i.status==='scheduled'?'מתוזמן: הגרסה הציבורית תעלה לאוויר לבד ב־'+i.date+' '+i.time+'. כאן מתנגנת גרסת התצוגה המקדימה (לא רשומה).':i.prog;p.className='pvprog'+(i.fail?' fail':'');
-    fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+    fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1&vq=hd1080&hd=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
       :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל כשיתפנה מקום ב־3 הסרטונים המוכנים.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     if(i.status==='idea'){var tb=document.createElement('button');tb.className='apr';tb.textContent='אישור נושא';

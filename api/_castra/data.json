@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 01:55",
+ "updated": "28.10.2026 01:57",
  "today": "2026-10-28",
  "od_launch": "2026-10-28",
  "month_index": 1,
@@ -151,8 +151,8 @@
     },
     {
      "k": "תמונות",
-     "s": "active",
-     "note": "1/49"
+     "s": "done",
+     "note": "49/49"
     },
     {
      "k": "רינדור",
@@ -751,12 +751,17 @@
     "date": "28.10.2026",
     "what": "רקע לתמונה ממוזערת: pilot",
     "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Kodak Invented The Digital Camera, Then Buried It (49)",
+    "usd": 1.72
    }
   ],
-  "spent": 5.14,
+  "spent": 6.86,
   "this_month": {
    "label": "אוקטובר",
-   "spent": 5.14,
+   "spent": 6.86,
    "expected": 15
   },
   "next_month": {
@@ -840,10 +845,10 @@
    "has_script": true,
    "progress": {
     "state": "running",
-    "step": "images",
-    "label": "תמונות",
+    "step": "voice",
+    "label": "קריינות",
     "error": null,
-    "updated": "28.10.2026 01:55",
+    "updated": "28.10.2026 01:57",
     "attempts": 1
    },
    "fixes": [],
