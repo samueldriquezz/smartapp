@@ -104,11 +104,22 @@ module.exports = async (req, res) => {
       return res.end('{"ok":true}');
     }
 
+    if (form.step === 'topic' || form.step === 'drop') {   // approve an idea's topic, or reject the idea
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      const id = String(form.id || '');
+      res.setHeader('Content-Type', 'application/json');
+      const slot = (data.schedule || []).find(s => s.id === id && s.status === 'idea');
+      if (!slot) { res.statusCode = 400; return res.end('{"ok":false}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      await redis('SET', `castra:${form.step}:${id}`, JSON.stringify({ id, ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
     if (form.step === 'fix') {                     // reject with a note: the Mac fixes it and sends it back for approval
       if (!validSession(req)) return html(res, 401, 'unauthorized');
       const id = String(form.id || ''), note = String(form.note || '').trim().slice(0, 3000);
       res.setHeader('Content-Type', 'application/json');
-      const slot = (data.schedule || []).find(s => s.id === id && s.video && ['idea', 'ready', 'approved', 'scheduled', 'fixing'].includes(s.status));
+      const slot = (data.schedule || []).find(s => s.id === id && s.video && ['text_ready', 'ready', 'approved', 'scheduled', 'fixing'].includes(s.status));
       if (!slot || note.length < 3) { res.statusCode = 400; return res.end('{"ok":false}'); }
       if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
       const at = new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' });

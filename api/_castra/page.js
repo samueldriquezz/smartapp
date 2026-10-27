@@ -127,6 +127,15 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 10px}
+.flow div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.02)}
+.flow div.hi{border-color:rgba(34,230,255,.45);box-shadow:0 0 18px -8px var(--cyan)}
+.flow b{display:block;font-family:'Space Grotesk',sans-serif;font-size:24px;direction:ltr;text-align:right}
+.flow b small{font-size:13px;color:var(--ink3)}
+.flow span{font-size:12px;color:var(--ink2)}
+@media (max-width:760px){.flow{grid-template-columns:repeat(2,1fr)}}
+.thover button.tok{background:linear-gradient(90deg,var(--vio),var(--cyan));color:#06070c;border:0}
+.ss.scripting{color:var(--vio)}.ss.text_ready{color:var(--amber)}.ss.idea{color:var(--ink2)}
 .nav{display:flex;gap:6px;flex-wrap:wrap;margin:-8px 0 20px;padding:6px;border:1px solid var(--line);border-radius:14px;background:rgba(16,18,30,.6);backdrop-filter:blur(10px);width:fit-content}
 .nav a{color:var(--ink2);text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:10px}
 .nav a:hover{color:var(--ink);background:rgba(255,255,255,.04)}
@@ -540,9 +549,10 @@ ${series.length ? '' : `<div class="note">עדיין אין נתונים מיו�
 </script></body></html>`;
 }
 
-const SLOT_STATUS = { planned: 'נושא', idea: 'רעיון · תסריט', production: 'בהפקה', ready: 'מוכן לאישור',
+const SLOT_STATUS = { planned: 'מתוכנן', idea: 'רעיון · ממתין לאישור נושא', scripting: 'נושא אושר · כותב תסריט',
+                      text_ready: 'תסריט מוכן · ממתין להפקה', production: 'בהפקה', ready: 'מוכן · ממתין לאישור פרסום',
                       approved: 'אושר · מתוזמן בקרוב', scheduled: 'מתוזמן ביוטיוב', published: 'פורסם', fixing: 'בתיקון' };
-const CAN_FIX = ['idea', 'ready', 'approved', 'scheduled'];
+const CAN_FIX = ['text_ready', 'ready', 'approved', 'scheduled'];
 const DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
 function renderSchedule(d, approved = {}, fixReq = {}) {
@@ -565,13 +575,13 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
     if (fixing) info.prog = p.state === 'failed' ? 'התיקון נכשל: ' + (p.error || '') : (p.state === 'running' || p.state === 'fixing' ? 'מתקן עכשיו: ' + (p.label || '') : 'התיקון בתור, יתחיל בדקות הקרובות');
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
 <div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${prog}
-<div class="thover"><button class="view">צפייה</button>${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
+<div class="thover"><button class="view">צפייה</button>${s.status === 'idea' ? `<button class="tok" data-id="${esc(s.id)}">אישור נושא</button>` : ''}${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
 ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}</div>
 <div class="ttitle">${esc(s.title)}</div>
 <div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}</div></div>`;
   };
   const rows = slots.length ? `<div class="wkgrid">${slots.map(tile).join('')}</div>` : '';
-  const odAhead = slots.filter(s => s.channel === 'od' && ['ready', 'approved', 'scheduled'].includes(s.status)).length;
+  const pc = d.pipeline || {};
   const producing = slots.find(s => s.status === 'production' && s.progress && s.progress.state === 'running');
   return `${HEAD('CASTRA · תזמונים')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
@@ -579,7 +589,12 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
 <div class="card"><div class="hrow"><h2><i></i>תזמונים</h2>
 <div class="seg" id="chf"><button data-c="all" class="on">הכול</button><button data-c="od">One Decision</button><button data-c="music">ערוץ המוזיקה</button></div></div>
 <div class="note" style="margin:0 0 6px">One Decision: ימי שלישי ושישי ב־19:00 (12:00 בניו יורק). ערוץ המוזיקה: ימי ראשון מ־${heDate(d.channels[1].launch)}. סרטון עולה לאוויר רק אחרי אישור שלך.</div>
-<div class="auto-note">הפקה אוטומטית: ${odAhead} סרטונים מוכנים קדימה. כשנשארים 2, ההפקה של הרעיון הבא מתחילה לבד.${producing ? ` עכשיו בהפקה: <b dir="ltr">${esc(producing.title)}</b> (${esc(producing.progress.label || '')}).` : ''}</div>
+<div class="flow"><div><b>${pc.ideas || 0}<small>/10</small></b><span>רעיונות ממתינים לאישור נושא</span></div>
+<div><b>${(pc.scripting || 0) + (pc.text_ready || 0)}</b><span>נושאים מאושרים · תסריט</span></div>
+<div><b>${pc.production || 0}</b><span>בהפקה</span></div>
+<div class="hi"><b>${pc.ready || 0}<small>/3</small></b><span>מוכנים וממתינים לאישור פרסום</span></div>
+<div><b>${pc.scheduled || 0}</b><span>מתוזמנים</span></div></div>
+<div class="auto-note">התהליך: רעיון ← אישור נושא שלך ← תסריט ← הפקה (קריינות, תמונות, רינדור, העלאה) ← אישור פרסום שלך ← תזמון. המערכת שומרת 10 רעיונות קדימה ו־3 סרטונים מוכנים לאישור. התאריכים זזים לפי ההתקדמות, חוץ ממה שכבר תוזמן.${producing ? ` עכשיו בהפקה: <b dir="ltr">${esc(producing.title)}</b> (${esc(producing.progress.label || '')}).` : ''}</div>
 <div class="sched">${rows || '<div class="empty">אין פרסומים מתוכננים</div>'}</div>
 </div><footer>CASTRA · SmartApp</footer></div>
 <div class="pv" id="pv" hidden><div class="pvbox" role="dialog" aria-modal="true">
@@ -603,10 +618,17 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
     fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=approve&id='+encodeURIComponent(id)})
       .then(function(r){return r.json()}).then(function(j){if(j.ok){done()}else{btn.disabled=false;btn.textContent='האישור נכשל'}})
       .catch(function(){btn.disabled=false});}
+  function post(step,id,btn,done){btn.disabled=true;
+    fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step='+step+'&id='+encodeURIComponent(id)})
+      .then(function(r){return r.json()}).then(function(j){if(j.ok){done()}else{btn.disabled=false;btn.textContent='הפעולה נכשלה'}})
+      .catch(function(){btn.disabled=false});}
+  function markStatus(id,st,label){document.querySelectorAll('.tile').forEach(function(t){var i=JSON.parse(t.dataset.info);if(i.id!==id)return;
+    i.status=st;i.label=label;t.dataset.info=JSON.stringify(i);var s=t.querySelector('.ss');s.className='ss '+st;s.textContent=label;
+    var b=t.querySelector('.thover .tok');if(b)b.remove();});}
   function markApproved(id){document.querySelectorAll('.tile').forEach(function(t){var i=JSON.parse(t.dataset.info);if(i.id!==id)return;
     i.status='approved';i.label='אושר · מתוזמן בקרוב';t.dataset.info=JSON.stringify(i);
     var s=t.querySelector('.ss');s.className='ss approved';s.textContent=i.label;var b=t.querySelector('.thover .apr');if(b)b.remove();});}
-  var CANFIX=['idea','ready','approved','scheduled'],cur=null;
+  var CANFIX=['text_ready','ready','approved','scheduled'],cur=null;
   var pv=document.getElementById('pv');document.body.appendChild(pv);
   var fxb=document.getElementById('fxb'),fxt=document.getElementById('fxt'),fxs=document.getElementById('fxs');
   document.getElementById('fxc').onclick=function(){fxb.hidden=true};
@@ -627,11 +649,15 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
     document.querySelector('#pvm .ss').textContent=i.label;document.querySelector('#pvm span:last-child').textContent=i.date+' · יום '+i.dow+' · '+i.time;
     var p=document.getElementById('pvp');p.textContent=i.prog;p.className='pvprog'+(i.fail?' fail':'');
     fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
-      :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':'זה רעיון בתור. עוד אין סרטון, רק כותרת ותסריט.')+'</div>';
+      :'<div class="blank">'+(i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל כשיתפנה מקום ב־3 הסרטונים המוכנים.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
+    if(i.status==='idea'){var tb=document.createElement('button');tb.className='apr';tb.textContent='אישור נושא';
+      tb.onclick=function(){post('topic',i.id,tb,function(){tb.textContent='הנושא אושר. התסריט ייכתב עכשיו';markStatus(i.id,'scripting','נושא אושר · כותב תסריט')})};a.appendChild(tb);
+      var db=document.createElement('button');db.className='rejbtn';db.textContent='דחיית הרעיון';
+      db.onclick=function(){post('drop',i.id,db,function(){db.textContent='הרעיון ירד מהלוח. רעיון חדש יתווסף';markStatus(i.id,'planned','נדחה')})};a.appendChild(db);}
     if(i.status==='ready'){var b=document.createElement('button');b.className='apr';b.textContent='אישור לפרסום ב־'+i.date+' '+i.time;
       b.onclick=function(){approve(i.id,b,function(){b.textContent='אושר. הסרטון יתוזמן ביוטיוב לבד';markApproved(i.id)})};a.appendChild(b);}
-    if(i.video&&CANFIX.indexOf(i.status)>=0){var r=document.createElement('button');r.className='rejbtn';r.textContent=i.status==='idea'?'תיקון התסריט':'דחייה ותיקון';
+    if(i.video&&CANFIX.indexOf(i.status)>=0){var r=document.createElement('button');r.className='rejbtn';r.textContent=i.status==='text_ready'?'תיקון התסריט':'דחייה ותיקון';
       r.onclick=function(){fxb.hidden=false;fxt.focus()};a.appendChild(r);}
     var h=document.getElementById('pvh');h.innerHTML='';
     (i.note?[{note:i.note,pending:1}]:[]).concat((i.fixes||[]).slice().reverse()).forEach(function(f){var dv=document.createElement('div');
@@ -642,7 +668,9 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
       .then(function(j){sc.textContent=j.script||''}).catch(function(){sc.textContent=''});}
     pv.hidden=false;}
   document.querySelectorAll('.tile').forEach(function(t){
-    t.addEventListener('click',function(e){var b=e.target.closest('.apr');var i=JSON.parse(t.dataset.info);
+    t.addEventListener('click',function(e){var tk=e.target.closest('.tok');if(tk){e.stopPropagation();
+        post('topic',tk.dataset.id,tk,function(){markStatus(tk.dataset.id,'scripting','נושא אושר · כותב תסריט')});return;}
+      var b=e.target.closest('.apr');var i=JSON.parse(t.dataset.info);
       if(b){e.stopPropagation();approve(b.dataset.id,b,function(){markApproved(b.dataset.id)});return;}
       open(i);if(e.target.closest('.rej')){fxb.hidden=false;fxt.focus();}});
     t.addEventListener('keydown',function(e){if(e.key==='Enter')open(JSON.parse(t.dataset.info))});});

@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 01:18",
+ "updated": "28.10.2026 01:23",
  "today": "2026-10-28",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -46,15 +46,15 @@
    "channel": "One Decision",
    "stages": [
     {
-     "k": "נושא",
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
      "s": "done"
     },
     {
      "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
      "s": "done"
     },
     {
@@ -71,15 +71,15 @@
      "s": "done"
     },
     {
-     "k": "תמונה ממוזערת",
-     "s": "active"
+     "k": "העלאה ליוטיוב",
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
-     "k": "פורסם",
+     "k": "מתוזמן",
      "s": "todo"
     }
    ]
@@ -90,16 +90,16 @@
    "channel": "One Decision",
    "stages": [
     {
-     "k": "נושא",
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
      "s": "done"
     },
     {
      "k": "תסריט",
      "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
     },
     {
      "k": "קריינות",
@@ -115,7 +115,7 @@
      "s": "active"
     },
     {
-     "k": "תמונה ממוזערת",
+     "k": "העלאה ליוטיוב",
      "s": "todo"
     },
     {
@@ -123,799 +123,7 @@
      "s": "todo"
     },
     {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "03-kodak-digital-camera",
-   "title": "Kodak Invented The Digital Camera, Then Buried It",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "04-buffett-berkshire",
-   "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "05-kroc-mcdonalds",
-   "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "06-morgan-panic-1907",
-   "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "07-yahoo-microsoft-bid",
-   "title": "Yahoo Said No To $44 Billion From Microsoft",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "08-nokia-burning-platform",
-   "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "09-apple-microsoft-deal",
-   "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "10-knight-nike-bet",
-   "title": "Phil Knight's $8,000 Bet That Became Nike",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "11-soros-black-wednesday",
-   "title": "How Soros Broke The Bank Of England With One Trade",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "12-sears-catalog",
-   "title": "Sears Had Amazon's Business Model 100 Years Early",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "13-blackberry-touchscreen",
-   "title": "BlackBerry Refused The Touchscreen",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "14-arnault-lvmh",
-   "title": "How Bernard Arnault Took Louis Vuitton And Built LVMH",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "15-carnegie-morgan",
-   "title": "Andrew Carnegie Sold Everything To J.P. Morgan For $480 Million",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "16-toys-r-us",
-   "title": "Toys R Us: The Buyout That Killed A Giant",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "17-quibi-collapse",
-   "title": "Quibi Burned $1.75 Billion In Six Months",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "18-enron-accounting",
-   "title": "Enron: The Accounting Choice That Erased $70 Billion",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "19-bezos-regret",
-   "title": "Jeff Bezos Quit Wall Street: The Regret Minimization Decision",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
-     "s": "todo"
-    }
-   ]
-  },
-  {
-   "id": "20-wework-collapse",
-   "title": "WeWork: How One Founder Turned $47 Billion Into Almost Nothing",
-   "channel": "One Decision",
-   "stages": [
-    {
-     "k": "נושא",
-     "s": "done"
-    },
-    {
-     "k": "תסריט",
-     "s": "done"
-    },
-    {
-     "k": "אישור תסריט",
-     "s": "active"
-    },
-    {
-     "k": "קריינות",
-     "s": "todo"
-    },
-    {
-     "k": "תמונות",
-     "s": "todo",
-     "note": ""
-    },
-    {
-     "k": "רינדור",
-     "s": "todo"
-    },
-    {
-     "k": "תמונה ממוזערת",
-     "s": "todo"
-    },
-    {
-     "k": "אישור פרסום",
-     "s": "todo"
-    },
-    {
-     "k": "פורסם",
+     "k": "מתוזמן",
      "s": "todo"
     }
    ]
@@ -1197,26 +405,28 @@
  "schedule": [
   {
    "id": "od-pilot",
+   "topic": 1,
    "channel": "od",
    "title": "Rockefeller's $72,500 Bet That Built Standard Oil",
    "status": "ready",
    "video": "pilot",
    "youtube_id": "oZV8KpipV3E",
-   "date": "2026-11-03",
    "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-03",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-2",
+   "topic": 2,
    "channel": "od",
    "title": "Blockbuster Could Have Bought Netflix For $50 Million",
    "status": "production",
    "video": "videos/02-blockbuster-netflix",
    "youtube_id": null,
-   "date": "2026-11-06",
    "has_script": true,
    "progress": {
     "state": "running",
@@ -1228,258 +438,296 @@
    },
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-06",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-3",
+   "topic": 3,
    "channel": "od",
    "title": "Kodak Invented The Digital Camera, Then Buried It",
    "status": "idea",
    "video": "videos/03-kodak-digital-camera",
    "youtube_id": null,
-   "date": "2026-11-10",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-10",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-4",
+   "topic": 4,
    "channel": "od",
    "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
    "status": "idea",
    "video": "videos/04-buffett-berkshire",
    "youtube_id": null,
-   "date": "2026-11-13",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-13",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-5",
+   "topic": 5,
    "channel": "od",
    "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
    "status": "idea",
    "video": "videos/05-kroc-mcdonalds",
    "youtube_id": null,
-   "date": "2026-11-17",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-17",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-6",
+   "topic": 6,
    "channel": "od",
    "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
    "status": "idea",
    "video": "videos/06-morgan-panic-1907",
    "youtube_id": null,
-   "date": "2026-11-20",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-20",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-7",
+   "topic": 7,
    "channel": "od",
    "title": "Yahoo Said No To $44 Billion From Microsoft",
    "status": "idea",
    "video": "videos/07-yahoo-microsoft-bid",
    "youtube_id": null,
-   "date": "2026-11-24",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-24",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-8",
+   "topic": 8,
    "channel": "od",
    "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
    "status": "idea",
    "video": "videos/08-nokia-burning-platform",
    "youtube_id": null,
-   "date": "2026-11-27",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-11-27",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-9",
+   "topic": 9,
    "channel": "od",
    "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
    "status": "idea",
    "video": "videos/09-apple-microsoft-deal",
    "youtube_id": null,
-   "date": "2026-12-01",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-01",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-10",
+   "topic": 10,
    "channel": "od",
    "title": "Phil Knight's $8,000 Bet That Became Nike",
    "status": "idea",
    "video": "videos/10-knight-nike-bet",
    "youtube_id": null,
-   "date": "2026-12-04",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-04",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-11",
+   "topic": 11,
    "channel": "od",
    "title": "How Soros Broke The Bank Of England With One Trade",
    "status": "idea",
    "video": "videos/11-soros-black-wednesday",
    "youtube_id": null,
-   "date": "2026-12-08",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-08",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-12",
+   "topic": 12,
    "channel": "od",
    "title": "Sears Had Amazon's Business Model 100 Years Early",
    "status": "idea",
    "video": "videos/12-sears-catalog",
    "youtube_id": null,
-   "date": "2026-12-11",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-11",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-13",
+   "topic": 13,
    "channel": "od",
    "title": "BlackBerry Refused The Touchscreen",
    "status": "idea",
    "video": "videos/13-blackberry-touchscreen",
    "youtube_id": null,
-   "date": "2026-12-15",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-15",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-14",
+   "topic": 14,
    "channel": "od",
    "title": "How Bernard Arnault Took Louis Vuitton And Built LVMH",
    "status": "idea",
    "video": "videos/14-arnault-lvmh",
    "youtube_id": null,
-   "date": "2026-12-18",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-18",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-15",
+   "topic": 15,
    "channel": "od",
    "title": "Andrew Carnegie Sold Everything To J.P. Morgan For $480 Million",
    "status": "idea",
    "video": "videos/15-carnegie-morgan",
    "youtube_id": null,
-   "date": "2026-12-22",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-22",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-16",
+   "topic": 16,
    "channel": "od",
    "title": "Toys R Us: The Buyout That Killed A Giant",
    "status": "idea",
    "video": "videos/16-toys-r-us",
    "youtube_id": null,
-   "date": "2026-12-25",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-25",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-17",
+   "topic": 17,
    "channel": "od",
    "title": "Quibi Burned $1.75 Billion In Six Months",
    "status": "idea",
    "video": "videos/17-quibi-collapse",
    "youtube_id": null,
-   "date": "2026-12-29",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2026-12-29",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-18",
+   "topic": 18,
    "channel": "od",
    "title": "Enron: The Accounting Choice That Erased $70 Billion",
    "status": "idea",
    "video": "videos/18-enron-accounting",
    "youtube_id": null,
-   "date": "2027-01-01",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2027-01-01",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-19",
+   "topic": 19,
    "channel": "od",
    "title": "Jeff Bezos Quit Wall Street: The Regret Minimization Decision",
    "status": "idea",
    "video": "videos/19-bezos-regret",
    "youtube_id": null,
-   "date": "2027-01-05",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2027-01-05",
+   "tentative": true,
    "time": "19:00"
   },
   {
    "id": "od-topic-20",
+   "topic": 20,
    "channel": "od",
    "title": "WeWork: How One Founder Turned $47 Billion Into Almost Nothing",
    "status": "idea",
    "video": "videos/20-wework-collapse",
    "youtube_id": null,
-   "date": "2027-01-08",
-   "has_script": true,
+   "has_script": false,
    "progress": null,
    "fixes": [],
    "fix_note": null,
+   "date": "2027-01-08",
+   "tentative": true,
    "time": "19:00"
   },
   {
@@ -1505,8 +753,210 @@
    "status": "planned",
    "date": "2027-02-21",
    "time": "19:00"
+  },
+  {
+   "id": "music-4",
+   "channel": "music",
+   "title": "פלייליסט 4",
+   "status": "planned",
+   "date": "2027-02-28",
+   "time": "19:00"
+  },
+  {
+   "id": "music-5",
+   "channel": "music",
+   "title": "פלייליסט 5",
+   "status": "planned",
+   "date": "2027-03-07",
+   "time": "19:00"
+  },
+  {
+   "id": "music-6",
+   "channel": "music",
+   "title": "פלייליסט 6",
+   "status": "planned",
+   "date": "2027-03-14",
+   "time": "19:00"
+  },
+  {
+   "id": "music-7",
+   "channel": "music",
+   "title": "פלייליסט 7",
+   "status": "planned",
+   "date": "2027-03-21",
+   "time": "19:00"
+  },
+  {
+   "id": "music-8",
+   "channel": "music",
+   "title": "פלייליסט 8",
+   "status": "planned",
+   "date": "2027-03-28",
+   "time": "19:00"
+  },
+  {
+   "id": "music-9",
+   "channel": "music",
+   "title": "פלייליסט 9",
+   "status": "planned",
+   "date": "2027-04-04",
+   "time": "19:00"
+  },
+  {
+   "id": "music-10",
+   "channel": "music",
+   "title": "פלייליסט 10",
+   "status": "planned",
+   "date": "2027-04-11",
+   "time": "19:00"
+  },
+  {
+   "id": "music-11",
+   "channel": "music",
+   "title": "פלייליסט 11",
+   "status": "planned",
+   "date": "2027-04-18",
+   "time": "19:00"
+  },
+  {
+   "id": "music-12",
+   "channel": "music",
+   "title": "פלייליסט 12",
+   "status": "planned",
+   "date": "2027-04-25",
+   "time": "19:00"
+  },
+  {
+   "id": "music-13",
+   "channel": "music",
+   "title": "פלייליסט 13",
+   "status": "planned",
+   "date": "2027-05-02",
+   "time": "19:00"
+  },
+  {
+   "id": "music-14",
+   "channel": "music",
+   "title": "פלייליסט 14",
+   "status": "planned",
+   "date": "2027-05-09",
+   "time": "19:00"
+  },
+  {
+   "id": "music-15",
+   "channel": "music",
+   "title": "פלייליסט 15",
+   "status": "planned",
+   "date": "2027-05-16",
+   "time": "19:00"
+  },
+  {
+   "id": "music-16",
+   "channel": "music",
+   "title": "פלייליסט 16",
+   "status": "planned",
+   "date": "2027-05-23",
+   "time": "19:00"
+  },
+  {
+   "id": "music-17",
+   "channel": "music",
+   "title": "פלייליסט 17",
+   "status": "planned",
+   "date": "2027-05-30",
+   "time": "19:00"
+  },
+  {
+   "id": "music-18",
+   "channel": "music",
+   "title": "פלייליסט 18",
+   "status": "planned",
+   "date": "2027-06-06",
+   "time": "19:00"
+  },
+  {
+   "id": "music-19",
+   "channel": "music",
+   "title": "פלייליסט 19",
+   "status": "planned",
+   "date": "2027-06-13",
+   "time": "19:00"
+  },
+  {
+   "id": "music-20",
+   "channel": "music",
+   "title": "פלייליסט 20",
+   "status": "planned",
+   "date": "2027-06-20",
+   "time": "19:00"
+  },
+  {
+   "id": "music-21",
+   "channel": "music",
+   "title": "פלייליסט 21",
+   "status": "planned",
+   "date": "2027-06-27",
+   "time": "19:00"
+  },
+  {
+   "id": "music-22",
+   "channel": "music",
+   "title": "פלייליסט 22",
+   "status": "planned",
+   "date": "2027-07-04",
+   "time": "19:00"
+  },
+  {
+   "id": "music-23",
+   "channel": "music",
+   "title": "פלייליסט 23",
+   "status": "planned",
+   "date": "2027-07-11",
+   "time": "19:00"
+  },
+  {
+   "id": "music-24",
+   "channel": "music",
+   "title": "פלייליסט 24",
+   "status": "planned",
+   "date": "2027-07-18",
+   "time": "19:00"
+  },
+  {
+   "id": "music-25",
+   "channel": "music",
+   "title": "פלייליסט 25",
+   "status": "planned",
+   "date": "2027-07-25",
+   "time": "19:00"
+  },
+  {
+   "id": "music-26",
+   "channel": "music",
+   "title": "פלייליסט 26",
+   "status": "planned",
+   "date": "2027-08-01",
+   "time": "19:00"
+  },
+  {
+   "id": "music-27",
+   "channel": "music",
+   "title": "פלייליסט 27",
+   "status": "planned",
+   "date": "2027-08-08",
+   "time": "19:00"
   }
  ],
+ "pipeline": {
+  "ideas": 18,
+  "scripting": 0,
+  "text_ready": 0,
+  "production": 1,
+  "ready": 1,
+  "scheduled": 0,
+  "ideas_target": 10,
+  "ready_target": 3
+ },
  "od_channel_url": "https://www.youtube.com/channel/UCMCPXTsrwFBr1pDF-F17k-Q",
  "skills": [
   {
