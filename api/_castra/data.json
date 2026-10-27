@@ -1,0 +1,316 @@
+{
+ "updated": "27.10.2026 22:54",
+ "launch": null,
+ "channels": [
+  {
+   "name": "One Decision",
+   "tag": "ערוץ 1",
+   "status": "פיילוט בייצור",
+   "cost": 15,
+   "rpm": "$5 עד $9",
+   "subs": 0,
+   "hours": 0,
+   "views30": 0,
+   "videos": 0,
+   "color": "cyan"
+  },
+  {
+   "name": "ערוץ המוזיקה",
+   "tag": "ערוץ 2",
+   "status": "מתוכנן לחודש 4",
+   "cost": 55,
+   "rpm": "$2 עד $5",
+   "subs": 0,
+   "hours": 0,
+   "views30": 0,
+   "videos": 0,
+   "color": "magenta"
+  }
+ ],
+ "ypp": {
+  "hours_goal": 8000,
+  "subs_goal": 1000
+ },
+ "videos": [
+  {
+   "id": "pilot",
+   "title": "Rockefeller: the $72,500 bet",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "אישור תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "done"
+    },
+    {
+     "k": "תמונות",
+     "s": "done",
+     "note": "45/45"
+    },
+    {
+     "k": "רינדור",
+     "s": "active"
+    },
+    {
+     "k": "תמונה ממוזערת",
+     "s": "active"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "פורסם",
+     "s": "todo"
+    }
+   ]
+  }
+ ],
+ "approvals": [
+  {
+   "who": "שמואל",
+   "what": "לצפות בפיילוט רוקפלר ולאשר או לבקש תיקונים",
+   "pri": "high"
+  },
+  {
+   "who": "שמואל",
+   "what": "לבחור תמונה ממוזערת (או להעלות את שלושתן ל־Test & Compare)",
+   "pri": "high"
+  },
+  {
+   "who": "שמואל",
+   "what": "לפתוח את הערוץ One Decision בחשבון Google ייעודי",
+   "pri": "high"
+  },
+  {
+   "who": "שמואל",
+   "what": "פרויקט Google Cloud עם YouTube Data API ואישור OAuth",
+   "pri": "mid"
+  },
+  {
+   "who": "Claude",
+   "what": "חיבור YouTube Analytics לדשבורד אחרי ה־OAuth",
+   "pri": "mid"
+  },
+  {
+   "who": "שניהם",
+   "what": "שם לערוץ המוזיקה, לפני חודש 4",
+   "pri": "low"
+  }
+ ],
+ "topics": [
+  {
+   "n": 1,
+   "title": "The One Decision That Made Rockefeller The Richest Man In History",
+   "star": true
+  },
+  {
+   "n": 2,
+   "title": "Blockbuster Could Have Bought Netflix For $50 Million",
+   "star": true
+  },
+  {
+   "n": 3,
+   "title": "Kodak Invented The Digital Camera, Then Buried It",
+   "star": true
+  },
+  {
+   "n": 4,
+   "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
+   "star": true
+  },
+  {
+   "n": 5,
+   "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
+   "star": true
+  },
+  {
+   "n": 6,
+   "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
+   "star": false
+  },
+  {
+   "n": 7,
+   "title": "Yahoo Said No To $44 Billion From Microsoft",
+   "star": false
+  },
+  {
+   "n": 8,
+   "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
+   "star": false
+  },
+  {
+   "n": 9,
+   "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
+   "star": false
+  },
+  {
+   "n": 10,
+   "title": "Phil Knight's $8,000 Bet That Became Nike",
+   "star": false
+  },
+  {
+   "n": 11,
+   "title": "How Soros Broke The Bank Of England With One Trade",
+   "star": false
+  },
+  {
+   "n": 12,
+   "title": "Sears Had Amazon's Business Model 100 Years Early",
+   "star": false
+  },
+  {
+   "n": 13,
+   "title": "BlackBerry Refused The Touchscreen",
+   "star": false
+  },
+  {
+   "n": 14,
+   "title": "How Bernard Arnault Took Louis Vuitton And Built LVMH",
+   "star": false
+  },
+  {
+   "n": 15,
+   "title": "Andrew Carnegie Sold Everything To J.P. Morgan For $480 Million",
+   "star": false
+  },
+  {
+   "n": 16,
+   "title": "Toys R Us: The Buyout That Killed A Giant",
+   "star": false
+  },
+  {
+   "n": 17,
+   "title": "Quibi Burned $1.75 Billion In Six Months",
+   "star": false
+  },
+  {
+   "n": 18,
+   "title": "Enron: The Accounting Choice That Erased $70 Billion",
+   "star": false
+  },
+  {
+   "n": 19,
+   "title": "Jeff Bezos Quit Wall Street: The Regret Minimization Decision",
+   "star": false
+  },
+  {
+   "n": 20,
+   "title": "WeWork: How One Founder Turned $47 Billion Into Almost Nothing",
+   "star": false
+  }
+ ],
+ "milestones": [
+  {
+   "m": 6,
+   "goal": "50 אלף צפיות בחודש",
+   "views": 50000
+  },
+  {
+   "m": 12,
+   "goal": "300 אלף צפיות, כ־$1,800",
+   "views": 300000
+  },
+  {
+   "m": 18,
+   "goal": "800 אלף צפיות, כ־$6,000",
+   "views": 800000
+  },
+  {
+   "m": 24,
+   "goal": "1.2 מיליון צפיות, כ־$10,000",
+   "views": 1200000
+  }
+ ],
+ "forecast": [
+  {
+   "h": "שנה",
+   "base": 780,
+   "od": 600,
+   "music": 180
+  },
+  {
+   "h": "שנה וחצי",
+   "base": 1900,
+   "od": 1500,
+   "music": 420
+  },
+  {
+   "h": "שנתיים",
+   "base": 3100,
+   "od": 2400,
+   "music": 700
+  },
+  {
+   "h": "3 שנים",
+   "base": 5250,
+   "od": 4200,
+   "music": 1050
+  },
+  {
+   "h": "5 שנים",
+   "base": 7900,
+   "od": 6300,
+   "music": 1600
+  }
+ ],
+ "costs": {
+  "items": [
+   {
+    "date": "27.10.2026",
+    "what": "תמונות Gemini לפיילוט (43 סצנות)",
+    "usd": 1.5
+   },
+   {
+    "date": "27.10.2026",
+    "what": "רקעים לתמונה ממוזערת (Gemini 3 Pro, 2)",
+    "usd": 0.27
+   }
+  ]
+ },
+ "skills": [
+  {
+   "k": "yt-viral",
+   "when": "לפני כל סרטון"
+  },
+  {
+   "k": "yt-script",
+   "when": "כל סרטון"
+  },
+  {
+   "k": "yt-package",
+   "when": "כל סרטון"
+  },
+  {
+   "k": "yt-seo",
+   "when": "כל סרטון"
+  },
+  {
+   "k": "yt-chapters",
+   "when": "כל סרטון"
+  },
+  {
+   "k": "yt-retention",
+   "when": "שבוע אחרי פרסום"
+  },
+  {
+   "k": "yt-shorts",
+   "when": "מהחודש השני"
+  },
+  {
+   "k": "yt-audit",
+   "when": "מהחודש השלישי"
+  }
+ ]
+}
