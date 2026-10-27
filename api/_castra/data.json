@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 01:23",
+ "updated": "28.10.2026 01:28",
  "today": "2026-10-28",
  "od_launch": "2026-11-03",
  "month_index": 0,
@@ -113,6 +113,358 @@
     {
      "k": "רינדור",
      "s": "active"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "03-kodak-digital-camera",
+   "title": "Kodak Invented The Digital Camera, Then Buried It",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "04-buffett-berkshire",
+   "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "05-kroc-mcdonalds",
+   "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "06-morgan-panic-1907",
+   "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "07-yahoo-microsoft-bid",
+   "title": "Yahoo Said No To $44 Billion From Microsoft",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "08-nokia-burning-platform",
+   "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "09-apple-microsoft-deal",
+   "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "todo"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "todo"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "todo"
+    }
+   ]
+  },
+  {
+   "id": "10-knight-nike-bet",
+   "title": "Phil Knight's $8,000 Bet That Became Nike",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "todo"
     },
     {
      "k": "העלאה ליוטיוב",
@@ -408,13 +760,20 @@
    "topic": 1,
    "channel": "od",
    "title": "Rockefeller's $72,500 Bet That Built Standard Oil",
-   "status": "ready",
+   "status": "fixing",
    "video": "pilot",
    "youtube_id": "oZV8KpipV3E",
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "fix",
+    "label": "תיקון בתור",
+    "error": null,
+    "updated": null,
+    "attempts": null
+   },
    "fixes": [],
-   "fix_note": null,
+   "fix_note": "הטקסט שבטאמבנייל לא מספיק מושך/מסקרן - תתקן להוק חזק יותר",
    "date": "2026-11-03",
    "tentative": true,
    "time": "19:00"
@@ -447,10 +806,10 @@
    "topic": 3,
    "channel": "od",
    "title": "Kodak Invented The Digital Camera, Then Buried It",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/03-kodak-digital-camera",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -463,10 +822,10 @@
    "topic": 4,
    "channel": "od",
    "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/04-buffett-berkshire",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -479,10 +838,10 @@
    "topic": 5,
    "channel": "od",
    "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/05-kroc-mcdonalds",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -495,10 +854,10 @@
    "topic": 6,
    "channel": "od",
    "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/06-morgan-panic-1907",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -511,10 +870,10 @@
    "topic": 7,
    "channel": "od",
    "title": "Yahoo Said No To $44 Billion From Microsoft",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/07-yahoo-microsoft-bid",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -527,10 +886,10 @@
    "topic": 8,
    "channel": "od",
    "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/08-nokia-burning-platform",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -543,10 +902,10 @@
    "topic": 9,
    "channel": "od",
    "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/09-apple-microsoft-deal",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -559,10 +918,10 @@
    "topic": 10,
    "channel": "od",
    "title": "Phil Knight's $8,000 Bet That Became Nike",
-   "status": "idea",
+   "status": "text_ready",
    "video": "videos/10-knight-nike-bet",
    "youtube_id": null,
-   "has_script": false,
+   "has_script": true,
    "progress": null,
    "fixes": [],
    "fix_note": null,
@@ -948,11 +1307,11 @@
   }
  ],
  "pipeline": {
-  "ideas": 18,
+  "ideas": 10,
   "scripting": 0,
-  "text_ready": 0,
-  "production": 1,
-  "ready": 1,
+  "text_ready": 8,
+  "production": 2,
+  "ready": 0,
   "scheduled": 0,
   "ideas_target": 10,
   "ready_target": 3
