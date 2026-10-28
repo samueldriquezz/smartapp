@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 01:57",
+ "updated": "28.10.2026 08:59",
  "today": "2026-10-28",
  "od_launch": "2026-10-28",
  "month_index": 1,
@@ -120,11 +120,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -147,7 +147,7 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
@@ -156,7 +156,7 @@
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "העלאה ליוטיוב",
@@ -807,6 +807,16 @@
      "summary": "החלפתי את הטקסט בתמונה הממוזערת מ-WON BY $500 ל-$500 BUILT AN EMPIRE, קצר יותר, צמוד לכותרת הסרטון ועם הוק חזק יותר."
     }
    ],
+   "hd": {
+    "ok": false,
+    "processing": "processing",
+    "definition": "sd",
+    "height": null,
+    "reason": "יוטיוב עדיין מעבד את הסרטון",
+    "id": "MW5LMYTXmuA",
+    "publishAt": "2026-10-28T17:00:00Z",
+    "checked": "28.10.2026 08:58"
+   },
    "fix_note": null,
    "date": "2026-10-28",
    "time": "19:00"
@@ -816,7 +826,7 @@
    "topic": 2,
    "channel": "od",
    "title": "Why Blockbuster's John Antioco Passed On Netflix For $50M",
-   "status": "ready",
+   "status": "scheduled",
    "video": "videos/02-blockbuster-netflix",
    "youtube_id": "Xi1XntuyF64",
    "has_script": true,
@@ -829,9 +839,18 @@
     "attempts": 1
    },
    "fixes": [],
+   "hd": {
+    "ok": false,
+    "processing": "processing",
+    "definition": "hd",
+    "height": 1440,
+    "reason": "יוטיוב עדיין מעבד את הסרטון",
+    "id": "IdfzJj24t9o",
+    "publishAt": "2026-10-30T17:00:00Z",
+    "checked": "28.10.2026 08:58"
+   },
    "fix_note": null,
    "date": "2026-10-30",
-   "tentative": true,
    "time": "19:00"
   },
   {
@@ -845,13 +864,14 @@
    "has_script": true,
    "progress": {
     "state": "running",
-    "step": "voice",
-    "label": "קריינות",
+    "step": "render",
+    "label": "רינדור",
     "error": null,
-    "updated": "28.10.2026 01:57",
-    "attempts": 1
+    "updated": "28.10.2026 08:54",
+    "attempts": 2
    },
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-03",
    "tentative": true,
@@ -868,6 +888,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-06",
    "tentative": true,
@@ -884,6 +905,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-10",
    "tentative": true,
@@ -900,6 +922,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-13",
    "tentative": true,
@@ -916,6 +939,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-17",
    "tentative": true,
@@ -932,6 +956,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-20",
    "tentative": true,
@@ -948,6 +973,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-24",
    "tentative": true,
@@ -964,6 +990,7 @@
    "has_script": true,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-11-27",
    "tentative": true,
@@ -980,6 +1007,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-01",
    "tentative": true,
@@ -996,6 +1024,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-04",
    "tentative": true,
@@ -1012,6 +1041,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-08",
    "tentative": true,
@@ -1028,6 +1058,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-11",
    "tentative": true,
@@ -1044,6 +1075,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-15",
    "tentative": true,
@@ -1060,6 +1092,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-18",
    "tentative": true,
@@ -1076,6 +1109,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-22",
    "tentative": true,
@@ -1092,6 +1126,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-25",
    "tentative": true,
@@ -1108,6 +1143,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2026-12-29",
    "tentative": true,
@@ -1124,6 +1160,7 @@
    "has_script": false,
    "progress": null,
    "fixes": [],
+   "hd": null,
    "fix_note": null,
    "date": "2027-01-01",
    "tentative": true,
@@ -1351,11 +1388,12 @@
   "scripting": 0,
   "text_ready": 7,
   "production": 1,
-  "ready": 1,
-  "scheduled": 1,
+  "ready": 0,
+  "scheduled": 2,
   "ideas_target": 10,
   "ready_target": 3
  },
+ "alerts": [],
  "od_channel_url": "https://www.youtube.com/channel/UCMCPXTsrwFBr1pDF-F17k-Q",
  "skills": [
   {

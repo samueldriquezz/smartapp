@@ -127,6 +127,9 @@ const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractio
 const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${y}`; };
 
 const CSS2 = `
+.hdalert{border:1px solid rgba(255,62,200,.55);background:rgba(255,62,200,.08);color:var(--ink);border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:14px;line-height:1.6;box-shadow:0 0 22px -10px var(--mag)}
+.hdalert b{color:var(--mag)}
+.tflag.hdok{color:var(--lime);border-color:var(--lime)}.tflag.hdbad{color:var(--mag);border-color:var(--mag)}
 .sched-card{display:flex!important;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
 .sched-card b{font-size:18px;color:var(--lime)}
 .sched-card img.sthumb{width:min(420px,90%);border-radius:12px;border:1px solid var(--line)}
@@ -364,7 +367,7 @@ ${d.milestones.map((m, i) => { const now = i === nowIndex(d.milestones.map(x => 
 
   return `${HEAD('CASTRA · מרכז בקרה')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
-<div class="brand"><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div></header>${NAV('home')}
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">מרכז הבקרה של One Decision וערוץ המוזיקה</div></div></header>${NAV('home')}${(d.alerts || []).map(a => `<div class="hdalert"><b>⚠ HD עדיין לא מוכן:</b> <span dir="ltr">${esc(a.title)}</span> עולה לאוויר ב־${heDate(a.date)} ${esc(a.time)}. ${esc(a.reason)}. אם זה לא יסתדר עד אז, הצופים הראשונים יראו איכות נמוכה: אפשר לדחות את הפרסום מ־YouTube Studio.</div>`).join('')}
 
 <div class="grid4">
 <div class="card kpi glow-c"><b class="c">${fmt(od.views30 + mu.views30)}</b><span>צפיות ב־30 הימים האחרונים</span></div>
@@ -583,7 +586,7 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
 <div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${prog}
 <div class="thover"><button class="view">צפייה</button>${s.status === 'idea' ? `<button class="tok" data-id="${esc(s.id)}">אישור נושא</button>` : ''}${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
-${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}</div>
+${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}${s.hd ? `<span class="tflag ${s.hd.ok ? 'hdok' : 'hdbad'}">${s.hd.ok ? 'HD מוכן' : 'HD בעיבוד'}</span>` : ''}</div>
 <div class="ttitle">${esc(s.title)}</div>
 <div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}</div></div>`;
   };
@@ -592,7 +595,7 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
   const producing = slots.find(s => s.status === 'production' && s.progress && s.progress.state === 'running');
   return `${HEAD('CASTRA · תזמונים')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
-<div class="brand"><div class="logo">CASTRA</div><div class="sub">לוח הפרסומים של שני הערוצים</div></div></header>${NAV('schedule')}
+<div class="brand"><div class="logo">CASTRA</div><div class="sub">לוח הפרסומים של שני הערוצים</div></div></header>${NAV('schedule')}${(d.alerts || []).map(a => `<div class="hdalert"><b>⚠ HD עדיין לא מוכן:</b> <span dir="ltr">${esc(a.title)}</span> עולה לאוויר ב־${heDate(a.date)} ${esc(a.time)}. ${esc(a.reason)}. אם זה לא יסתדר עד אז, הצופים הראשונים יראו איכות נמוכה: אפשר לדחות את הפרסום מ־YouTube Studio.</div>`).join('')}
 <div class="card"><div class="hrow"><h2><i></i>תזמונים</h2>
 <div class="seg" id="chf"><button data-c="all" class="on">הכול</button><button data-c="od">One Decision</button><button data-c="music">ערוץ המוזיקה</button></div></div>
 <div class="note" style="margin:0 0 6px">One Decision: ימי שלישי ושישי ב־19:00 (12:00 בניו יורק). ערוץ המוזיקה: ימי ראשון מ־${heDate(d.channels[1].launch)}. סרטון עולה לאוויר רק אחרי אישור שלך.</div>
