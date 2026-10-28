@@ -1,5 +1,5 @@
 {
- "updated": "28.10.2026 08:59",
+ "updated": "28.10.2026 13:45",
  "today": "2026-10-28",
  "od_launch": "2026-10-28",
  "month_index": 1,
@@ -156,15 +156,15 @@
     },
     {
      "k": "רינדור",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "מתוזמן",
@@ -191,28 +191,28 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": ""
+     "s": "done",
+     "note": "48/48"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -235,12 +235,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": ""
+     "s": "active",
+     "note": "2/48"
     },
     {
      "k": "רינדור",
@@ -279,12 +279,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
      "s": "todo",
-     "note": ""
+     "note": "0/50"
     },
     {
      "k": "רינדור",
@@ -323,12 +323,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
      "s": "todo",
-     "note": ""
+     "note": "0/49"
     },
     {
      "k": "רינדור",
@@ -367,12 +367,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
      "s": "todo",
-     "note": ""
+     "note": "0/49"
     },
     {
      "k": "רינדור",
@@ -411,16 +411,16 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": ""
+     "s": "done",
+     "note": "50/50"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "העלאה ליוטיוב",
@@ -455,12 +455,12 @@
     },
     {
      "k": "קריינות",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "תמונות",
      "s": "todo",
-     "note": ""
+     "note": "0/49"
     },
     {
      "k": "רינדור",
@@ -756,12 +756,32 @@
     "date": "28.10.2026",
     "what": "תמונות Gemini: Kodak Invented The Digital Camera, Then Buried It (49)",
     "usd": 1.72
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/03-kodak-digital-camera",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway (48)",
+    "usd": 1.68
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/04-buffett-berkshire",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: The $150 Million Deal That Saved Apple From Bankruptcy (50)",
+    "usd": 1.75
    }
   ],
-  "spent": 6.86,
+  "spent": 10.37,
   "this_month": {
    "label": "אוקטובר",
-   "spent": 6.86,
+   "spent": 10.37,
    "expected": 15
   },
   "next_month": {
@@ -815,7 +835,7 @@
     "reason": "יוטיוב עדיין מעבד את הסרטון",
     "id": "MW5LMYTXmuA",
     "publishAt": "2026-10-28T17:00:00Z",
-    "checked": "28.10.2026 08:58"
+    "checked": "28.10.2026 08:59"
    },
    "fix_note": null,
    "date": "2026-10-28",
@@ -854,40 +874,53 @@
    "time": "19:00"
   },
   {
-   "id": "od-topic-3",
-   "topic": 3,
+   "id": "od-topic-4",
+   "topic": 4,
    "channel": "od",
-   "title": "Kodak Invented The Digital Camera, Then Buried It",
-   "status": "production",
-   "video": "videos/03-kodak-digital-camera",
-   "youtube_id": null,
+   "title": "Warren Buffett's $200 Billion Mistake Over 12.5 Cents",
+   "status": "scheduled",
+   "video": "videos/04-buffett-berkshire",
+   "youtube_id": "xyuEUh6FKMc",
    "has_script": true,
    "progress": {
-    "state": "running",
-    "step": "render",
-    "label": "רינדור",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 08:54",
-    "attempts": 2
+    "updated": "28.10.2026 10:47",
+    "attempts": 1
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
    "date": "2026-11-03",
-   "tentative": true,
    "time": "19:00"
   },
   {
-   "id": "od-topic-4",
-   "topic": 4,
+   "id": "od-topic-3",
+   "topic": 3,
    "channel": "od",
-   "title": "Warren Buffett's $200 Billion Revenge: Why He Bought Berkshire Hathaway",
-   "status": "text_ready",
-   "video": "videos/04-buffett-berkshire",
-   "youtube_id": null,
+   "title": "Steven Sasson Built The First Digital Camera. Kodak Hid It.",
+   "status": "ready",
+   "video": "videos/03-kodak-digital-camera",
+   "youtube_id": "6j3i5Q9h9Sc",
    "has_script": true,
-   "progress": null,
-   "fixes": [],
+   "progress": {
+    "state": "done",
+    "step": "done",
+    "label": "תוקן, ממתין לאישור",
+    "error": null,
+    "updated": "28.10.2026 13:33",
+    "attempts": 2
+   },
+   "fixes": [
+    {
+     "note": "תשפר את כותרת הטאמבנייל - שיהיה hook יותר מסקרן/שישמע כמו נתון/מקרה מטורף וחריג",
+     "at": "28.10.2026, 10:15:29",
+     "done": "28.10.2026 13:33",
+     "summary": "שיניתי את כותרת הטאמבנייל ל-\"INVENTED 1975. BANKRUPT 2012.\", ניגוד בין שתי שנים שנשמע כמו נתון מטורף: המציאו את המצלמה הדיגיטלית ופשטו רגל בגללה."
+    }
+   ],
    "hd": null,
    "fix_note": null,
    "date": "2026-11-06",
@@ -899,11 +932,18 @@
    "topic": 5,
    "channel": "od",
    "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/05-kroc-mcdonalds",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "images",
+    "label": "ממתין להפקה",
+    "error": null,
+    "updated": "28.10.2026 13:00",
+    "attempts": 0
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -916,11 +956,18 @@
    "topic": 6,
    "channel": "od",
    "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/06-morgan-panic-1907",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "images",
+    "label": "ממתין להפקה",
+    "error": null,
+    "updated": "28.10.2026 13:14",
+    "attempts": 0
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -933,11 +980,18 @@
    "topic": 7,
    "channel": "od",
    "title": "Yahoo Said No To $44 Billion From Microsoft",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/07-yahoo-microsoft-bid",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "images",
+    "label": "ממתין להפקה",
+    "error": null,
+    "updated": "28.10.2026 13:25",
+    "attempts": 0
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -950,11 +1004,18 @@
    "topic": 8,
    "channel": "od",
    "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/08-nokia-burning-platform",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "images",
+    "label": "ממתין להפקה",
+    "error": null,
+    "updated": "28.10.2026 13:31",
+    "attempts": 0
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -967,11 +1028,18 @@
    "topic": 9,
    "channel": "od",
    "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/09-apple-microsoft-deal",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "running",
+    "step": "render",
+    "label": "רינדור",
+    "error": null,
+    "updated": "28.10.2026 13:45",
+    "attempts": 2
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -984,11 +1052,18 @@
    "topic": 10,
    "channel": "od",
    "title": "Phil Knight's $8,000 Bet That Became Nike",
-   "status": "text_ready",
+   "status": "production",
    "video": "videos/10-knight-nike-bet",
    "youtube_id": null,
    "has_script": true,
-   "progress": null,
+   "progress": {
+    "state": "queued",
+    "step": "images",
+    "label": "ממתין להפקה",
+    "error": null,
+    "updated": "28.10.2026 11:42",
+    "attempts": 0
+   },
    "fixes": [],
    "hd": null,
    "fix_note": null,
@@ -1386,10 +1461,10 @@
  "pipeline": {
   "ideas": 10,
   "scripting": 0,
-  "text_ready": 7,
-  "production": 1,
-  "ready": 0,
-  "scheduled": 2,
+  "text_ready": 0,
+  "production": 6,
+  "ready": 1,
+  "scheduled": 3,
   "ideas_target": 10,
   "ready_target": 3
  },
