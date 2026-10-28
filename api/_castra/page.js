@@ -129,7 +129,7 @@ const heDate = iso => { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${
 const CSS2 = `
 .hdalert{border:1px solid rgba(255,62,200,.55);background:rgba(255,62,200,.08);color:var(--ink);border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:14px;line-height:1.6;box-shadow:0 0 22px -10px var(--mag)}
 .hdalert b{color:var(--mag)}
-.tflag.hdok{color:var(--lime);border-color:var(--lime)}.tflag.hdbad{color:var(--mag);border-color:var(--mag)}
+.tflag.hdok{background:rgba(6,7,12,.75);color:var(--lime);border:1px solid var(--lime)}.tflag.hdbad{background:rgba(6,7,12,.75);color:var(--mag);border:1px solid var(--mag)}
 .sched-card{display:flex!important;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
 .sched-card b{font-size:18px;color:var(--lime)}
 .sched-card img.sthumb{width:min(420px,90%);border-radius:12px;border:1px solid var(--line)}
