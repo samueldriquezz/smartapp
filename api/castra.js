@@ -128,6 +128,44 @@ module.exports = async (req, res) => {
       return res.end('{"ok":true}');
     }
 
+    // ---- Long Ears: the "create new content" button. Reference images go first, one request each (resized in the browser).
+    if (form.step === 'music_ref') {
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      res.setHeader('Content-Type', 'application/json');
+      const b64 = String(form.data || '');
+      if (b64.length < 100 || b64.length > 900000 || !/^[A-Za-z0-9+/=]+$/.test(b64)) { res.statusCode = 400; return res.end('{"ok":false,"error":"התמונה לא תקינה או גדולה מדי"}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const refKey = `castra:music:ref:${crypto.randomBytes(12).toString('hex')}`;
+      await redis('SET', refKey, b64, 'EX', '172800');
+      return res.end(JSON.stringify({ ok: true, key: refKey }));
+    }
+
+    if (form.step === 'music_create') {
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      res.setHeader('Content-Type', 'application/json');
+      const count = parseInt(form.count, 10), allowed = (data.music_quota || {}).max_create || 0;
+      if (!(count >= 1 && count <= allowed)) { res.statusCode = 400; return res.end(JSON.stringify({ ok: false, error: 'הכמות לא נכנסת במכסה שנותרה' })); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const free = await redis('SET', 'castra:music:lock', '1', 'NX', 'EX', '90');   // a double click must not order twice
+      if (!free) { res.statusCode = 409; return res.end(JSON.stringify({ ok: false, error: 'הבקשה הקודמת עדיין נקלטת, נסה שוב בעוד דקה' })); }
+      const refs = String(form.refs || '').split(',').filter(k => /^castra:music:ref:[0-9a-f]{24}$/.test(k)).slice(0, 3);
+      await redis('LPUSH', 'castra:music:req', JSON.stringify({ count, brief: String(form.brief || '').trim().slice(0, 4000), refs, ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
+    if (form.step === 'music_act') {                // on a concept: approve, ask for changes, cancel; on a failure: retry
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      res.setHeader('Content-Type', 'application/json');
+      const id = String(form.id || ''), action = String(form.action || '');
+      const slot = (data.schedule || []).find(s => s.id === id && s.channel === 'music' && ['concept', 'failed', 'planning'].includes(s.status));
+      if (!slot || !['approve', 'redo', 'scene', 'own_scene', 'retry', 'cancel'].includes(action)) { res.statusCode = 400; return res.end('{"ok":false}'); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const k = String(form.key || '');
+      await redis('LPUSH', 'castra:music:act', JSON.stringify({ id, action, note: String(form.note || '').trim().slice(0, 3000),
+        key: /^castra:music:ref:[0-9a-f]{24}$/.test(k) ? k : '', ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
     if (form.step === 'run') {
       if (!validSession(req)) return html(res, 401, 'unauthorized');
       const task = String(form.task || '');

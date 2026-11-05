@@ -1,8 +1,8 @@
 {
- "updated": "28.10.2026 13:45",
- "today": "2026-10-28",
+ "updated": "05.11.2026 22:23",
+ "today": "2026-11-05",
  "od_launch": "2026-10-28",
- "month_index": 1,
+ "month_index": 2,
  "channels": [
   {
    "key": "od",
@@ -12,27 +12,39 @@
    "cost": 15,
    "rpm": "$5 עד $9",
    "color": "cyan",
-   "status": "הערוץ נפתח · פיילוט מוכן, ממתין להעלאה כפרטי",
+   "status": "",
    "subs": 0,
    "hours": 0,
-   "views30": 0,
-   "videos": 0,
-   "series": []
+   "views30": 20,
+   "videos": 4,
+   "series": [
+    {
+     "date": "2026-11-05",
+     "views": 20,
+     "subs": 0
+    }
+   ]
   },
   {
    "key": "music",
-   "name": "ערוץ המוזיקה",
+   "name": "Long Ears",
    "tag": "ערוץ 2",
-   "launch": "2027-01-28",
+   "launch": "2026-11-03",
    "cost": 55,
    "rpm": "$2 עד $5",
    "color": "magenta",
    "status": "",
    "subs": 0,
    "hours": 0,
-   "views30": 0,
-   "videos": 0,
-   "series": []
+   "views30": 5,
+   "videos": 1,
+   "series": [
+    {
+     "date": "2026-11-05",
+     "views": 5,
+     "subs": 0
+    }
+   ]
   }
  ],
  "ypp": {
@@ -164,11 +176,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -235,24 +247,24 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "active",
-     "note": "2/48"
+     "s": "done",
+     "note": "48/48"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "מתוזמן",
@@ -279,24 +291,24 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": "0/50"
+     "s": "done",
+     "note": "50/50"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "מתוזמן",
@@ -323,24 +335,24 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": "0/49"
+     "s": "done",
+     "note": "49/49"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "מתוזמן",
@@ -367,20 +379,20 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": "0/49"
+     "s": "done",
+     "note": "49/49"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "active"
     },
     {
      "k": "אישור פרסום",
@@ -420,19 +432,19 @@
     },
     {
      "k": "רינדור",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -455,28 +467,28 @@
     },
     {
      "k": "קריינות",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "תמונות",
-     "s": "todo",
-     "note": "0/49"
+     "s": "done",
+     "note": "49/49"
     },
     {
      "k": "רינדור",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   }
@@ -552,7 +564,7 @@
    "auto": "stats:music_name",
    "link": null,
    "prompt": "CASTRA: תציע 10 שמות לערוץ המוזיקה (דמויות מצוירות מקוריות שמאזינות למוזיקה), עם בדיקת זמינות ביוטיוב",
-   "done": false
+   "done": true
   }
  ],
  "topics": [
@@ -776,17 +788,72 @@
     "date": "28.10.2026",
     "what": "תמונות Gemini: The $150 Million Deal That Saved Apple From Bankruptcy (50)",
     "usd": 1.75
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/09-apple-microsoft-deal",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: How Ray Kroc Took McDonald's From The McDonald Brothers (48)",
+    "usd": 1.68
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/05-kroc-mcdonalds",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: J.P. Morgan Saved America In 1907 With One Locked Room (50)",
+    "usd": 1.75
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/06-morgan-panic-1907",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Yahoo Said No To $44 Billion From Microsoft (49)",
+    "usd": 1.72
+   },
+   {
+    "date": "28.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/07-yahoo-microsoft-bid",
+    "usd": 0.04
+   },
+   {
+    "date": "28.10.2026",
+    "what": "תמונות Gemini: Nokia Owned Half The Phone Market. One Choice Ended It (49)",
+    "usd": 1.72
+   },
+   {
+    "date": "29.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/08-nokia-burning-platform",
+    "usd": 0.04
+   },
+   {
+    "date": "29.10.2026",
+    "what": "תמונות Gemini: Phil Knight's $8,000 Bet That Became Nike (49)",
+    "usd": 1.72
+   },
+   {
+    "date": "29.10.2026",
+    "what": "רקע לתמונה ממוזערת: videos/10-knight-nike-bet",
+    "usd": 0.04
    }
   ],
-  "spent": 10.37,
+  "spent": 19.2,
   "this_month": {
-   "label": "אוקטובר",
-   "spent": 10.37,
-   "expected": 15
+   "label": "נובמבר",
+   "spent": 0,
+   "expected": 70
   },
   "next_month": {
-   "label": "נובמבר",
-   "expected": 15
+   "label": "דצמבר",
+   "expected": 70
   }
  },
  "schedule": [
@@ -795,7 +862,7 @@
    "topic": 1,
    "channel": "od",
    "title": "The $500 Bid That Built Rockefeller's Standard Oil Empire",
-   "status": "scheduled",
+   "status": "published",
    "video": "pilot",
    "youtube_id": "oZV8KpipV3E",
    "has_script": true,
@@ -827,16 +894,7 @@
      "summary": "החלפתי את הטקסט בתמונה הממוזערת מ-WON BY $500 ל-$500 BUILT AN EMPIRE, קצר יותר, צמוד לכותרת הסרטון ועם הוק חזק יותר."
     }
    ],
-   "hd": {
-    "ok": false,
-    "processing": "processing",
-    "definition": "sd",
-    "height": null,
-    "reason": "יוטיוב עדיין מעבד את הסרטון",
-    "id": "MW5LMYTXmuA",
-    "publishAt": "2026-10-28T17:00:00Z",
-    "checked": "28.10.2026 08:59"
-   },
+   "hd": null,
    "fix_note": null,
    "date": "2026-10-28",
    "time": "19:00"
@@ -846,7 +904,7 @@
    "topic": 2,
    "channel": "od",
    "title": "Why Blockbuster's John Antioco Passed On Netflix For $50M",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/02-blockbuster-netflix",
    "youtube_id": "Xi1XntuyF64",
    "has_script": true,
@@ -859,16 +917,7 @@
     "attempts": 1
    },
    "fixes": [],
-   "hd": {
-    "ok": false,
-    "processing": "processing",
-    "definition": "hd",
-    "height": 1440,
-    "reason": "יוטיוב עדיין מעבד את הסרטון",
-    "id": "IdfzJj24t9o",
-    "publishAt": "2026-10-30T17:00:00Z",
-    "checked": "28.10.2026 08:58"
-   },
+   "hd": null,
    "fix_note": null,
    "date": "2026-10-30",
    "time": "19:00"
@@ -878,7 +927,7 @@
    "topic": 4,
    "channel": "od",
    "title": "Warren Buffett's $200 Billion Mistake Over 12.5 Cents",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/04-buffett-berkshire",
    "youtube_id": "xyuEUh6FKMc",
    "has_script": true,
@@ -897,11 +946,21 @@
    "time": "19:00"
   },
   {
+   "id": "music-01",
+   "channel": "music",
+   "title": "Rainy Night in a Cozy Attic Library 🌧️ Soft Jazz for Study & Work",
+   "status": "published",
+   "youtube_id": "TdaNJ1lyboc",
+   "date": "2026-11-03",
+   "time": "15:43",
+   "views": 5
+  },
+  {
    "id": "od-topic-3",
    "topic": 3,
    "channel": "od",
    "title": "Steven Sasson Built The First Digital Camera. Kodak Hid It.",
-   "status": "ready",
+   "status": "published",
    "video": "videos/03-kodak-digital-camera",
    "youtube_id": "6j3i5Q9h9Sc",
    "has_script": true,
@@ -923,26 +982,34 @@
    ],
    "hd": null,
    "fix_note": null,
-   "date": "2026-11-06",
-   "tentative": true,
+   "date": "2026-11-05",
    "time": "19:00"
+  },
+  {
+   "id": "music-02",
+   "channel": "music",
+   "title": "Rainy Autumn Afternoon at a Bookshop Café ☕ Jazz for Study & Work",
+   "status": "scheduled",
+   "youtube_id": "BlqUS7nnTQ8",
+   "date": "2026-11-08",
+   "time": "16:08"
   },
   {
    "id": "od-topic-5",
    "topic": 5,
    "channel": "od",
-   "title": "How Ray Kroc Took McDonald's From The McDonald Brothers",
-   "status": "production",
+   "title": "How Ray Kroc Took McDonald's From The Brothers For $2.7 Million",
+   "status": "ready",
    "video": "videos/05-kroc-mcdonalds",
-   "youtube_id": null,
+   "youtube_id": "kqJ4sbNMX3o",
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "images",
-    "label": "ממתין להפקה",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 13:00",
-    "attempts": 0
+    "updated": "05.11.2026 21:54",
+    "attempts": 3
    },
    "fixes": [],
    "hd": null,
@@ -952,92 +1019,108 @@
    "time": "19:00"
   },
   {
-   "id": "od-topic-6",
-   "topic": 6,
+   "id": "od-topic-9",
+   "topic": 9,
    "channel": "od",
-   "title": "J.P. Morgan Saved America In 1907 With One Locked Room",
-   "status": "production",
-   "video": "videos/06-morgan-panic-1907",
-   "youtube_id": null,
+   "title": "Bill Gates' $150 Million Deal That Saved Steve Jobs' Apple",
+   "status": "scheduled",
+   "video": "videos/09-apple-microsoft-deal",
+   "youtube_id": "tRI-1rgoeXg",
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "images",
-    "label": "ממתין להפקה",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 13:14",
-    "attempts": 0
+    "updated": "28.10.2026 15:44",
+    "attempts": 2
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-11-13",
-   "tentative": true,
+   "date": "2026-11-12",
    "time": "19:00"
   },
   {
-   "id": "od-topic-7",
-   "topic": 7,
+   "id": "music-03",
+   "channel": "music",
+   "title": "Snowy Cabin by the Fire ❄️ Calm Winter Jazz for Study & Reading",
+   "status": "scheduled",
+   "youtube_id": "Spy99XFd_os",
+   "date": "2026-11-15",
+   "time": "15:26"
+  },
+  {
+   "id": "od-topic-10",
+   "topic": 10,
    "channel": "od",
-   "title": "Yahoo Said No To $44 Billion From Microsoft",
-   "status": "production",
-   "video": "videos/07-yahoo-microsoft-bid",
-   "youtube_id": null,
+   "title": "How Phil Knight Turned an $8,000 Shoe Business Into Nike",
+   "status": "scheduled",
+   "video": "videos/10-knight-nike-bet",
+   "youtube_id": "6o3FSndP4kw",
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "images",
-    "label": "ממתין להפקה",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 13:25",
-    "attempts": 0
+    "updated": "29.10.2026 01:45",
+    "attempts": 1
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
    "date": "2026-11-17",
-   "tentative": true,
    "time": "19:00"
   },
   {
-   "id": "od-topic-8",
-   "topic": 8,
+   "id": "od-topic-6",
+   "topic": 6,
    "channel": "od",
-   "title": "Nokia Owned Half The Phone Market. One Choice Ended It",
-   "status": "production",
-   "video": "videos/08-nokia-burning-platform",
-   "youtube_id": null,
+   "title": "How J.P. Morgan Saved America With $25 Million And A Locked Door",
+   "status": "ready",
+   "video": "videos/06-morgan-panic-1907",
+   "youtube_id": "AgeZ5zMz23M",
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "images",
-    "label": "ממתין להפקה",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 13:31",
-    "attempts": 0
+    "updated": "05.11.2026 21:56",
+    "attempts": 3
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-11-20",
+   "date": "2026-11-19",
    "tentative": true,
    "time": "19:00"
   },
   {
-   "id": "od-topic-9",
-   "topic": 9,
+   "id": "music-04",
+   "channel": "music",
+   "title": "Late Night Jazz Club on a Rainy Night 🎷 Vocal Jazz for Slow Evenings",
+   "status": "scheduled",
+   "youtube_id": "oJiXcwpi80Q",
+   "date": "2026-11-22",
+   "time": "16:28"
+  },
+  {
+   "id": "od-topic-7",
+   "topic": 7,
    "channel": "od",
-   "title": "The $150 Million Deal That Saved Apple From Bankruptcy",
-   "status": "production",
-   "video": "videos/09-apple-microsoft-deal",
-   "youtube_id": null,
+   "title": "Why Yahoo's Jerry Yang Said No To $44.6 Billion From Microsoft",
+   "status": "ready",
+   "video": "videos/07-yahoo-microsoft-bid",
+   "youtube_id": "fZKeZzqlAHw",
    "has_script": true,
    "progress": {
-    "state": "running",
-    "step": "render",
-    "label": "רינדור",
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
     "error": null,
-    "updated": "28.10.2026 13:45",
+    "updated": "05.11.2026 21:58",
     "attempts": 2
    },
    "fixes": [],
@@ -1048,28 +1131,37 @@
    "time": "19:00"
   },
   {
-   "id": "od-topic-10",
-   "topic": 10,
+   "id": "od-topic-8",
+   "topic": 8,
    "channel": "od",
-   "title": "Phil Knight's $8,000 Bet That Became Nike",
+   "title": "Stephen Elop's Bet That Sank Nokia, The World's Biggest Phone Maker",
    "status": "production",
-   "video": "videos/10-knight-nike-bet",
+   "video": "videos/08-nokia-burning-platform",
    "youtube_id": null,
    "has_script": true,
    "progress": {
-    "state": "queued",
-    "step": "images",
-    "label": "ממתין להפקה",
-    "error": null,
-    "updated": "28.10.2026 11:42",
-    "attempts": 0
+    "state": "failed",
+    "step": "upload",
+    "label": "העלאה ליוטיוב",
+    "error": "העלאה ליוטיוב: rsions/3.12/lib/python3.12/urllib/request.py\", line 559, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py\", line 639, in http_error_",
+    "updated": "29.10.2026 00:28",
+    "attempts": 1
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-11-27",
+   "date": "2026-11-26",
    "tentative": true,
    "time": "19:00"
+  },
+  {
+   "id": "music-bestof",
+   "channel": "music",
+   "title": "Best of Long Ears",
+   "status": "planned",
+   "date": "2026-11-29",
+   "time": "15:19",
+   "note": "קומפילציה מטראקים קיימים, בלי קרדיטים"
   },
   {
    "id": "od-topic-11",
@@ -1101,9 +1193,29 @@
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-12-04",
+   "date": "2026-12-03",
    "tentative": true,
    "time": "19:00"
+  },
+  {
+   "id": "music-05",
+   "channel": "music",
+   "title": "Snowy Morning at a Cozy Café ❄️ Warm Jazz for Study & Work",
+   "status": "concept",
+   "youtube_id": null,
+   "date": "2026-12-06",
+   "time": "16:06",
+   "tentative": true,
+   "progress": {
+    "state": null,
+    "label": "26 מתוך 40 טראקים מוכנים",
+    "error": null,
+    "updated": "05.11.2026 22:14"
+   },
+   "has_tracks": true,
+   "warning": "בסצנה עדיין מצוירים אפקטים שהאנימציה תוסיף שוב (falling snowflakes). כדאי לבקש סצנה חדשה או להעלות תמונה משלך.",
+   "summary": "פלייליסט 5 שתכננו ב־03.11: בית קפה בבוקר מושלג, עם מגוון קצבים וצלילים חדשים. 26 טראקים כבר מוכנים, וחסרים הסצנה ו־14 טראקים.",
+   "has_script": true
   },
   {
    "id": "od-topic-13",
@@ -1135,7 +1247,7 @@
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-12-11",
+   "date": "2026-12-10",
    "tentative": true,
    "time": "19:00"
   },
@@ -1169,7 +1281,7 @@
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-12-18",
+   "date": "2026-12-17",
    "tentative": true,
    "time": "19:00"
   },
@@ -1203,7 +1315,7 @@
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2026-12-25",
+   "date": "2026-12-24",
    "tentative": true,
    "time": "19:00"
   },
@@ -1237,224 +1349,8 @@
    "fixes": [],
    "hd": null,
    "fix_note": null,
-   "date": "2027-01-01",
+   "date": "2026-12-31",
    "tentative": true,
-   "time": "19:00"
-  },
-  {
-   "id": "music-1",
-   "channel": "music",
-   "title": "פלייליסט 1",
-   "status": "planned",
-   "date": "2027-01-31",
-   "time": "19:00"
-  },
-  {
-   "id": "music-2",
-   "channel": "music",
-   "title": "פלייליסט 2",
-   "status": "planned",
-   "date": "2027-02-07",
-   "time": "19:00"
-  },
-  {
-   "id": "music-3",
-   "channel": "music",
-   "title": "פלייליסט 3",
-   "status": "planned",
-   "date": "2027-02-14",
-   "time": "19:00"
-  },
-  {
-   "id": "music-4",
-   "channel": "music",
-   "title": "פלייליסט 4",
-   "status": "planned",
-   "date": "2027-02-21",
-   "time": "19:00"
-  },
-  {
-   "id": "music-5",
-   "channel": "music",
-   "title": "פלייליסט 5",
-   "status": "planned",
-   "date": "2027-02-28",
-   "time": "19:00"
-  },
-  {
-   "id": "music-6",
-   "channel": "music",
-   "title": "פלייליסט 6",
-   "status": "planned",
-   "date": "2027-03-07",
-   "time": "19:00"
-  },
-  {
-   "id": "music-7",
-   "channel": "music",
-   "title": "פלייליסט 7",
-   "status": "planned",
-   "date": "2027-03-14",
-   "time": "19:00"
-  },
-  {
-   "id": "music-8",
-   "channel": "music",
-   "title": "פלייליסט 8",
-   "status": "planned",
-   "date": "2027-03-21",
-   "time": "19:00"
-  },
-  {
-   "id": "music-9",
-   "channel": "music",
-   "title": "פלייליסט 9",
-   "status": "planned",
-   "date": "2027-03-28",
-   "time": "19:00"
-  },
-  {
-   "id": "music-10",
-   "channel": "music",
-   "title": "פלייליסט 10",
-   "status": "planned",
-   "date": "2027-04-04",
-   "time": "19:00"
-  },
-  {
-   "id": "music-11",
-   "channel": "music",
-   "title": "פלייליסט 11",
-   "status": "planned",
-   "date": "2027-04-11",
-   "time": "19:00"
-  },
-  {
-   "id": "music-12",
-   "channel": "music",
-   "title": "פלייליסט 12",
-   "status": "planned",
-   "date": "2027-04-18",
-   "time": "19:00"
-  },
-  {
-   "id": "music-13",
-   "channel": "music",
-   "title": "פלייליסט 13",
-   "status": "planned",
-   "date": "2027-04-25",
-   "time": "19:00"
-  },
-  {
-   "id": "music-14",
-   "channel": "music",
-   "title": "פלייליסט 14",
-   "status": "planned",
-   "date": "2027-05-02",
-   "time": "19:00"
-  },
-  {
-   "id": "music-15",
-   "channel": "music",
-   "title": "פלייליסט 15",
-   "status": "planned",
-   "date": "2027-05-09",
-   "time": "19:00"
-  },
-  {
-   "id": "music-16",
-   "channel": "music",
-   "title": "פלייליסט 16",
-   "status": "planned",
-   "date": "2027-05-16",
-   "time": "19:00"
-  },
-  {
-   "id": "music-17",
-   "channel": "music",
-   "title": "פלייליסט 17",
-   "status": "planned",
-   "date": "2027-05-23",
-   "time": "19:00"
-  },
-  {
-   "id": "music-18",
-   "channel": "music",
-   "title": "פלייליסט 18",
-   "status": "planned",
-   "date": "2027-05-30",
-   "time": "19:00"
-  },
-  {
-   "id": "music-19",
-   "channel": "music",
-   "title": "פלייליסט 19",
-   "status": "planned",
-   "date": "2027-06-06",
-   "time": "19:00"
-  },
-  {
-   "id": "music-20",
-   "channel": "music",
-   "title": "פלייליסט 20",
-   "status": "planned",
-   "date": "2027-06-13",
-   "time": "19:00"
-  },
-  {
-   "id": "music-21",
-   "channel": "music",
-   "title": "פלייליסט 21",
-   "status": "planned",
-   "date": "2027-06-20",
-   "time": "19:00"
-  },
-  {
-   "id": "music-22",
-   "channel": "music",
-   "title": "פלייליסט 22",
-   "status": "planned",
-   "date": "2027-06-27",
-   "time": "19:00"
-  },
-  {
-   "id": "music-23",
-   "channel": "music",
-   "title": "פלייליסט 23",
-   "status": "planned",
-   "date": "2027-07-04",
-   "time": "19:00"
-  },
-  {
-   "id": "music-24",
-   "channel": "music",
-   "title": "פלייליסט 24",
-   "status": "planned",
-   "date": "2027-07-11",
-   "time": "19:00"
-  },
-  {
-   "id": "music-25",
-   "channel": "music",
-   "title": "פלייליסט 25",
-   "status": "planned",
-   "date": "2027-07-18",
-   "time": "19:00"
-  },
-  {
-   "id": "music-26",
-   "channel": "music",
-   "title": "פלייליסט 26",
-   "status": "planned",
-   "date": "2027-07-25",
-   "time": "19:00"
-  },
-  {
-   "id": "music-27",
-   "channel": "music",
-   "title": "פלייליסט 27",
-   "status": "planned",
-   "date": "2027-08-01",
    "time": "19:00"
   }
  ],
@@ -1462,14 +1358,24 @@
   "ideas": 10,
   "scripting": 0,
   "text_ready": 0,
-  "production": 6,
-  "ready": 1,
-  "scheduled": 3,
+  "production": 1,
+  "ready": 3,
+  "scheduled": 2,
   "ideas_target": 10,
   "ready_target": 3
  },
  "alerts": [],
  "od_channel_url": "https://www.youtube.com/channel/UCMCPXTsrwFBr1pDF-F17k-Q",
+ "music_quota": {
+  "known": true,
+  "left": 1479,
+  "limit": 461000,
+  "reset": "30.11 23:12",
+  "per_playlist": 92000,
+  "reserved": 32214,
+  "capacity": 0,
+  "max_create": 0
+ },
  "skills": [
   {
    "k": "yt-viral",
