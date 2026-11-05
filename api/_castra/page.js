@@ -280,7 +280,7 @@ border-top:1px dashed var(--line);padding-top:10px;max-height:52vh;overflow:auto
 .mthumbs{display:flex;gap:8px}.mthumbs:empty{display:none}.mthumbs button{border:1px solid var(--line);border-radius:8px;padding:0;background:none;cursor:pointer;overflow:hidden;width:72px;height:72px}
 .mthumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .pvscene{width:100%;height:100%;object-fit:contain;display:block}
-.mlist td{vertical-align:middle}.mlist small{color:var(--ink3)}.mls{white-space:nowrap}
+.mlistbox{margin-top:18px}.mlisttop{display:flex;justify-content:flex-end;margin:12px 0 4px}.mlist td{vertical-align:middle}.mlist small{color:var(--ink3)}.mls{white-space:nowrap}
 .tflag{position:absolute;top:8px;left:8px;font-size:11px;border-radius:6px;padding:1px 7px;background:var(--mag);color:#fff}
 .pvact{display:flex;gap:8px;flex-wrap:wrap}
 .rejbtn{border:1px solid rgba(255,62,200,.5);background:rgba(255,62,200,.08);color:var(--mag);border-radius:9px;padding:6px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
@@ -526,7 +526,7 @@ function renderChannel(d, key) {
 
 <div class="card sec"><div class="launch" data-launch="${c.launch}"><span class="sub">השקה</span><b dir="ltr">${heDate(c.launch)}</b><span class="sub cd"></span></div>
 <div class="note">צפיות ומנויים מגיעים ישירות מיוטיוב ומתעדכנים כל 15 דקות. שעות צפייה והכנסה יופיעו אחרי חיבור YouTube Analytics.</div></div>
-${key === 'music' ? musicPanel(d) + musicList(d) : odPanel(d)}
+${key === 'music' ? musicPanel(d) : odPanel(d)}
 
 <div class="hrow sec" style="margin-top:18px"><h2 style="margin:0"><i></i>גרפים</h2>
 <div class="seg" id="range"><button data-d="7">שבוע</button><button data-d="30" class="on">חודש</button><button data-d="90">3 חודשים</button></div></div>
@@ -534,6 +534,7 @@ ${key === 'music' ? musicPanel(d) + musicList(d) : odPanel(d)}
 <div class="card"><h2>צפיות ביום · בפועל מול יעד</h2><div class="chartbox"><canvas id="c1"></canvas></div></div>
 <div class="card"><h2>מנויים, שעות צפייה והכנסה מצטברים</h2><div class="chartbox"><canvas id="c2"></canvas></div></div>
 </div>
+${key === 'music' ? musicList(d) : ''}
 <footer>CASTRA · SmartApp</footer></div>${(key === 'music' ? musicModal(d) : odModal(d)) + MUSIC_JS}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
@@ -628,10 +629,11 @@ function odModal(d) {
 
 function musicList(d) {
   const rows = (d.schedule || []).filter(s => s.channel === 'music');
-  return `<div class="card sec"><div class="hrow"><h2><i style="background:var(--mag);box-shadow:0 0 10px var(--mag)"></i>התכנים של הערוץ</h2><a class="btn" href="/castra?p=schedule&c=music">ללוח התזמונים</a></div>
+  return `<details class="card sec mlistbox"><summary><h2><i style="background:var(--mag);box-shadow:0 0 10px var(--mag)"></i>התכנים של הערוץ (${rows.length})</h2><span class="chev">▾</span></summary>
+<div class="mlisttop"><a class="btn" href="/castra?p=schedule&c=music">ללוח התזמונים</a></div>
 <table class="mlist"><tbody>${rows.map(s => `<tr><td><span dir="auto">${esc(s.title)}</span>${s.progress && s.progress.label ? `<br><small>${esc(s.progress.label)}</small>` : ''}</td>
 <td class="mls"><span class="ss ${esc(s.status)}">${esc(SLOT_STATUS[s.status] || s.status)}</span></td>
-<td class="n">${s.tentative ? 'משוער ' : ''}${heDate(s.date)}<br><small>${esc(s.time)}</small></td><td class="n">${s.status === 'published' ? fmt(s.views) + ' צפיות' : ''}</td></tr>`).join('')}</tbody></table></div>`;
+<td class="n">${s.tentative ? 'משוער ' : ''}${heDate(s.date)}<br><small>${esc(s.time)}</small></td><td class="n">${s.status === 'published' ? fmt(s.views) + ' צפיות' : ''}</td></tr>`).join('')}</tbody></table></details>`;
 }
 
 const MUSIC_JS = `<script>
