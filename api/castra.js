@@ -140,6 +140,20 @@ module.exports = async (req, res) => {
       return res.end(JSON.stringify({ ok: true, key: refKey }));
     }
 
+    if (form.step === 'od_create') {                // One Decision: a new round starts only from this button
+      if (!validSession(req)) return html(res, 401, 'unauthorized');
+      res.setHeader('Content-Type', 'application/json');
+      const count = parseInt(form.count, 10);
+      if (!(count >= 1 && count <= 5)) { res.statusCode = 400; return res.end(JSON.stringify({ ok: false, error: 'אפשר עד 5 סרטונים בסבב' })); }
+      if ((data.od_round || {}).state === 'running') { res.statusCode = 409; return res.end(JSON.stringify({ ok: false, error: 'סבב קודם עדיין בעבודה' })); }
+      if (!RURL) { res.statusCode = 503; return res.end('{"ok":false,"error":"queue not connected"}'); }
+      const free = await redis('SET', 'castra:od:lock', '1', 'NX', 'EX', '90');
+      if (!free) { res.statusCode = 409; return res.end(JSON.stringify({ ok: false, error: 'הבקשה הקודמת עדיין נקלטת, נסה שוב בעוד דקה' })); }
+      const refs = String(form.refs || '').split(',').filter(k => /^castra:music:ref:[0-9a-f]{24}$/.test(k)).slice(0, 3);
+      await redis('LPUSH', 'castra:od:req', JSON.stringify({ count, brief: String(form.brief || '').trim().slice(0, 4000), refs, ts: Date.now() }));
+      return res.end('{"ok":true}');
+    }
+
     if (form.step === 'music_create') {
       if (!validSession(req)) return html(res, 401, 'unauthorized');
       res.setHeader('Content-Type', 'application/json');

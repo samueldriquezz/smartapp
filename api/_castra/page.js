@@ -267,7 +267,7 @@ border-top:1px dashed var(--line);padding-top:10px;max-height:52vh;overflow:auto
 .ss.fixing{color:var(--mag)}
 .ss.planning{color:var(--amber)}.ss.concept{color:var(--cyan)}.ss.waiting_credits{color:var(--ink2)}.ss.failed{color:var(--mag)}
 .mq .mqtop{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
-.mq h2{margin-bottom:6px}.mqfit{font-size:19px;font-weight:700}
+.note.err{color:var(--mag)}.mq h2{margin-bottom:6px}.mqfit{font-size:19px;font-weight:700}
 .mqgo{border:0;border-radius:12px;padding:12px 22px;font:inherit;font-size:15px;font-weight:700;color:#06070c;background:linear-gradient(90deg,var(--mag),var(--vio));cursor:pointer}
 .mqgo[disabled]{background:rgba(255,255,255,.08);color:var(--ink3);cursor:not-allowed}
 .mcbox{max-width:540px;max-height:92vh;overflow-y:auto}
@@ -526,7 +526,7 @@ function renderChannel(d, key) {
 
 <div class="card sec"><div class="launch" data-launch="${c.launch}"><span class="sub">השקה</span><b dir="ltr">${heDate(c.launch)}</b><span class="sub cd"></span></div>
 <div class="note">צפיות ומנויים מגיעים ישירות מיוטיוב ומתעדכנים כל 15 דקות. שעות צפייה והכנסה יופיעו אחרי חיבור YouTube Analytics.</div></div>
-${key === 'music' ? musicPanel(d) + musicList(d) : ''}
+${key === 'music' ? musicPanel(d) + musicList(d) : odPanel(d)}
 
 <div class="hrow sec" style="margin-top:18px"><h2 style="margin:0"><i></i>גרפים</h2>
 <div class="seg" id="range"><button data-d="7">שבוע</button><button data-d="30" class="on">חודש</button><button data-d="90">3 חודשים</button></div></div>
@@ -534,7 +534,7 @@ ${key === 'music' ? musicPanel(d) + musicList(d) : ''}
 <div class="card"><h2>צפיות ביום · בפועל מול יעד</h2><div class="chartbox"><canvas id="c1"></canvas></div></div>
 <div class="card"><h2>מנויים, שעות צפייה והכנסה מצטברים</h2><div class="chartbox"><canvas id="c2"></canvas></div></div>
 </div>
-<footer>CASTRA · SmartApp</footer></div>${key === 'music' ? musicModal(d) + MUSIC_JS : ''}
+<footer>CASTRA · SmartApp</footer></div>${(key === 'music' ? musicModal(d) : odModal(d)) + MUSIC_JS}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 (function(){
@@ -592,14 +592,38 @@ ${q.reserved ? `<div class="note" style="margin:6px 0 0">העבודה שכבר �
 function musicModal(d) {
   const q = d.music_quota || {}, max = q.max_create || 0;
   const options = Array.from({ length: max }, (_, i) => `<option value="${i + 1}">${i ? `${i + 1} פלייליסטים` : 'פלייליסט אחד'}</option>`).join('');
-  return `<div class="modal" id="mcm" hidden><div class="mbox mcbox" role="dialog" aria-modal="true" aria-labelledby="mct">
+  return `<div class="modal cmodal" id="mcm" data-step="music_create" data-opener="mcreate" hidden><div class="mbox mcbox" role="dialog" aria-modal="true" aria-labelledby="mct">
 <button class="x mclose" title="סגירה">✕</button><h3 id="mct">יצירת תוכן חדש ל־Long Ears</h3>
-<label class="mlab">כמה פלייליסטים בסבב הזה?${max > 1 ? `<select id="mcn">${options}</select>` : `<input type="hidden" id="mcn" value="1"><span class="mone">פלייליסט אחד${q.capacity ? ', זה מה שנכנס במכסה' : ', המוזיקה תחכה לחידוש המכסה'}</span>`}</label>
+<label class="mlab">כמה פלייליסטים בסבב הזה?${max > 1 ? `<select class="cmn">${options}</select>` : `<input type="hidden" class="cmn" value="1"><span class="mone">פלייליסט אחד${q.capacity ? ', זה מה שנכנס במכסה' : ', המוזיקה תחכה לחידוש המכסה'}</span>`}</label>
 <label class="mlab">יש בקשות, דגשים או רפרנסים מיוחדים לסבב הזה?
-<textarea id="mcb" dir="auto" maxlength="4000" placeholder="למשל: אווירה של בית קפה בפריז באביב, יותר אקורדיון וכינור, ושיהיה קצבי יותר. אפשר גם להדביק קישורים. אם אין, משאירים ריק."></textarea></label>
-<div class="mlab">תמונות רפרנס (עד 3, לא חובה)<label class="btn mfile" id="mcpick">בחירת תמונות<input type="file" id="mcf" accept="image/*" multiple hidden></label><div class="mthumbs" id="mct2"></div></div>
+<textarea class="cmb" dir="auto" maxlength="4000" placeholder="למשל: אווירה של בית קפה בפריז באביב, יותר אקורדיון וכינור, ושיהיה קצבי יותר. אפשר גם להדביק קישורים. אם אין, משאירים ריק."></textarea></label>
+<div class="mlab">תמונות רפרנס (עד 3, לא חובה)<label class="btn mfile">בחירת תמונות<input type="file" class="cmf" accept="image/*" multiple hidden></label><div class="mthumbs cmt"></div></div>
 <p class="note" style="margin:0">קודם תקבל קונספט, רשימת טראקים וסצנה לאישור. קרדיטים של מוזיקה יורדים רק אחרי שתאשר.</p>
-<button class="mqgo" id="mcs">התחלה</button><div class="mdone" id="mcd" hidden></div></div></div>`;
+<button class="mqgo cms">התחלה</button><div class="mdone cmd" hidden></div></div></div>`;
+}
+
+function odPanel(d) {
+  const r = d.od_round || {}, pc = d.pipeline || {};
+  const running = r.state === 'running';
+  const line = running ? `הסבב מ־${esc(r.at)} בעבודה: Claude בודק נושאים לפי הדגשים שלך.`
+    : r.state === 'failed' ? `הסבב האחרון נכשל${r.error ? `: ${esc(r.error)}` : ''}. אפשר לנסות שוב.`
+    : r.state === 'done' ? `הסבב האחרון הסתיים. ההצעות מסומנות בלוח ומחכות לאישור הנושא שלך.`
+    : 'שום סרטון חדש לא מתחיל לבד. סבב מתחיל רק כשלוחצים כאן.';
+  return `<div class="card mq sec"><div class="mqtop"><div><h2><i></i>יצירת תוכן · One Decision</h2>
+<div class="mqfit">${fmt(pc.ready)} מוכנים לאישור · ${fmt(pc.production)} בהפקה</div><div class="note${r.state === 'failed' ? ' err' : ''}" style="margin:2px 0 0">${line}</div></div>
+<button class="mqgo" id="ocreate"${running ? ' disabled' : ''}>יצירת תוכן חדש</button></div></div>`;
+}
+
+function odModal(d) {
+  const options = [1, 2, 3, 4, 5].map(n => `<option value="${n}">${n === 1 ? 'סרטון אחד' : `${n} סרטונים`}</option>`).join('');
+  return `<div class="modal cmodal" id="ocm" data-step="od_create" data-opener="ocreate" hidden><div class="mbox mcbox" role="dialog" aria-modal="true" aria-labelledby="oct">
+<button class="x mclose" title="סגירה">✕</button><h3 id="oct">סבב חדש ל־One Decision</h3>
+<label class="mlab">כמה סרטונים בסבב הזה?<select class="cmn">${options}</select></label>
+<label class="mlab">יש בקשות, דגשים או רפרנסים מיוחדים לסבב הזה?
+<textarea class="cmb" dir="auto" maxlength="4000" placeholder="למשל: רק סיפורי נפילה של חברות טכנולוגיה, טון יותר דרמטי בפתיחה, תמונות כהות יותר. אפשר גם להדביק קישורים לסרטונים שאהבת. אם אין, משאירים ריק."></textarea></label>
+<div class="mlab">תמונות רפרנס (עד 3, לא חובה)<label class="btn mfile">בחירת תמונות<input type="file" class="cmf" accept="image/*" multiple hidden></label><div class="mthumbs cmt"></div></div>
+<p class="note" style="margin:0">קודם תקבל הצעות לנושאים לאישור. אחרי שתאשר נושא, הדגשים ילוו אותו בתסריט, בוויזואל ובכותרת, והסרטון יחזור אליך לאישור פרסום. כל סרטון עולה כ־$1.76 בתמונות.</p>
+<button class="mqgo cms">התחלה</button><div class="mdone cmd" hidden></div></div></div>`;
 }
 
 function musicList(d) {
@@ -621,20 +645,22 @@ const MUSIC_JS = `<script>
       fetch('/castra',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({step:'music_ref',data:b64})})
         .then(function(r){return r.json()}).then(function(j){j.ok?ok(j.key):no(new Error(j.error||'ההעלאה נכשלה'))}).catch(function(){no(new Error('ההעלאה נכשלה'))});};
     img.src=u;});};
-  var open=document.getElementById('mcreate'),m=document.getElementById('mcm');if(!m)return;document.body.appendChild(m);
-  var files=[],th=document.getElementById('mct2'),done=document.getElementById('mcd'),send=document.getElementById('mcs');
-  function paint(){th.innerHTML='';files.forEach(function(f,i){var w=document.createElement('button');w.type='button';w.title='הסרה';var im=new Image();im.src=URL.createObjectURL(f);w.appendChild(im);
-    w.onclick=function(){files.splice(i,1);paint()};th.appendChild(w)});}
-  if(open)open.onclick=function(){m.hidden=false;document.getElementById('mcb').focus()};
-  m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('mclose'))m.hidden=true});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')m.hidden=true});
-  document.getElementById('mcf').onchange=function(){files=files.concat([].slice.call(this.files)).slice(0,3);this.value='';paint()};
-  send.onclick=function(){send.disabled=true;done.hidden=true;send.textContent=files.length?'מעלה תמונות...':'שולח...';
-    Promise.all(files.map(function(f){return window.castraUpload(f,1024,.8)})).then(function(keys){
-      return fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step=music_create&count='+encodeURIComponent(document.getElementById('mcn').value)+'&brief='+encodeURIComponent(document.getElementById('mcb').value)+'&refs='+encodeURIComponent(keys.join(','))}).then(function(r){return r.json()});
-    }).then(function(j){if(!j.ok)throw new Error(j.error||'השליחה נכשלה');
-      done.textContent='נשלח. הקונספט יופיע בלוח התזמונים בתוך כמה דקות, ושם תוכל לאשר אותו.';done.hidden=false;send.textContent='נשלח';if(open)open.disabled=true;
-    }).catch(function(e){done.textContent=String(e.message||e);done.hidden=false;send.disabled=false;send.textContent='התחלה'});};
+  document.querySelectorAll('.cmodal').forEach(function(m){
+    var open=document.getElementById(m.dataset.opener);document.body.appendChild(m);
+    var files=[],th=m.querySelector('.cmt'),done=m.querySelector('.cmd'),send=m.querySelector('.cms'),brief=m.querySelector('.cmb');
+    function paint(){th.innerHTML='';files.forEach(function(f,i){var w=document.createElement('button');w.type='button';w.title='הסרה';var im=new Image();im.src=URL.createObjectURL(f);w.appendChild(im);
+      w.onclick=function(){files.splice(i,1);paint()};th.appendChild(w)});}
+    if(open)open.onclick=function(){m.hidden=false;brief.focus()};
+    m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('mclose'))m.hidden=true});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')m.hidden=true});
+    m.querySelector('.cmf').onchange=function(){files=files.concat([].slice.call(this.files)).slice(0,3);this.value='';paint()};
+    send.onclick=function(){send.disabled=true;done.hidden=true;send.textContent=files.length?'מעלה תמונות...':'שולח...';
+      Promise.all(files.map(function(f){return window.castraUpload(f,1024,.8)})).then(function(keys){
+        return fetch('/castra',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'step='+m.dataset.step+'&count='+encodeURIComponent(m.querySelector('.cmn').value)+'&brief='+encodeURIComponent(brief.value)+'&refs='+encodeURIComponent(keys.join(','))}).then(function(r){return r.json()});
+      }).then(function(j){if(!j.ok)throw new Error(j.error||'השליחה נכשלה');
+        done.textContent='נשלח. ההצעה תופיע בלוח התזמונים בתוך כמה דקות, ושם תוכל לאשר אותה.';done.hidden=false;send.textContent='נשלח';if(open)open.disabled=true;
+      }).catch(function(e){done.textContent=String(e.message||e);done.hidden=false;send.disabled=false;send.textContent='התחלה'});};
+  });
 })();
 </script>`;
 
@@ -668,11 +694,12 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
                    fail: p.state === 'failed', video: !!s.video, fixes: s.fixes || [], note: s.fix_note || '' };
     if (s.channel === 'music') Object.assign(info, { music: true, prog: p.error ? `${p.label || ''}: ${p.error}` : (p.label || s.note || ''), fail: p.state === 'failed',
       warning: s.warning || '', summary: s.summary || '', hasTracks: !!s.has_tracks, tentative: !!s.tentative });
+    if (s.status === 'idea' && s.why) info.prog = s.why;
     if (fixing) info.prog = p.state === 'failed' ? 'התיקון נכשל: ' + (p.error || '') : (p.state === 'running' || p.state === 'fixing' ? 'מתקן עכשיו: ' + (p.label || '') : 'התיקון בתור, יתחיל בדקות הקרובות');
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
 <div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${s.channel === 'music' ? muProg : prog}
 <div class="thover"><button class="view">צפייה</button>${s.status === 'idea' ? `<button class="tok" data-id="${esc(s.id)}">אישור נושא</button>` : ''}${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
-${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}${s.hd ? `<span class="tflag ${s.hd.ok ? 'hdok' : 'hdbad'}">${s.hd.ok ? 'HD מוכן' : 'HD בעיבוד'}</span>` : ''}</div>
+${s.status === 'idea' && s.round ? '<span class="tflag">מהסבב שלך</span>' : ''}${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}${s.hd ? `<span class="tflag ${s.hd.ok ? 'hdok' : 'hdbad'}">${s.hd.ok ? 'HD מוכן' : 'HD בעיבוד'}</span>` : ''}</div>
 <div class="ttitle">${esc(s.title)}</div>
 <div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}${s.status === 'published' && s.views != null ? ` · ${fmt(s.views)} צפיות` : ''}</div></div>`;
   };
@@ -682,17 +709,17 @@ ${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן
   return `${HEAD('CASTRA · תזמונים')}<body>${BG}<div class="wrap">
 <header><div class="meta"><span>עודכן ${esc(d.updated)}</span><a class="btn" href="/castra?logout=1">יציאה</a></div>
 <div class="brand"><div class="logo">CASTRA</div><div class="sub">לוח הפרסומים של שני הערוצים</div></div></header>${NAV('schedule')}${(d.alerts || []).map(a => `<div class="hdalert"><b>⚠ HD עדיין לא מוכן:</b> <span dir="ltr">${esc(a.title)}</span> עולה לאוויר ב־${heDate(a.date)} ${esc(a.time)}. ${esc(a.reason)}. אם זה לא יסתדר עד אז, הצופים הראשונים יראו איכות נמוכה: אפשר לדחות את הפרסום מ־YouTube Studio.</div>`).join('')}
-${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>תזמונים</h2>
+${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>תזמונים</h2>
 <div class="seg" id="chf"><button data-c="all" class="on">הכול</button><button data-c="od">One Decision</button><button data-c="music">Long Ears</button></div></div>
 <div class="note" style="margin:0 0 6px">One Decision: ימי שלישי וחמישי, בסביבות 19:00. Long Ears: ימי ראשון, בסביבות 16:00. סרטון חדש עולה לאוויר רק אחרי אישור שלך.</div>
-<div class="flow"><div><b>${pc.ideas || 0}<small>/10</small></b><span>רעיונות ממתינים לאישור נושא</span></div>
+<div class="flow"><div><b>${pc.ideas || 0}</b><span>רעיונות ממתינים לאישור נושא</span></div>
 <div><b>${(pc.scripting || 0) + (pc.text_ready || 0)}</b><span>נושאים מאושרים · תסריט</span></div>
 <div><b>${pc.production || 0}</b><span>בהפקה</span></div>
-<div class="hi"><b>${pc.ready || 0}<small>/3</small></b><span>מוכנים וממתינים לאישור פרסום</span></div>
+<div class="hi"><b>${pc.ready || 0}</b><span>מוכנים וממתינים לאישור פרסום</span></div>
 <div><b>${pc.scheduled || 0}</b><span>מתוזמנים</span></div></div>
-<div class="auto-note">התהליך ב־One Decision: רעיון ← אישור נושא שלך ← תסריט ← הפקה (קריינות, תמונות, רינדור, העלאה) ← אישור פרסום שלך ← תזמון. המערכת שומרת 10 רעיונות קדימה ו־3 סרטונים מוכנים לאישור. התאריכים זזים לפי ההתקדמות, חוץ ממה שכבר תוזמן.${producing ? ` עכשיו בהפקה: <b dir="ltr">${esc(producing.title)}</b> (${esc(producing.progress.label || '')}).` : ''}</div>
+<div class="auto-note">התהליך ב־One Decision: רעיון ← אישור נושא שלך ← תסריט ← הפקה (קריינות, תמונות, רינדור, העלאה) ← אישור פרסום שלך ← תזמון. סבב חדש מתחיל רק כשלוחצים על יצירת תוכן חדש. התאריכים זזים לפי ההתקדמות, חוץ ממה שכבר תוזמן.${producing ? ` עכשיו בהפקה: <b dir="ltr">${esc(producing.title)}</b> (${esc(producing.progress.label || '')}).` : ''}</div>
 <div class="sched">${rows || '<div class="empty">אין פרסומים מתוכננים</div>'}</div>
-</div><footer>CASTRA · SmartApp</footer></div>${musicModal(d)}
+</div><footer>CASTRA · SmartApp</footer></div>${odModal(d)}${musicModal(d)}
 <div class="pv" id="pv" hidden><div class="pvbox" role="dialog" aria-modal="true">
 <button class="pvclose" aria-label="סגירה">✕</button>
 <div class="pvmedia"><div class="frame" id="pvframe"></div></div>
@@ -773,7 +800,7 @@ ${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>תזמוני�
     var p=document.getElementById('pvp');p.textContent=i.status==='scheduled'?'מתוזמן: הגרסה הציבורית תעלה לאוויר לבד ב־'+i.date+' '+i.time+'. כאן מתנגנת גרסת התצוגה המקדימה (לא רשומה).':i.prog;p.className='pvprog'+(i.fail?' fail':'');
     fr.innerHTML=i.yt?'<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(i.yt)+'?rel=0&modestbranding=1&vq=hd1080&hd=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
       :i.music&&i.th?'<img class="pvscene" alt="" src="'+i.th+'">'
-      :'<div class="blank">'+(i.music?(i.status==='planned'?'קומפילציה מטראקים קיימים, בלי קרדיטים. עדיין לא נבנתה.':'הפלייליסט בהכנה, הסצנה תופיע כאן.'):i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל כשיתפנה מקום ב־3 הסרטונים המוכנים.')+'</div>';
+      :'<div class="blank">'+(i.music?(i.status==='planned'?'קומפילציה מטראקים קיימים, בלי קרדיטים. עדיין לא נבנתה.':'הפלייליסט בהכנה, הסצנה תופיע כאן.'):i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל בקרוב.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     document.getElementById('mxb').hidden=true;document.getElementById('mxt').value='';document.getElementById('mxm').textContent='';
     if(i.music){var ex=[i.summary,i.warning?'⚠ '+i.warning:'',i.prog].filter(Boolean).join('\n');p.textContent=i.status==='scheduled'?p.textContent:ex;p.style.whiteSpace='pre-line';
