@@ -805,7 +805,7 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
       :'<div class="blank">'+(i.music?(i.status==='planned'?'קומפילציה מטראקים קיימים, בלי קרדיטים. עדיין לא נבנתה.':'הפלייליסט בהכנה, הסצנה תופיע כאן.'):i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל בקרוב.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     document.getElementById('mxb').hidden=true;document.getElementById('mxt').value='';document.getElementById('mxm').textContent='';
-    if(i.music){var ex=[i.summary,i.warning?'⚠ '+i.warning:'',i.prog].filter(Boolean).join('\n');p.textContent=i.status==='scheduled'?p.textContent:ex;p.style.whiteSpace='pre-line';
+    if(i.music){var ex=[i.summary,i.warning?'⚠ '+i.warning:'',i.prog].filter(Boolean).join('\\n');p.textContent=i.status==='scheduled'?p.textContent:ex;p.style.whiteSpace='pre-line';
       if(i.tentative)document.querySelector('#pvm span:last-child').textContent='מועד משוער: '+i.date+' · יום '+i.dow+' · '+i.time;
       musicActions(i,a);}
     if(i.status==='idea'){var tb=document.createElement('button');tb.className='apr';tb.textContent='אישור נושא';

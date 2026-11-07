@@ -1,6 +1,6 @@
 {
- "updated": "05.11.2026 22:54",
- "today": "2026-11-05",
+ "updated": "07.11.2026 17:22",
+ "today": "2026-11-07",
  "od_launch": "2026-10-28",
  "month_index": 2,
  "channels": [
@@ -15,12 +15,22 @@
    "status": "",
    "subs": 0,
    "hours": 0,
-   "views30": 20,
+   "views30": 27,
    "videos": 4,
    "series": [
     {
      "date": "2026-11-05",
      "views": 20,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-06",
+     "views": 6,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-07",
+     "views": 1,
      "subs": 0
     }
    ]
@@ -42,6 +52,16 @@
     {
      "date": "2026-11-05",
      "views": 5,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-06",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-07",
+     "views": 0,
      "subs": 0
     }
    ]
