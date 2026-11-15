@@ -227,6 +227,17 @@ module.exports = async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'image/jpeg', 'Cache-Control': 'private, max-age=86400' });
     return res.end(Buffer.from(b64, 'base64'));
   }
+  const aid = url.searchParams.get('audio');
+  if (aid) {                                       // a Long Ears concept test song, stored in chunks by dashboard_sync
+    const i = String(Number(url.searchParams.get('i')) || 0);
+    const ok = (data.schedule || []).some(s => s.id === aid && (s.test || []).length > Number(i));
+    const n = ok ? Number(await redis('GET', `castra:audn:${aid}:${i}`)) : 0;
+    const parts = n ? await redis('MGET', ...Array.from({ length: n }, (_, k) => `castra:aud:${aid}:${i}:${k}`)) : [];
+    if (!n || parts.some(x => !x)) { res.writeHead(404); return res.end(); }
+    const buf = Buffer.concat(parts.map(x => Buffer.from(x, 'base64')));
+    res.writeHead(200, { 'Content-Type': 'audio/mpeg', 'Content-Length': buf.length, 'Accept-Ranges': 'none', 'Cache-Control': 'private, max-age=86400' });
+    return res.end(buf);
+  }
   const sid = url.searchParams.get('script');
   if (sid) {                                       // a slot's script, loaded when its preview opens
     const ok = (data.schedule || []).some(s => s.id === sid);

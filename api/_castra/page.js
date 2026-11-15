@@ -132,6 +132,10 @@ const CSS2 = `
 .tflag.hdok{background:rgba(6,7,12,.75);color:var(--lime);border:1px solid var(--lime)}.tflag.hdbad{background:rgba(6,7,12,.75);color:var(--mag);border:1px solid var(--mag)}
 .sched-card{display:flex!important;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
 .sched-card b{font-size:18px;color:var(--lime)}
+.tplist{border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;background:rgba(255,255,255,.03)}
+.tplist b{display:block;margin-bottom:4px}.tplist small{display:block;color:var(--ink2);margin-bottom:10px;line-height:1.5}
+.tplist .tsong{margin-top:10px}.tplist .tsong div{font-size:14px;margin-bottom:4px}.tplist .tsong span{color:var(--ink2);font-size:12px}
+.tplist audio{width:100%;height:36px}
 .sched-card img.sthumb{width:min(420px,90%);border-radius:12px;border:1px solid var(--line)}
 .sched-card span{color:var(--ink2);font-size:14px;max-width:420px;line-height:1.6}
 .sched-card a.studio{color:#06070c;background:linear-gradient(90deg,var(--cyan),var(--lime));border-radius:10px;padding:9px 16px;font-weight:700;text-decoration:none}
@@ -669,7 +673,7 @@ const MUSIC_JS = `<script>
 const SLOT_STATUS = { planned: 'מתוכנן', idea: 'רעיון · ממתין לאישור נושא', scripting: 'נושא אושר · כותב תסריט',
                       text_ready: 'תסריט מוכן · ממתין להפקה', production: 'בהפקה', ready: 'מוכן · ממתין לאישור פרסום',
                       approved: 'אושר · מתוזמן בקרוב', scheduled: 'מתוזמן ביוטיוב', published: 'פורסם', fixing: 'בתיקון',
-                      planning: 'מכין קונספט', concept: 'קונספט · ממתין לאישור שלך', waiting_credits: 'ממתין למכסה', failed: 'נכשל' };
+                      planning: 'מכין קונספט', concept: 'פלייליסט בדיקה · ממתין לאישור שלך', waiting_credits: 'ממתין למכסה', failed: 'נכשל' };
 const CAN_FIX = ['text_ready', 'ready', 'approved', 'scheduled'];
 const DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
@@ -695,7 +699,8 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
                    yt: s.youtube_id || '', th: s.thumb ? `/castra?thumb=${encodeURIComponent(s.id)}&v=${s.thumb}` : '', script: !!s.has_script, prog: s.status === 'production' ? (p.state === 'failed' ? 'נכשל: ' + (p.error || p.label || '') : (p.state === 'running' ? 'בהפקה עכשיו: ' + (p.label || '') : 'הסרטון מרונדר וממתין להעלאה')) : '',
                    fail: p.state === 'failed', video: !!s.video, fixes: s.fixes || [], note: s.fix_note || '' };
     if (s.channel === 'music') Object.assign(info, { music: true, prog: p.error ? `${p.label || ''}: ${p.error}` : (p.label || s.note || ''), fail: p.state === 'failed',
-      warning: s.warning || '', summary: s.summary || '', hasTracks: !!s.has_tracks, tentative: !!s.tentative });
+      warning: s.warning || '', summary: s.summary || '', hasTracks: !!s.has_tracks, tentative: !!s.tentative,
+      test: (s.test || []).map(t => ({ i: t.i, v: t.v, title: t.title, bpm: t.bpm, ens: t.ensemble })), testRound: s.test_round || 1 });
     if (s.status === 'idea' && s.why) info.prog = s.why;
     if (fixing) info.prog = p.state === 'failed' ? 'התיקון נכשל: ' + (p.error || '') : (p.state === 'running' || p.state === 'fixing' ? 'מתקן עכשיו: ' + (p.label || '') : 'התיקון בתור, יתחיל בדקות הקרובות');
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
@@ -726,14 +731,14 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
 <button class="pvclose" aria-label="סגירה">✕</button>
 <div class="pvmedia"><div class="frame" id="pvframe"></div></div>
 <div class="pvside"><h3 id="pvt"></h3><div class="pvmeta" id="pvm"></div><div class="pvprog" id="pvp"></div>
-<div class="pvact" id="pva"></div>
+<div class="tplist" id="pvtest" hidden></div><div class="pvact" id="pva"></div>
 <div class="fixbox" id="fxb" hidden><b>מה לתקן?</b>
 <textarea id="fxt" dir="auto" placeholder="למשל: הכותרת חלשה, תדגיש את הסכום. בדקה 3:10 התמונה לא מתאימה, צריך מפה של קליבלנד. הקריינות בפתיחה מהירה מדי."></textarea>
 <p>התיקון יוצא לדרך מיד: המערכת מתקנת לפי מה שכתבת (תסריט, תמונות, כותרת, תמונה ממוזערת), מרנדרת ומעלה מחדש אם צריך, והסרטון חוזר לכאן לאישור שלך באותו מועד.</p>
 <div class="pvact"><button class="rejbtn" id="fxs">שליחה לתיקון</button><button class="btn" id="fxc" style="background:none;cursor:pointer;font:inherit">ביטול</button></div></div>
 <div class="fixbox" id="mxb" hidden><b>מה לשנות?</b>
 <textarea id="mxt" dir="auto" placeholder="למשל: הסצנה חשוכה מדי, אני רוצה בוקר. או: יותר טראקים קצביים ופחות פסנתר."></textarea>
-<p>שינוי סצנה מייצר רק תמונה חדשה. קונספט חדש כותב מחדש גם את רשימת הטראקים. עד האישור לא יורדים קרדיטים של מוזיקה.</p>
+<p>שינוי סצנה מייצר רק תמונה חדשה ושומר את שירי הבדיקה. קונספט חדש כותב מחדש את רשימת הטראקים ומכין פלייליסט בדיקה חדש עם 2 שירים, שיחזור לכאן לאישור שלך.</p>
 <div class="pvact"><button class="rejbtn" id="mxc">קונספט חדש</button><button class="rejbtn" id="mxs">סצנה חדשה</button>
 <label class="btn mfile">העלאת תמונה שלי<input type="file" id="mxf" accept="image/*" hidden></label></div><div class="pvprog" id="mxm"></div></div>
 <div class="fixhist" id="pvh"></div><div class="pvscript" id="pvs"></div></div></div></div>
@@ -778,7 +783,7 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
     var say=function(t){a.innerHTML='';var s=document.createElement('span');s.className='ss ready';s.textContent=t;a.appendChild(s);document.getElementById('mxb').hidden=true;};
     function add(label,cls,fn){var b=document.createElement('button');b.className=cls;b.textContent=label;b.onclick=function(){fn(b)};a.appendChild(b);return b;}
     if(i.status==='concept'){
-      add('אישור והתחלת הפקת המוזיקה','apr',function(b){act('approve',i.id,'',b,function(ok){if(ok){say('אושר. ההפקה מתחילה בדקה הקרובה, והסרטון יחזור לכאן לאישור פרסום');markStatus(i.id,'production','בהפקה')}else b.textContent='הפעולה נכשלה, נסה שוב'})});
+      add('אישור ויציאה להפקה מלאה','apr',function(b){act('approve',i.id,'',b,function(ok){if(ok){say('אושר. ההפקה המלאה מתחילה בדקה הקרובה, שני שירי הבדיקה נשארים בפלייליסט, והסרטון יחזור לכאן לאישור פרסום');markStatus(i.id,'production','בהפקה')}else b.textContent='הפעולה נכשלה, נסה שוב'})});
       add('בקשת שינוי','rejbtn',function(){document.getElementById('mxb').hidden=false;document.getElementById('mxt').focus()});}
     if(i.status==='failed'){
       add('ניסיון נוסף','apr',function(b){act('retry',i.id,'',b,function(ok){if(ok){say('נשלח לניסיון נוסף');markStatus(i.id,'production','בהפקה')}else b.textContent='הפעולה נכשלה, נסה שוב'})});}
@@ -794,7 +799,7 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
       window.castraUpload(f,1920,.88).then(function(k){act('own_scene',i.id,'&key='+encodeURIComponent(k),null,sent)}).catch(function(e){m.textContent=String(e.message||e)})};
   }
   var fr=document.getElementById('pvframe');
-  function close(){pv.hidden=true;fr.innerHTML='';}
+  function close(){pv.hidden=true;fr.innerHTML='';document.querySelectorAll('#pvtest audio').forEach(function(a){a.pause()});}
   function open(i){
     document.getElementById('pvt').textContent=i.title;
     document.getElementById('pvm').innerHTML='<span class="ss '+i.status+'"></span><span></span>';
@@ -805,6 +810,16 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
       :'<div class="blank">'+(i.music?(i.status==='planned'?'קומפילציה מטראקים קיימים, בלי קרדיטים. עדיין לא נבנתה.':'הפלייליסט בהכנה, הסצנה תופיע כאן.'):i.status==='production'?'הסרטון בהפקה. כשההפקה תסתיים הוא יופיע כאן לצפייה.':i.status==='idea'?'רעיון שממתין לאישור הנושא שלך. אחרי האישור המערכת כותבת תסריט.':i.status==='scripting'?'הנושא אושר. התסריט נכתב עכשיו.':'התסריט מוכן. ההפקה תתחיל בקרוב.')+'</div>';
     var a=document.getElementById('pva');a.innerHTML='';fxb.hidden=true;fxt.value='';cur=i;
     document.getElementById('mxb').hidden=true;document.getElementById('mxt').value='';document.getElementById('mxm').textContent='';
+    var tl=document.getElementById('pvtest');tl.innerHTML='';tl.hidden=true;
+    if(i.music&&i.status==='concept'&&i.test&&i.test.length){tl.hidden=false;
+      var hb=document.createElement('b');hb.textContent='פלייליסט בדיקת קונספט'+(i.testRound>1?' · סבב '+i.testRound:'');tl.appendChild(hb);
+      var hs=document.createElement('small');hs.textContent=i.test.length+' שירים מתוך התכנון, עם הסצנה. אישור יוצא להפקה מלאה ומשאיר אותם בפלייליסט. בקשת שינוי מכינה פלייליסט בדיקה חדש. הבדיקה עצמה לא מתוזמנת ולא עולה ליוטיוב.';tl.appendChild(hs);
+      var players=[];i.test.forEach(function(t,k){var d=document.createElement('div');d.className='tsong';
+        var tt=document.createElement('div');tt.textContent=(k+1)+'. '+t.title+' ';var sp=document.createElement('span');sp.textContent=[t.ens,t.bpm?t.bpm+' BPM':''].filter(Boolean).join(' · ');tt.appendChild(sp);
+        var au=document.createElement('audio');au.controls=true;au.preload='none';au.src='/castra?audio='+encodeURIComponent(i.id)+'&i='+t.i+'&v='+encodeURIComponent(t.v||'');
+        d.appendChild(tt);d.appendChild(au);tl.appendChild(d);players.push(au);});
+      players.forEach(function(au,k){au.addEventListener('play',function(){players.forEach(function(o){if(o!==au)o.pause()})});
+        au.addEventListener('ended',function(){if(players[k+1])players[k+1].play()});});}
     if(i.music){var ex=[i.summary,i.warning?'⚠ '+i.warning:'',i.prog].filter(Boolean).join('\\n');p.textContent=i.status==='scheduled'?p.textContent:ex;p.style.whiteSpace='pre-line';
       if(i.tentative)document.querySelector('#pvm span:last-child').textContent='מועד משוער: '+i.date+' · יום '+i.dow+' · '+i.time;
       musicActions(i,a);}

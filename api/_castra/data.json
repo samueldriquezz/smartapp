@@ -1,6 +1,6 @@
 {
- "updated": "07.11.2026 17:22",
- "today": "2026-11-07",
+ "updated": "15.11.2026 23:57",
+ "today": "2026-11-15",
  "od_launch": "2026-10-28",
  "month_index": 2,
  "channels": [
@@ -13,10 +13,10 @@
    "rpm": "$5 עד $9",
    "color": "cyan",
    "status": "",
-   "subs": 0,
+   "subs": 1,
    "hours": 0,
-   "views30": 27,
-   "videos": 4,
+   "views30": 53,
+   "videos": 6,
    "series": [
     {
      "date": "2026-11-05",
@@ -30,6 +30,46 @@
     },
     {
      "date": "2026-11-07",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-08",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-09",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-10",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-11",
+     "views": 11,
+     "subs": 1
+    },
+    {
+     "date": "2026-11-12",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-13",
+     "views": 6,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-14",
+     "views": 6,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-15",
      "views": 1,
      "subs": 0
     }
@@ -46,8 +86,8 @@
    "status": "",
    "subs": 0,
    "hours": 0,
-   "views30": 5,
-   "videos": 1,
+   "views30": 6,
+   "videos": 3,
    "series": [
     {
      "date": "2026-11-05",
@@ -61,6 +101,46 @@
     },
     {
      "date": "2026-11-07",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-08",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-09",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-10",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-11",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-12",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-13",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-14",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-15",
      "views": 0,
      "subs": 0
     }
@@ -284,11 +364,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -328,11 +408,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -372,11 +452,11 @@
     },
     {
      "k": "אישור פרסום",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -412,15 +492,15 @@
     },
     {
      "k": "העלאה ליוטיוב",
-     "s": "active"
+     "s": "done"
     },
     {
      "k": "אישור פרסום",
-     "s": "todo"
+     "s": "done"
     },
     {
      "k": "מתוזמן",
-     "s": "todo"
+     "s": "done"
     }
    ]
   },
@@ -1017,17 +1097,18 @@
    "id": "music-02",
    "channel": "music",
    "title": "Rainy Autumn Afternoon at a Bookshop Café ☕ Jazz for Study & Work",
-   "status": "scheduled",
+   "status": "published",
    "youtube_id": "BlqUS7nnTQ8",
    "date": "2026-11-08",
-   "time": "16:08"
+   "time": "16:08",
+   "views": 1
   },
   {
    "id": "od-topic-5",
    "topic": 5,
    "channel": "od",
    "title": "How Ray Kroc Took McDonald's From The Brothers For $2.7 Million",
-   "status": "ready",
+   "status": "published",
    "video": "videos/05-kroc-mcdonalds",
    "youtube_id": "kqJ4sbNMX3o",
    "has_script": true,
@@ -1045,7 +1126,6 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-10",
-   "tentative": true,
    "time": "19:00"
   },
   {
@@ -1053,7 +1133,7 @@
    "topic": 9,
    "channel": "od",
    "title": "Bill Gates' $150 Million Deal That Saved Steve Jobs' Apple",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/09-apple-microsoft-deal",
    "youtube_id": "tRI-1rgoeXg",
    "has_script": true,
@@ -1077,10 +1157,11 @@
    "id": "music-03",
    "channel": "music",
    "title": "Snowy Cabin by the Fire ❄️ Calm Winter Jazz for Study & Reading",
-   "status": "scheduled",
+   "status": "published",
    "youtube_id": "Spy99XFd_os",
    "date": "2026-11-15",
-   "time": "15:26"
+   "time": "15:26",
+   "views": 0
   },
   {
    "id": "od-topic-10",
@@ -1112,7 +1193,7 @@
    "topic": 6,
    "channel": "od",
    "title": "How J.P. Morgan Saved America With $25 Million And A Locked Door",
-   "status": "ready",
+   "status": "scheduled",
    "video": "videos/06-morgan-panic-1907",
    "youtube_id": "AgeZ5zMz23M",
    "has_script": true,
@@ -1130,7 +1211,6 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-19",
-   "tentative": true,
    "time": "19:00"
   },
   {
@@ -1147,7 +1227,7 @@
    "topic": 7,
    "channel": "od",
    "title": "Why Yahoo's Jerry Yang Said No To $44.6 Billion From Microsoft",
-   "status": "ready",
+   "status": "scheduled",
    "video": "videos/07-yahoo-microsoft-bid",
    "youtube_id": "fZKeZzqlAHw",
    "has_script": true,
@@ -1165,7 +1245,6 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-24",
-   "tentative": true,
    "time": "19:00"
   },
   {
@@ -1173,25 +1252,24 @@
    "topic": 8,
    "channel": "od",
    "title": "Stephen Elop's Bet That Sank Nokia, The World's Biggest Phone Maker",
-   "status": "production",
+   "status": "scheduled",
    "video": "videos/08-nokia-burning-platform",
-   "youtube_id": null,
+   "youtube_id": "HKg42WXvGT8",
    "has_script": true,
    "round": false,
    "why": "",
    "progress": {
-    "state": "failed",
-    "step": "upload",
-    "label": "העלאה ליוטיוב",
-    "error": "העלאה ליוטיוב: rsions/3.12/lib/python3.12/urllib/request.py\", line 559, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py\", line 639, in http_error_",
-    "updated": "29.10.2026 00:28",
-    "attempts": 1
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
+    "error": null,
+    "updated": "07.11.2026 20:33",
+    "attempts": 2
    },
    "fixes": [],
    "hd": null,
    "fix_note": null,
    "date": "2026-11-26",
-   "tentative": true,
    "time": "19:00"
   },
   {
@@ -1254,10 +1332,25 @@
     "state": null,
     "label": "26 מתוך 40 טראקים מוכנים",
     "error": null,
-    "updated": "05.11.2026 22:14"
+    "updated": "15.11.2026 23:57"
    },
    "has_tracks": true,
    "warning": "בסצנה עדיין מצוירים אפקטים שהאנימציה תוסיף שוב (falling snowflakes). כדאי לבקש סצנה חדשה או להעלות תמונה משלך.",
+   "test": [
+    {
+     "n": 21,
+     "title": "Melting Icicles",
+     "bpm": 58,
+     "ensemble": "solo piano"
+    },
+    {
+     "n": 8,
+     "title": "Snowball Fight",
+     "bpm": 138,
+     "ensemble": "gypsy jazz trio: acoustic manouche guitar, violin, upright bass"
+    }
+   ],
+   "test_round": 1,
    "summary": "פלייליסט 5 שתכננו ב־03.11: בית קפה בבוקר מושלג, עם מגוון קצבים וצלילים חדשים. 26 טראקים כבר מוכנים, וחסרים הסצנה ו־14 טראקים.",
    "has_script": true
   },
@@ -1418,9 +1511,9 @@
   "ideas": 10,
   "scripting": 0,
   "text_ready": 0,
-  "production": 1,
-  "ready": 3,
-  "scheduled": 2,
+  "production": 0,
+  "ready": 0,
+  "scheduled": 4,
   "ideas_target": 10,
   "ready_target": 3
  },
