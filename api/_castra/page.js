@@ -815,7 +815,7 @@ ${odPanel(d)}${musicPanel(d)}<div class="card sec"><div class="hrow"><h2><i></i>
       var hb=document.createElement('b');hb.textContent='פלייליסט בדיקת קונספט'+(i.testRound>1?' · סבב '+i.testRound:'');tl.appendChild(hb);
       var hs=document.createElement('small');hs.textContent=i.test.length+' שירים מתוך התכנון, עם הסצנה. אישור יוצא להפקה מלאה ומשאיר אותם בפלייליסט. בקשת שינוי מכינה פלייליסט בדיקה חדש. הבדיקה עצמה לא מתוזמנת ולא עולה ליוטיוב.';tl.appendChild(hs);
       var players=[];i.test.forEach(function(t,k){var d=document.createElement('div');d.className='tsong';
-        var tt=document.createElement('div');tt.textContent=(k+1)+'. '+t.title+' ';var sp=document.createElement('span');sp.textContent=[t.ens,t.bpm?t.bpm+' BPM':''].filter(Boolean).join(' · ');tt.appendChild(sp);
+        var tt=document.createElement('div');tt.dir='ltr';tt.style.textAlign='left';tt.textContent=(k+1)+'. '+t.title+' ';var sp=document.createElement('span');sp.textContent=[t.ens,t.bpm?t.bpm+' BPM':''].filter(Boolean).join(' · ');tt.appendChild(sp);
         var au=document.createElement('audio');au.controls=true;au.preload='none';au.src='/castra?audio='+encodeURIComponent(i.id)+'&i='+t.i+'&v='+encodeURIComponent(t.v||'');
         d.appendChild(tt);d.appendChild(au);tl.appendChild(d);players.push(au);});
       players.forEach(function(au,k){au.addEventListener('play',function(){players.forEach(function(o){if(o!==au)o.pause()})});
