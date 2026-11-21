@@ -360,8 +360,10 @@ ${c.status ? `<div class="sub">${esc(c.status)}</div>` : ''}
 <div><b>${money(c.next_month.expected)}</b><span>צפי ל${esc(c.next_month.label)}</span></div></div>
 <div class="sub">${esc(c.this_month.label)}: נוצלו ${money(c.this_month.spent)} מתוך ${money(c.this_month.expected)}</div>
 <div class="meter"><div style="width:${meterPct.toFixed(0)}%"></div></div>
+${c.credits ? `<div class="sub">קרדיטים של Higgsfield: ${fmt(c.credits_this_month)} החודש מתוך ${fmt(c.credits_plan || 3000)} בתוכנית · ${fmt(c.credits)} בסך הכול</div>
+<div class="meter"><div style="width:${Math.min(100, (c.credits_this_month || 0) / (c.credits_plan || 3000) * 100).toFixed(0)}%"></div></div>` : ''}
 <details class="card" style="padding:12px 14px;background:rgba(255,255,255,.02)"><summary><h2 style="font-size:14px">היסטוריית חיובים (${c.items.length})</h2><span class="chev">▾</span></summary>
-<table><tbody>${c.items.slice().reverse().map(x => `<tr><td>${esc(x.what)}<br><small style="color:var(--ink3)">${esc(x.date)}</small></td><td class="n">${money(x.usd)}</td></tr>`).join('')}</tbody></table></details>
+<table><tbody>${c.items.slice().reverse().map(x => `<tr><td>${esc(x.what)}<br><small style="color:var(--ink3)">${esc(x.date)}</small></td><td class="n">${x.credits ? (x.usd ? money(x.usd) + '<br>' : '') + fmt(x.credits) + ' קרדיטים' : money(x.usd)}</td></tr>`).join('')}</tbody></table></details>
 <div class="note">תכנון: כ־$15 בחודש מהשקת One Decision, וכ־$70 מהשקת Long Ears</div>`;
 
   const scen = sc => d.horizons.map((h, i) => {

@@ -1,5 +1,5 @@
 {
- "updated": "21.11.2026 22:33",
+ "updated": "21.11.2026 22:47",
  "today": "2026-11-21",
  "od_launch": "2026-10-28",
  "month_index": 2,
@@ -1149,6 +1149,9 @@
    }
   ],
   "spent": 21.84,
+  "credits": 251.0,
+  "credits_this_month": 251.0,
+  "credits_plan": 3000,
   "this_month": {
    "label": "נובמבר",
    "spent": 2.64,
@@ -1564,7 +1567,7 @@
    "status": "scheduled",
    "video": "videos/11-soros-black-wednesday",
    "youtube_id": "qNqJ6bc2giA",
-   "preview_url": "",
+   "preview_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3ExlSCGRKNUk3FhUhGinY9IGvU0/e1390db1-aacb-4009-9c30-3f5337799843.mp4",
    "has_script": true,
    "round": false,
    "style": "map",
