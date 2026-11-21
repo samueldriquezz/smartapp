@@ -1,6 +1,6 @@
 {
- "updated": "15.11.2026 23:57",
- "today": "2026-11-15",
+ "updated": "21.11.2026 22:15",
+ "today": "2026-11-21",
  "od_launch": "2026-10-28",
  "month_index": 2,
  "channels": [
@@ -15,8 +15,8 @@
    "status": "",
    "subs": 1,
    "hours": 0,
-   "views30": 53,
-   "videos": 6,
+   "views30": 80,
+   "videos": 8,
    "series": [
     {
      "date": "2026-11-05",
@@ -71,6 +71,36 @@
     {
      "date": "2026-11-15",
      "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-16",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-17",
+     "views": 3,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-18",
+     "views": 1,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-19",
+     "views": 13,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-20",
+     "views": 6,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-21",
+     "views": 3,
      "subs": 0
     }
    ]
@@ -141,6 +171,36 @@
     },
     {
      "date": "2026-11-15",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-16",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-17",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-18",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-19",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-20",
+     "views": 0,
+     "subs": 0
+    },
+    {
+     "date": "2026-11-21",
      "views": 0,
      "subs": 0
     }
@@ -591,6 +651,94 @@
      "s": "done"
     }
    ]
+  },
+  {
+   "id": "11-soros-black-wednesday",
+   "title": "How Soros Broke The Bank Of England With One Trade",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "todo"
+    },
+    {
+     "k": "תמונות",
+     "s": "todo",
+     "note": ""
+    },
+    {
+     "k": "רינדור",
+     "s": "done"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "done"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "done"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "done"
+    }
+   ]
+  },
+  {
+   "id": "21-ea-almost-owned-gta-6",
+   "title": "EA Almost Owned GTA 6. One Decision Stopped It.",
+   "channel": "One Decision",
+   "stages": [
+    {
+     "k": "רעיון",
+     "s": "done"
+    },
+    {
+     "k": "אישור נושא",
+     "s": "done"
+    },
+    {
+     "k": "תסריט",
+     "s": "done"
+    },
+    {
+     "k": "קריינות",
+     "s": "done"
+    },
+    {
+     "k": "תמונות",
+     "s": "done",
+     "note": "47/47"
+    },
+    {
+     "k": "רינדור",
+     "s": "done"
+    },
+    {
+     "k": "העלאה ליוטיוב",
+     "s": "done"
+    },
+    {
+     "k": "אישור פרסום",
+     "s": "done"
+    },
+    {
+     "k": "מתוזמן",
+     "s": "done"
+    }
+   ]
   }
  ],
  "tasks": [
@@ -766,6 +914,11 @@
   {
    "n": 20,
    "title": "WeWork: How One Founder Turned $47 Billion Into Almost Nothing",
+   "star": false
+  },
+  {
+   "n": 21,
+   "title": "EA Almost Owned GTA 6. One Decision Stopped It.",
    "star": false
   }
  ],
@@ -943,12 +1096,32 @@
     "date": "29.10.2026",
     "what": "רקע לתמונה ממוזערת: videos/10-knight-nike-bet",
     "usd": 0.04
+   },
+   {
+    "date": "21.11.2026",
+    "what": "תמונות Gemini: EA Almost Owned GTA 6. One Decision Stopped It. (47)",
+    "usd": 1.65
+   },
+   {
+    "date": "21.11.2026",
+    "what": "רקע לתמונה ממוזערת: videos/21-ea-almost-owned-gta-6",
+    "usd": 0.04
+   },
+   {
+    "date": "21.11.2026",
+    "what": "מבחן סגנון מושן גרפיקס (סורוס): 25 תמונות Gemini",
+    "usd": 0.88
+   },
+   {
+    "date": "21.11.2026",
+    "what": "מבחן סגנון מושן גרפיקס (סורוס): 2 תמונות Gemini",
+    "usd": 0.07
    }
   ],
-  "spent": 19.2,
+  "spent": 21.84,
   "this_month": {
    "label": "נובמבר",
-   "spent": 0,
+   "spent": 2.64,
    "expected": 70
   },
   "next_month": {
@@ -1049,7 +1222,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-03",
-   "time": "19:00"
+   "time": "19:41"
   },
   {
    "id": "music-01",
@@ -1091,7 +1264,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-05",
-   "time": "19:00"
+   "time": "21:53"
   },
   {
    "id": "music-02",
@@ -1126,7 +1299,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-10",
-   "time": "19:00"
+   "time": "18:08"
   },
   {
    "id": "od-topic-9",
@@ -1151,7 +1324,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-12",
-   "time": "19:00"
+   "time": "19:16"
   },
   {
    "id": "music-03",
@@ -1168,7 +1341,7 @@
    "topic": 10,
    "channel": "od",
    "title": "How Phil Knight Turned an $8,000 Shoe Business Into Nike",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/10-knight-nike-bet",
    "youtube_id": "6o3FSndP4kw",
    "has_script": true,
@@ -1186,14 +1359,14 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-17",
-   "time": "19:00"
+   "time": "19:09"
   },
   {
    "id": "od-topic-6",
    "topic": 6,
    "channel": "od",
    "title": "How J.P. Morgan Saved America With $25 Million And A Locked Door",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/06-morgan-panic-1907",
    "youtube_id": "AgeZ5zMz23M",
    "has_script": true,
@@ -1211,7 +1384,32 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-19",
-   "time": "19:00"
+   "time": "18:42"
+  },
+  {
+   "id": "od-topic-21",
+   "topic": 21,
+   "channel": "od",
+   "title": "EA Almost Owned GTA 6. One Decision Stopped It.",
+   "status": "scheduled",
+   "video": "videos/21-ea-almost-owned-gta-6",
+   "youtube_id": "xo1N39sCtds",
+   "has_script": true,
+   "round": true,
+   "why": "",
+   "progress": {
+    "state": "done",
+    "step": "done",
+    "label": "מוכן לאישור",
+    "error": null,
+    "updated": "21.11.2026 17:33",
+    "attempts": 3
+   },
+   "fixes": [],
+   "hd": null,
+   "fix_note": null,
+   "date": "2026-11-22",
+   "time": "17:10"
   },
   {
    "id": "music-04",
@@ -1245,7 +1443,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-24",
-   "time": "19:00"
+   "time": "21:47"
   },
   {
    "id": "od-topic-8",
@@ -1270,26 +1468,51 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-11-26",
-   "time": "19:00"
+   "time": "22:11"
   },
   {
-   "id": "music-bestof",
+   "id": "music-07",
    "channel": "music",
-   "title": "Best of Long Ears",
-   "status": "planned",
+   "title": "Best of Long Ears 🎧 Two Hours of Cozy Jazz from Earl's Rainy and Snowy Rooms",
+   "status": "concept",
+   "youtube_id": null,
    "date": "2026-11-29",
    "time": "15:19",
-   "note": "קומפילציה מטראקים קיימים, בלי קרדיטים"
+   "tentative": true,
+   "progress": {
+    "state": null,
+    "label": "40 מתוך 40 טראקים מוכנים",
+    "error": null,
+    "updated": "16.11.2026 00:32"
+   },
+   "has_tracks": true,
+   "test": [
+    {
+     "n": 1,
+     "title": "Grey Afternoon",
+     "bpm": 94,
+     "ensemble": "quartet: flugelhorn, piano, upright bass, brushed drums"
+    },
+    {
+     "n": 5,
+     "title": "First Snow",
+     "bpm": 67,
+     "ensemble": "chamber jazz: piano, cello, upright bass, very soft brushed drums"
+    }
+   ],
+   "test_round": 1,
+   "summary": "פלייליסט Best of לשבוע של 29.11: 40 טראקים מהחדרים שכבר פורסמו (עליית הגג, בית הקפה בחנות הספרים והבקתה המושלגת), בלי קרדיטים חדשים. נפתח בטראקים הקצביים ביותר. הסצנה והעיצוב הם של פלייליסט 01 (הנצפה ביותר), רק הטקסט מתחלף.",
+   "has_script": true
   },
   {
    "id": "od-topic-11",
    "topic": 11,
    "channel": "od",
-   "title": "How Soros Broke The Bank Of England With One Trade",
-   "status": "idea",
+   "title": "How George Soros Made $1 Billion Breaking The Bank Of England",
+   "status": "scheduled",
    "video": "videos/11-soros-black-wednesday",
-   "youtube_id": null,
-   "has_script": false,
+   "youtube_id": "qNqJ6bc2giA",
+   "has_script": true,
    "round": false,
    "why": "",
    "progress": null,
@@ -1297,8 +1520,7 @@
    "hd": null,
    "fix_note": null,
    "date": "2026-12-01",
-   "tentative": true,
-   "time": "19:00"
+   "time": "22:31"
   },
   {
    "id": "od-topic-12",
@@ -1332,26 +1554,26 @@
     "state": null,
     "label": "26 מתוך 40 טראקים מוכנים",
     "error": null,
-    "updated": "15.11.2026 23:57"
+    "updated": "16.11.2026 00:25"
    },
    "has_tracks": true,
    "warning": "בסצנה עדיין מצוירים אפקטים שהאנימציה תוסיף שוב (falling snowflakes). כדאי לבקש סצנה חדשה או להעלות תמונה משלך.",
    "test": [
     {
-     "n": 21,
-     "title": "Melting Icicles",
-     "bpm": 58,
-     "ensemble": "solo piano"
+     "n": 10,
+     "title": "Earl Orders Two Croissants",
+     "bpm": 120,
+     "ensemble": "acoustic quintet"
     },
     {
-     "n": 8,
-     "title": "Snowball Fight",
-     "bpm": 138,
-     "ensemble": "gypsy jazz trio: acoustic manouche guitar, violin, upright bass"
+     "n": 2,
+     "title": "Frosted Window",
+     "bpm": 100,
+     "ensemble": "hollow-body jazz guitar trio"
     }
    ],
-   "test_round": 1,
-   "summary": "פלייליסט 5 שתכננו ב־03.11: בית קפה בבוקר מושלג, עם מגוון קצבים וצלילים חדשים. 26 טראקים כבר מוכנים, וחסרים הסצנה ו־14 טראקים.",
+   "test_round": 2,
+   "summary": "שמרתי על הקפה המושלג אבל הפכתי את הפתיחה: חמשת השירים הראשונים הם סווינג, בוסה וג'אז מאנוש בקצב בינוני עד מהיר, והבלדה האיטית הראשונה מגיעה רק בשיר השישי. משם הפלייליסט מחליף בין קצבים לאורך שעתיים, עם 18 איטיים, 16 בינוניים ו 6 מהירים בעשרה הרכבים שונים, כולל ויברפון, אקורדיון, קלרינט וצ'לו.",
    "has_script": true
   },
   {
@@ -1508,7 +1730,7 @@
   }
  ],
  "pipeline": {
-  "ideas": 10,
+  "ideas": 9,
   "scripting": 0,
   "text_ready": 0,
   "production": 0,
