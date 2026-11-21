@@ -706,7 +706,7 @@ function renderSchedule(d, approved = {}, fixReq = {}) {
     return `<div class="tile ${s.channel}" data-ch="${s.channel}" data-info="${esc(JSON.stringify(info))}" tabindex="0">
 <div class="tmedia">${media}<span class="ss ${s.status}">${esc(info.label)}</span>${s.channel === 'music' ? muProg : prog}
 <div class="thover"><button class="view">צפייה</button>${s.status === 'idea' ? `<button class="tok" data-id="${esc(s.id)}">אישור נושא</button>` : ''}${s.status === 'ready' ? `<button class="apr" data-id="${esc(s.id)}">אישור</button>` : ''}${s.video && CAN_FIX.includes(s.status) ? '<button class="rej">דחייה</button>' : ''}</div>
-${s.status === 'idea' && s.round ? '<span class="tflag">מהסבב שלך</span>' : ''}${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}${s.hd ? `<span class="tflag ${s.hd.ok ? 'hdok' : 'hdbad'}">${s.hd.ok ? 'HD מוכן' : 'HD בעיבוד'}</span>` : ''}</div>
+${s.status === 'idea' && s.round ? '<span class="tflag">מהסבב שלך</span>' : ''}${s.channel === 'od' && s.style ? `<span class="tflag">${({map: 'מפות', cartoon: 'מצויר', cartoon_mixed: 'מצויר משולב', cartoon_full: 'מצויר מלא'})[s.style] || s.style}</span>` : ''}${s.status === 'ready' && (s.fixes || []).length ? '<span class="tflag">תוקן</span>' : ''}${s.hd ? `<span class="tflag ${s.hd.ok ? 'hdok' : 'hdbad'}">${s.hd.ok ? 'HD מוכן' : 'HD בעיבוד'}</span>` : ''}</div>
 <div class="ttitle">${esc(s.title)}</div>
 <div class="tdate"><b>${heDate(s.date)}</b> · יום ${dow} · ${esc(s.time)}${s.status === 'published' && s.views != null ? ` · ${fmt(s.views)} צפיות` : ''}</div></div>`;
   };
