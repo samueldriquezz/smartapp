@@ -1,6 +1,6 @@
 {
- "updated": "21.11.2026 22:47",
- "today": "2026-11-21",
+ "updated": "22.11.2026 17:20",
+ "today": "2026-11-22",
  "od_launch": "2026-10-28",
  "month_index": 2,
  "channels": [
@@ -1146,11 +1146,29 @@
     "what": "קריקטורה (full): 9 קליפים Seedance: styletest/dry-full",
     "usd": 0.0,
     "credits": 84.0
+   },
+   {
+    "date": "21.11.2026",
+    "what": "תיקון: קריינות Holden לביט 1: styletest/dry-mixed",
+    "usd": 0.0,
+    "credits": 0.4
+   },
+   {
+    "date": "21.11.2026",
+    "what": "תיקון: קריקטורה: 1 תמונת מפתח: styletest/dry-mixed",
+    "usd": 0.0,
+    "credits": 1.5
+   },
+   {
+    "date": "21.11.2026",
+    "what": "תיקון: קריקטורה (mixed): 1 קליפ Seedance: styletest/dry-mixed",
+    "usd": 0.0,
+    "credits": 10.0
    }
   ],
   "spent": 21.84,
-  "credits": 251.0,
-  "credits_this_month": 251.0,
+  "credits": 262.9,
+  "credits_this_month": 262.9,
   "credits_plan": 3000,
   "this_month": {
    "label": "נובמבר",
@@ -1440,7 +1458,7 @@
    "topic": 21,
    "channel": "od",
    "title": "EA Almost Owned GTA 6. One Decision Stopped It.",
-   "status": "scheduled",
+   "status": "published",
    "video": "videos/21-ea-almost-owned-gta-6",
    "youtube_id": "xo1N39sCtds",
    "preview_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3ExlSCGRKNUk3FhUhGinY9IGvU0/7df883b1-4022-473f-9d51-dbeb74ad65f9.mp4",
@@ -1466,10 +1484,11 @@
    "id": "music-04",
    "channel": "music",
    "title": "Late Night Jazz Club on a Rainy Night 🎷 Vocal Jazz for Slow Evenings",
-   "status": "scheduled",
+   "status": "published",
    "youtube_id": "oJiXcwpi80Q",
    "date": "2026-11-22",
-   "time": "16:28"
+   "time": "16:28",
+   "views": 0
   },
   {
    "id": "od-topic-7",
@@ -1479,7 +1498,7 @@
    "status": "scheduled",
    "video": "videos/07-yahoo-microsoft-bid",
    "youtube_id": "fZKeZzqlAHw",
-   "preview_url": "",
+   "preview_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3ExlSCGRKNUk3FhUhGinY9IGvU0/5a7c55e2-b279-44ef-9a86-fb8aea576ccf.mp4",
    "has_script": true,
    "round": false,
    "style": null,
@@ -1506,7 +1525,7 @@
    "status": "scheduled",
    "video": "videos/08-nokia-burning-platform",
    "youtube_id": "HKg42WXvGT8",
-   "preview_url": "",
+   "preview_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3ExlSCGRKNUk3FhUhGinY9IGvU0/3b59d111-8df0-4687-a750-63937803f962.mp4",
    "has_script": true,
    "round": false,
    "style": null,
@@ -1810,7 +1829,7 @@
   "text_ready": 0,
   "production": 0,
   "ready": 0,
-  "scheduled": 4,
+  "scheduled": 3,
   "ideas_target": 10,
   "ready_target": 3
  },
