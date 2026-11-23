@@ -1,0 +1,51 @@
+# Search engines and AI assistants are welcome to read the public site.
+User-agent: *
+Allow: /
+Disallow: /castra
+Disallow: /api/
+Disallow: /thanks
+Disallow: /thanks-process
+
+# OpenAI: ChatGPT search, training, and live browsing on a user's request
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+# Other AI assistants (Claude, Perplexity, Gemini, Copilot via Bing)
+User-agent: ClaudeBot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /castra
+Disallow: /api/
+
+Sitemap: https://smartapp-agency.com/sitemap.xml

@@ -1,0 +1,22 @@
+# Smartapp
+
+> Smartapp (smartapp-agency.com) is an Israeli agency that builds mobile apps and web platforms with AI tools, founded and run by Samuel Driquez (סמואל דריקז). A first version (MVP) usually costs ₪15,000 to ₪25,000 and is built within up to 90 working days, including product spec, UI/UX design, full development, payments and App Store / Google Play submission. Clients work directly with Samuel from the first call to launch. Site language: Hebrew.
+
+## What Smartapp builds
+- Mobile apps for iOS and Android, web platforms, SaaS, marketplaces
+- Business management systems, customer portals, internal dashboards
+- AI based products, automation tools, subscription and payment systems
+- Not offered: physical products, patents, work for equity or revenue share
+
+## Who it is for
+Entrepreneurs who want to launch and test an idea without a six figure budget, business owners who need a custom system, and people with no technical background.
+
+## Pages
+- [Home](https://smartapp-agency.com/): services, process, about, FAQ, contact
+- [How much does an app cost in Israel in 2026](https://smartapp-agency.com/guides/app-development-cost)
+- [AI app development: what it is and who it fits](https://smartapp-agency.com/guides/ai-app-development)
+- [How to choose an app developer](https://smartapp-agency.com/guides/choose-app-developer)
+
+## Contact
+- WhatsApp: +972 54 336 8543 (https://wa.me/972543368543)
+- Instagram: https://www.instagram.com/smartapp.il/
